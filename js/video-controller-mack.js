@@ -281,7 +281,7 @@ $(document).ready(function(){
                     if (trigger != 1){
 
 
-                timeOutz(0, 4, 2);
+                timeOutz(0, 4, 2); // case, timout count, loopOut
                 
                 } else {
 
@@ -334,6 +334,7 @@ $(document).ready(function(){
                    idleTime = 0;
                  //clearInterval(t2);
                   clearInterval();
+                  clearInterval(t2);
                  // clearTimeout();
                     pop.play(11.5);
                     loopTrigger(3);
@@ -353,9 +354,10 @@ $(document).ready(function(){
 
              pop.cue( 22, function() {
 
-                 pop.play(0);
+                // pop.play(0);
                  idleTime = 0;
                   loopFrom = 1;
+                  loopTrigger(0);
 
             });
 

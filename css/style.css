@@ -12,6 +12,35 @@ body {
 	background-color:#201e1c;
 	background-repeat: repeat-x;
 }
+
+
+div.TitleSlice {
+	position:absolute;
+	//left:238px;
+	top:282px;
+	width:1024px;
+	height:140px;
+}
+
+div.VideoSlice {
+	position:absolute;
+	//left:238px;
+	top:422px;
+	width:1024px;
+	height:540px;
+}
+
+
+div.SiteContent {
+	position:absolute;
+	//left:238px;
+	top:962px;
+	width:1024px;
+	height:473px;
+}
+
+
+
 .centerer-container {
 	display: table;
 
@@ -34,6 +63,11 @@ background-repeat: no-repeat;
 	text-align: center;
 	
 }
+
+
+
+
+
 
 .video-container,
 .video {
