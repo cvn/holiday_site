@@ -98,6 +98,15 @@ $(document).ready(function(){
 
 /////////////////////////////////////////////////////////////////////
 
+       var intervalArr = new Array();
+        function intervalOne () { console.log ('foo');};
+        function intervalTwo () { console.log ('bar');};
+
+        function killIntervals(){
+            while(intervalArr.length > 0)
+            clearInterval(intervalArr.pop());
+        };
+ 
 
    function timeOutz(numzz, timez, loopOut){  console.log(timez);
             switch(numzz){
@@ -105,6 +114,8 @@ $(document).ready(function(){
 
 
                 case 0:
+
+                        idleTime = 0;
                         trigger = 1;
 
                         
@@ -122,14 +133,14 @@ $(document).ready(function(){
                 case 1:
 
 
-                     var t2 = setTimeout(function(){
+                     intervalArr.push(setTimeout(function(){
 
                             
                             console.log('Waiting');
                                 //updateLooper(5);
                             
 
-                        },5000);
+                        },5000));
 
                           //Zero the idle timer on mouse movement.
                         $(this).mousemove(function (e) {
@@ -166,9 +177,11 @@ $(document).ready(function(){
 
     function setTimeOutFunction1(timez, loopOut, intervalz){
 
+        console.log('timoutFunc1 vals Count: ' + timez + 'loopOut ' + loopOut + ' and interval ' + intervalz );
+        
 
 
-        var t2 =setInterval(function(){
+        intervalArr.push(setInterval(function(){
 
                              idleTime = idleTime + 1;
                                 console.log('Waiting');
@@ -178,7 +191,8 @@ $(document).ready(function(){
 
                                  if( idleTime == timez){
 
-                                clearInterval(t2);
+                                //clearInterval(t2);
+                                killIntervals();
                                 loopFrom = loopOut;
 
 
@@ -191,7 +205,7 @@ $(document).ready(function(){
                                 
                             }
 
-                        }, intervalz);
+                        }, intervalz));
 
                           //Zero the idle timer on mouse movement.
                         $(this).mousemove(function (e) {
@@ -224,8 +238,8 @@ $(document).ready(function(){
                 
             });
 
-    var loopFrom = 1,
-    idleTime = 0;
+    var loopFrom = 1;
+    
 
     function playPop(){
 
@@ -284,8 +298,12 @@ $(document).ready(function(){
                 timeOutz(0, 4, 2); // case, timout count, loopOut
                 
                 } else {
-
+                    console.log('Trigger has been pulled');
                   //  idleTime = 0;
+               
+                 
+
+
                 }
 
                 
@@ -298,6 +316,29 @@ $(document).ready(function(){
     } 
 
 
+
+    function loopExit(frameNum){
+        switch(frameNum){
+
+            case 0:
+
+
+                          idleTime = 0;
+
+                pop.play(0);
+                
+                 pop.cue( .9, function() {
+                        pop.play(0);
+                     loopTrigger(1);
+
+                 });
+
+            break;
+
+        };
+
+    }
+
    
 
     function loopTrigger(cuez){
@@ -305,14 +346,20 @@ $(document).ready(function(){
 
             case 0:
 
+                idleTime = 0;
+
                 pop.play(0);
-                loopTrigger(1);
+                
+                
+                     loopTrigger(1);
+
+
 
             break;
 
             case 1:
 
-                pop.cue( .958, function() {
+                pop.cue( .9, function() {
 
                 pop.play(0);
 
@@ -330,12 +377,14 @@ $(document).ready(function(){
 
             case 2:
             
-                 pop.cue( .958, function() {
-                   idleTime = 0;
+                 pop.cue( .85, function() {
+                  // idleTime = 0;
                  //clearInterval(t2);
-                  clearInterval();
-                  clearInterval(t2);
+                  //clearInterval();
+                 //clearInterval(t2);
                  // clearTimeout();
+                  //killIntervals();
+
                     pop.play(11.5);
                     loopTrigger(3);
                     //loopFrom = 3;
@@ -355,9 +404,10 @@ $(document).ready(function(){
              pop.cue( 22, function() {
 
                 // pop.play(0);
-                 idleTime = 0;
-                  loopFrom = 1;
-                  loopTrigger(0);
+                 //idleTime = 0;
+                // killIntervals();
+                  //loopFrom = 1;
+                  loopExit(0);
 
             });
 
@@ -375,16 +425,16 @@ $(document).ready(function(){
 
  
 
-        if (loopFrom == 2){
+      //  if (loopFrom == 2){
            
-        }
+      //  }
 
 
-             if (loopFrom == 3 ){
+          //   if (loopFrom == 3 ){
 
             //loopTrigger(loopFrom);
 
-        }   
+      //  }   
 
 
 

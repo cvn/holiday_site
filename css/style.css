@@ -17,7 +17,7 @@ body {
 div.TitleSlice {
 	position:absolute;
 	//left:238px;
-	top:282px;
+	top:82px;
 	width:1024px;
 	height:140px;
 }
@@ -25,7 +25,7 @@ div.TitleSlice {
 div.VideoSlice {
 	position:absolute;
 	//left:238px;
-	top:422px;
+	top:222px;
 	width:1024px;
 	height:540px;
 }
@@ -34,12 +34,28 @@ div.VideoSlice {
 div.SiteContent {
 	position:absolute;
 	//left:238px;
-	top:962px;
+	top:762px;
 	width:1024px;
 	height:473px;
 }
 
+div.testForm {
+	position:absolute;
+	//left:238px;
+	top:200px;
+	width:1024px;
+	height:473px;
+}
 
+.bgTexture {
+	position:absolute;
+	background-image:url('../images/nonLive/preCompBGTex.png');
+	background-repeat: no-repeat;
+	left:-150px;
+	width: 1500px;
+	height: 1500px;
+	
+}
 
 .centerer-container {
 	display: table;
