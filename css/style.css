@@ -39,6 +39,71 @@ div.SiteContent {
 	height:473px;
 }
 
+
+div.leftContent {
+	position:absolute;
+	//left:238px;
+	top:762px;
+	width:331px;
+	height:473px;
+}
+
+div.centerCoins {
+	position:absolute;
+	//left:569px;
+	top:962px;
+	width:323px;
+	height:473px;
+}
+
+div.RedCrossIcon {
+	position:absolute;
+	left:652px;
+	top:762px;
+	width:370px;
+	height:138px;
+	display: block; 
+}
+
+button.closeForm {
+
+	position:absolute;
+	left:250px;
+	//top:850px;
+	//width:100;
+	height:50px;
+	z-index: 4;
+	font-size: 100%;
+}
+
+
+
+div.redForm {
+
+	position:absolute;
+	left:652px;
+	top:850px;
+	width:370px;
+	height:465px;
+	z-index: 3;
+	//visibility: hidden;
+	/*position:absolute;
+	//left:238px;
+	top:800px;
+	width:400px;
+	height:473px;
+	z-index: 3;*/
+}
+
+div.underCrossContent {
+	position:absolute;
+	left:652px;
+	top:900px;
+	width:370px;
+	height:335px;
+}
+
+/*///////////////////////*/
 div.testForm {
 	position:absolute;
 	//left:238px;
@@ -46,6 +111,37 @@ div.testForm {
 	width:1024px;
 	height:473px;
 }
+
+div.nameTicker {
+	position:absolute;
+	left:638px;
+	top:200px;
+	width:1024px;
+	color: #CDCDCD;
+	height:473px;
+	font-size:180%;
+
+}
+
+
+div.soloCoin {
+	position:absolute;
+	left:452px;
+	top:800px;
+	width:80px;
+	height:60px;
+	z-index: 5;
+}
+
+div#soloCoin {
+	position:absolute;
+	left:452px;
+	top:800px;
+	width:80px;
+	height:60px;
+}
+/*///////////////////////*/
+
 
 .bgTexture {
 	position:absolute;
