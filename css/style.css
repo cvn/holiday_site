@@ -82,7 +82,7 @@ div.redForm {
 
 	position:absolute;
 	left:652px;
-	top:850px;
+	top:830px;
 	width:370px;
 	height:465px;
 	z-index: 3;
@@ -104,6 +104,21 @@ div.underCrossContent {
 }
 
 /*///////////////////////*/
+
+div.mattePainting {
+	position: absolute;
+	background-image: url('../images/live/112812_wide_png24_002.png');
+	background-repeat: no-repeat;
+	 //top: -150px;
+	//left:-1240px;
+
+	 top: 100px;
+	left:-600px;
+	width: 2800px;
+	height: 1400px;
+	z-index: 0;
+}
+
 div.testForm {
 	position:absolute;
 	//left:238px;
@@ -133,12 +148,24 @@ div.soloCoin {
 	z-index: 5;
 }
 
-div#soloCoin {
+
+div.soloCoin2 {
 	position:absolute;
 	left:452px;
-	top:800px;
+	top:860px;
 	width:80px;
 	height:60px;
+	z-index: 5;
+}
+
+div#soloCoin {
+	position:absolute;
+	color: #CDCDCD;
+	left:452px;
+	top:940px;
+	width:80px;
+	height:60px;
+	font-size:180%;
 }
 /*///////////////////////*/
 
@@ -147,7 +174,8 @@ div#soloCoin {
 	position:absolute;
 	background-image:url('../images/nonLive/preCompBGTex.png');
 	background-repeat: no-repeat;
-	left:-150px;
+	top: -60px;
+	left:-250px;
 	width: 1500px;
 	height: 1500px;
 	

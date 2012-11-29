@@ -245,6 +245,7 @@ $(document).ready(function(){
     function playPop(){
 
         toggleRed();
+         bgMatte();
 
         loopTrigger(0);
     }

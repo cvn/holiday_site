@@ -40,7 +40,7 @@
     <script src="js/cardcheck.js"></script>
     <script src="js/form-handling.js"></script>
     <script src="js/video-controller-mack.js"></script>
-
+    <script src="js/coinMultiDrag-Mack.js"></script>
    
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
@@ -48,26 +48,11 @@
     <script src="js/jquery.easy-ticker.js" type="text/javascript"></script>
 
 </head>
+            
 
-
- <script>
-    $(function() {
-        $( ".soloCoin" ).draggable();
-        $( ".VideoSlice" ).droppable({
-            drop: function( event, ui ) {
-                $( '#soloCoin' )
-                    .addClass( "dropped" )
-                    .find( "p" )
-                        .html( "Dropped!" );
-            }
-        });
-    });
-    </script>
 
 
 <body>
-
-
 
 
 
@@ -96,8 +81,12 @@
                     </div>
                                
 
-                            <div class="bgTexture"></div>
+                        <div class="mattePainting" style='display: none; visibility: hidden;'></div>
 
+
+                            
+
+                          
 
 
                                 <div class="VideoSlice">
@@ -231,11 +220,13 @@
                                     <p></p>
                                      </div>
 
-                                    <div class="soloCoin">
+                                    <div class="soloCoin active">
                                     <img src="images/coinsSolo.png"  alt="">
                                      </div>
 
-
+                                      <div class="soloCoin2 active">
+                                    <img src="images/coinsSolo.png"  alt="">
+                                     </div>
 
                                     <div class="RedCrossIcon">
                                     <img src="images/nonLive/RedCrossIcon.png"  alt="">
@@ -268,6 +259,14 @@
                                            // launchRed();
                                             // Animation complete.
                                           });
+                              }
+
+                              function bgMatte(){
+
+                                 $('.mattePainting').toggle('slow', function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          }).css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 14000);
                               }
 
 
@@ -310,8 +309,27 @@
 
                                       });
 
-                                    
-                                    
+                                     function closeTestForm(){
+
+                                        testFormToggle = 0;
+                                        $('.closedTest').html('1');
+
+
+
+                                          $('.testForm').toggle('slow', function() {
+
+                                            console.log('Test Form Toga '+testFormToggle);
+                                           
+                                           // launchRed();
+                                            // Animation complete.
+                                          });
+                                        }
+                               
+                                    function closedTest(){
+                                      closedTestForm = 1;
+
+                                        }
+
 
 
 
@@ -322,14 +340,31 @@
 
                               </script>
 
-                         <div class="testForm">   
+
+
+                              
+
+
+
+                         <div class="testForm"  style="display: none">   
+                            <div class='closedTest' style='display: none'>0</div>
+
+                            <button class='closeTest' onClick="closeTestForm();">Close X</button>
                                 <form action="db/postDb.php" >
-                                        <input type="text" name="name" placeholder="Enter your Name" required /></input>
-                                        <input id='doVal' type="number" name="amount" min="10" max="9999" onBlur="crossVal();"  step="0.01" size="4" placeholder="Must be over $10" required></input>
+                                        <input type="text" name="name" placeholder="Enter First and Last Name" required /></input>
+                                        <input id='doVal' type="number" name="amount" min="10" max="9999" step="0.01" size="4" placeholder="Must be over $10" required></input>
+                                        
+                                        <br />
+
+                                        <input id='ccIn' type="number" placeholder="Enter Credit Card Number" name="ccNum" required></input>
+
+
                                         <input type="submit" />  
 
 
                                 </form>
+
+
                             </div>
 
                                 <div class="nameTicker">
