@@ -8,11 +8,29 @@ html, body, .centerer-container {
 
 body {
 	font-family: sans-serif;
-	background-image:url('../images/nonLive/bgsplice_01.png');
+	background-image:url('../images/nonLive/bgsplice_03.png');
 	background-color:#201e1c;
 	background-repeat: repeat-x;
 }
 
+div.wholeShabang {
+
+	position: relative;
+	top: -100px;
+}
+
+div.dividers {
+	position:relative;
+	top:-40px;
+
+}
+
+div.centerCont {
+
+	position: relative;
+	left: -40px;
+
+}
 
 div.TitleSlice {
 	position:absolute;
@@ -28,6 +46,7 @@ div.VideoSlice {
 	top:222px;
 	width:1024px;
 	height:540px;
+	z-index: 2;
 }
 
 
@@ -42,7 +61,7 @@ div.SiteContent {
 
 div.leftContent {
 	position:absolute;
-	//left:238px;
+	left:58px;
 	top:762px;
 	width:331px;
 	height:473px;
@@ -59,10 +78,11 @@ div.centerCoins {
 div.RedCrossIcon {
 	position:absolute;
 	left:652px;
-	top:762px;
+	top:722px;
 	width:370px;
 	height:138px;
-	display: block; 
+	display: block;
+	z-index: 0; 
 }
 
 button.closeForm {
@@ -103,6 +123,21 @@ div.underCrossContent {
 	height:335px;
 }
 
+
+div.donateHeader {
+	position:absolute;
+	left:352px;
+	top:762px;
+	width:370px;
+	height:138px;
+	display: block; 
+
+}
+
+
+
+
+
 /*///////////////////////*/
 
 div.mattePainting {
@@ -138,23 +173,46 @@ div.nameTicker {
 
 }
 
+div.leftDivider {
+
+	position:absolute;
+	left:272px;
+	top:800px;
+	//width:40px;
+	//height:40px;
+	
+
+
+}
+
+div.rightDivider {
+
+	position:absolute;
+	left:632px;
+	top:800px;
+	//width:40px;
+	//height:40px;
+	
+
+
+}
 
 div.soloCoin {
 	position:absolute;
-	left:452px;
-	top:800px;
-	width:80px;
-	height:60px;
+	left:402px;
+	top:970px;
+	width:40px;
+	height:40px;
 	z-index: 5;
 }
 
 
 div.soloCoin2 {
 	position:absolute;
-	left:452px;
-	top:860px;
-	width:80px;
-	height:60px;
+	left:402px;
+	top:1010px;
+	width:40px;
+	height:40px;
 	z-index: 5;
 }
 
@@ -162,7 +220,7 @@ div#soloCoin {
 	position:absolute;
 	color: #CDCDCD;
 	left:452px;
-	top:940px;
+	top:1140px;
 	width:80px;
 	height:60px;
 	font-size:180%;
@@ -170,14 +228,78 @@ div#soloCoin {
 /*///////////////////////*/
 
 
+
+ div.zeroDolla {
+
+ 	position:absolute;
+	//color: #CDCDCD;
+	left:452px;
+	top:940px;
+	//width:80px;
+	//height:60px;
+	
+
+ }
+
+div.fiveDolla {
+
+ 	position:absolute;
+	//color: #CDCDCD;
+	left:452px;
+	top:980px;
+	//width:80px;
+	//height:60px;
+	
+
+ }
+
+div.fifteenDolla {
+
+ 	position:absolute;
+	//color: #CDCDCD;
+	left:452px;
+	top:1017px;
+	//width:80px;
+	//height:60px;
+	
+
+ }
+
+
+
+div.fiftyDolla {
+
+ 	position:absolute;
+	//color: #CDCDCD;
+	left:452px;
+	top:1056px;
+	//width:80px;
+	//height:60px;
+	
+
+ }
+
+
+
+
+
+
+
+
+
+/*///////////////////////*/
+
+
 .bgTexture {
 	position:absolute;
 	background-image:url('../images/nonLive/preCompBGTex.png');
 	background-repeat: no-repeat;
-	top: -60px;
+	opacity: 0.7;
+	top: -140px;
 	left:-250px;
 	width: 1500px;
 	height: 1500px;
+	z-index: -1;
 	
 }
 

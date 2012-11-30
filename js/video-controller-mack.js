@@ -1,6 +1,6 @@
 $(document).ready(function(){
    // $('#htmlvideo').hide('fast');
-   $('#htmlvideo').css({opacity: 0.0, visibility: "hidden"});
+   $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
 
         var f = $('iframe'),
             url = f.attr('src').split('?')[0],
@@ -73,10 +73,15 @@ $(document).ready(function(){
             status.text('finished');
 
 
-               $('#player_1').hide('normal');
-                $('#htmlvideo').show();
+               $('#player_1').fadeOut(3000, function(){
+                  $('#player_1').css({visibility: "hidden"});
 
-                  $('#htmlvideo').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
+               });
+             //  $('#htmlvideo').show().fadeIn(2000);
+
+                 // $('#htmlvideo').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
+
+                
                   $('#vimeoControls').hide('normal');
                   playPop();
         }
@@ -244,8 +249,10 @@ $(document).ready(function(){
 
     function playPop(){
 
-        toggleRed();
-         bgMatte();
+        //toggleRed();
+        goLive();
+
+         
 
         loopTrigger(0);
     }
@@ -378,6 +385,7 @@ $(document).ready(function(){
                 pop.play(0);
                  trigga(0);
                  safetyEscape = 0;
+                
                 
                      loopTrigger(1);
 
@@ -522,6 +530,22 @@ $(document).ready(function(){
 
             break;
 
+            case 6:
+
+               safetyEscape = 0;
+
+              idleTime = 0;
+               setTimeout(function() {
+
+                pop.play(0);
+                 trigga(0);
+                
+                
+               
+                     loopTrigger(1);
+                   }, 2000);
+
+            break;
 
 
 

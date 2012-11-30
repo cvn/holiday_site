@@ -4,7 +4,7 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-
+    <base target="_parent" />
     <title>The Bell Ringer Test</title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -47,6 +47,8 @@
 
     <script src="js/jquery.easy-ticker.js" type="text/javascript"></script>
 
+    
+
 </head>
             
 
@@ -69,21 +71,21 @@
 
         
 
-
+                <div class="wholeShabang">
     
             
                 <!-- Save for Web Slices (112112_site_non_live_01.psd) -->
                
 
 
-                                    <div class="TitleSlice">
-                        <img src="images/nonLive/TitleSlice.png" alt="">
+                                    <div class="TitleSlice"><a target="_parent" href="http://weareroyale.com/">
+                        <img src="images/nonLive/TitleSlice.png" alt=""></a>
                     </div>
-                               
+                                 <div class="bgTexture"></div>
 
-                        <div class="mattePainting" style='display: none; visibility: hidden;'></div>
+                        <div class="mattePainting" style='display: none;'></div>
 
-
+                          
                             
 
                           
@@ -208,37 +210,75 @@
 
 
 
+                                <div class='daContent' style="display: none">
+
+                                        <div class="leftContent" >
+                                        <img src="images/nonLive/leftContent.png" alt="">
+                                        </div>
+
+                                        <div class='dividers'>
+                                                  <div class="leftDivider">
+                                                <img src="images/live/leftDivider.png"  alt="">
+                                                 </div>
+
+                                                  <div class="rightDivider">
+                                                <img src="images/live/rightDivider.png"  alt="">
+                                                 </div>
+                                         </div>
+
+                                      <div class="centerCont" >
+
+                                            <div class="donateHeader">
+                                                 <img src="images/live/DonateHeader.png"  alt="">
+                                            </div>
 
 
-                                    <div class="leftContent">
-                                    <img src="images/nonLive/leftContent.png" alt="">
-                                </div>
+                                            <div class="zeroDolla">
+                                                    <img src="images/live/0DollaramounSelector.png"  alt="">
+                                            </div>
+
+                                            <div class="fiveDolla">
+                                                    <img src="images/live/5DollaramounSelector.png"  alt="">
+                                            </div>
+
+                                             <div class="fifteenDolla">
+                                                    <img src="images/live/15DollaramounSelector.png"  alt="">
+                                            </div>
+
+                                            <div class="fiftyDolla">
+                                                    <img src="images/live/50DollaramounSelector.png"  alt="">
+                                            </div>
 
 
-                                     <div id="soloCoin">
-                                    
-                                    <p></p>
-                                     </div>
+                                           
 
-                                    <div class="soloCoin active">
-                                    <img src="images/coinsSolo.png"  alt="">
-                                     </div>
+                                             <div id="soloCoin">
+                                            
+                                                     <p></p>
+                                             </div>
 
-                                      <div class="soloCoin2 active">
-                                    <img src="images/coinsSolo.png"  alt="">
+                                            <div class="soloCoin active">
+                                                    <img src="images/coinsSolo.png"  alt="">
+                                             </div>
+
+                                              <div class="soloCoin2 active">
+                                                 <img src="images/coinsSolo.png"  alt="">
+                                             </div>
+
+
                                      </div>
 
                                     <div class="RedCrossIcon">
-                                    <img src="images/nonLive/RedCrossIcon.png"  alt="">
+                                            <img src="images/nonLive/RedCrossIcon.png"  alt="">
+                                    </div>
+
+
+                                     <div class="underCrossContent">
+                                          <img src="images/nonLive/underCrossContent.png"  alt="">
                                      </div>
 
 
-                                 <div class="underCrossContent">
-                                <img src="images/nonLive/underCrossContent.png"  alt="">
-                                </div>
-
-
-
+                                 </div>
                         
                               <!--   </div> -->
 
@@ -253,6 +293,31 @@
                         
 
                               <script type="text/javascript">
+
+                              var bgFadeWait = 6000;
+
+
+
+
+                              function goLive(){
+
+
+                                $('.daContent').toggle(3000, function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          });
+
+
+                                bgMatte(1000);
+
+
+
+                              }
+
+
+
+
+
                               function toggleRed(){
 
                                  $('.redForm').toggle('slow', function() {
@@ -261,13 +326,54 @@
                                           });
                               }
 
-                              function bgMatte(){
 
-                                 $('.mattePainting').toggle('slow', function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          }).css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 14000);
+
+
+
+
+
+                             function containerFadeOut(outSpeed){
+
+                                 $('.container').fadeOut(outSpeed);
+
+                                 containerFadeIn(6000);
+
+                                 // var inSpeed = 3000;
+
                               }
+                             
+
+
+                               function containerFadeIn(inSpeed){
+
+                                    $('.container').fadeIn(inSpeed);
+                                      // bgMatte(1000)
+
+                              }
+
+
+                              function bgMatte(inSpeed){
+
+                               
+                                   $('#htmlvideo').css({ opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, inSpeed-500).fadeIn(inSpeed-500);
+                               
+                                
+
+                                  //containerFadeIn(inSpeed);
+                                  setTimeout(function() {
+
+                                     $('.mattePainting').fadeIn(inSpeed+4000);
+
+
+                                  }, bgFadeWait);
+
+                                
+
+
+
+                              }
+
+                             
 
 
                                  var $frame = $('<button class="closeForm" onClick="toggleRed();">Close X </button><br><iframe id="crossFrame" name="redCrossFrame" src="http://rdcrss.org/10OsFID" width="100%" height="100%">');
@@ -411,7 +517,7 @@
                                                 $datez = $row['date'];
                                                 $value = array('name' => $namez, 'amount' =>$amountz, 'date' => $datez);
 
-                                                echo '<li>' . $row['name'].' Donated $'. $row['amount'].'</li> ';
+                                                echo '<li>' . $row['name'].' </li> ';
 
 
 
@@ -444,7 +550,7 @@
 
                 <!-- End Save for Web Slices -->
            
-
+            </div>
 
     </div><!-- container -->
 
