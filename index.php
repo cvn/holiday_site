@@ -77,11 +77,14 @@
                 <!-- Save for Web Slices (112112_site_non_live_01.psd) -->
                
 
-
+                  <div class="nonLIve">
                                     <div class="TitleSlice"><a target="_parent" href="http://weareroyale.com/">
                         <img src="images/nonLive/TitleSlice.png" alt=""></a>
                     </div>
                                  <div class="bgTexture"></div>
+
+
+                  </div>
 
                         <div class="mattePainting" style='display: none;'></div>
 
@@ -99,8 +102,8 @@
 
 
                                                 
-                                        <source src="video/Animatic_v16_with_loop.m4v">
-                                        <source src="video/Animatic_v16_with_loop.webm" type='video/webm'>
+                                        <source src="video/Anim_loops_v01.m4v">
+                                        <source src="video/Anim_loops_v01.webm" type='video/webm'>
                                             
                                                         
                                                 
@@ -213,7 +216,10 @@
                                 <div class='daContent' style="display: none">
 
                                         <div class="leftContent" >
-                                        <img src="images/nonLive/leftContent.png" alt="">
+                                        
+                                            <img src="images/nonLive/leftContent.png" alt="">
+                                          
+
                                         </div>
 
                                         <div class='dividers'>

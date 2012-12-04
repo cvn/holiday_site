@@ -88,6 +88,12 @@ $(document).ready(function(){
 
         function onPlayProgress(data) {
             status.text(data.seconds + 's played');
+
+            if (data.seconds >= 65){
+                
+
+
+            };
         }
 
 
@@ -356,9 +362,9 @@ $(document).ready(function(){
             case 1:
                     
 
-                    pop.cue( .85, function() {
+                    pop.cue( 1.29, function() {
 
-                      pop.play(11.5);
+                      pop.currentTime(1.3);
                     //killIntervals();  
 
                     console.log('Loop Exit 1');
@@ -382,7 +388,7 @@ $(document).ready(function(){
 
                 idleTime = 0;
 
-                pop.play(0);
+                pop.currentTime(0).play();
                  trigga(0);
                  safetyEscape = 0;
                 
@@ -395,9 +401,9 @@ $(document).ready(function(){
 
             case 1:
 
-                pop.cue( .85, function() {
+                pop.cue( 1.25, function() {
 
-                pop.play(0);
+                pop.currentTime(0);
 
 
                
@@ -418,7 +424,7 @@ $(document).ready(function(){
 
                // if (pop.currentTime()<=1) {
 
-                 pop.cue( .85, function() {
+                 pop.cue( 1.25, function() {
                   // idleTime = 0;
                  //clearInterval(t2);
                   //clearInterval();
@@ -426,7 +432,7 @@ $(document).ready(function(){
                  // clearTimeout();
                  //trigga(0);
                  
-                 pop.play(11.5);
+                 pop.currentTime(2.5);
                  //trigger=1;
                   safetyEscape = safetyEscape+1;
 
@@ -441,7 +447,9 @@ $(document).ready(function(){
 
                       console.log('rrruuuun from twwezy '+safetyEscape);
 
-                      pop.currentTime(11.5);
+                      pop.currentTime(1.5);
+
+                      
 
                       safetyEscape = 0;
                       killIntervals();
@@ -466,11 +474,13 @@ $(document).ready(function(){
 
               // } else{  console.log('its go time towards 3');
 
-                  pop.cue( 22, function() {
+                  pop.cue( 5.29, function() {
                     //killIntervals();  
 
                     console.log('case 2 cue22');
+                    trigger = 0;
                    loopTrigger(3);
+                   safetyEscape = 12;
 
 
                     });
@@ -487,8 +497,8 @@ $(document).ready(function(){
                 console.log('on third Case');
                 // pop.play(0);
                  idleTime = 0;
-                 pop.play(0);
-                 trigger = 0;
+                 pop.currentTime(0);
+                 
 
                  //killIntervals();
                   //loopFrom = 1;
@@ -508,8 +518,9 @@ $(document).ready(function(){
                           
 
 
-                pop.cue( .85, function() {
-                        pop.play(0);
+                pop.cue( 1.29, function() {
+                        pop.currentTime(0);
+
                      loopTrigger(0);
 
                  });
@@ -517,7 +528,7 @@ $(document).ready(function(){
             break;
 
             case 5:
-                     pop.cue( 22, function() {
+                     pop.cue( 5.29, function() {
                     //killIntervals();  
 
                     console.log('case 2 cue22');
@@ -537,7 +548,7 @@ $(document).ready(function(){
               idleTime = 0;
                setTimeout(function() {
 
-                pop.play(0);
+                pop.currentTime(0);
                  trigga(0);
                 
                 
