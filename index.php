@@ -74,7 +74,7 @@
                 <div class="wholeShabang">
     
             
-                <!-- Save for Web Slices (112112_site_non_live_01.psd) -->
+                <!-- Save for Web Slices (112112_site_non_live_01.psd)  controls -->
                
 
                   <div class="nonLIve">
@@ -98,7 +98,7 @@
 
                                   <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
 
-                                    <video id="htmlvideo" class="video" controls > 
+                                    <video id="htmlvideo" class="video"  > 
 
 
                                                 

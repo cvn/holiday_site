@@ -131,10 +131,6 @@ $(document).ready(function(){
                               
 
 
-                                $('.daContent').toggle(4000, function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
 
 
                                 
@@ -153,6 +149,20 @@ $(document).ready(function(){
 
                                 pop.play(5.375);
 
+                                pop.cue(7.2, function(){
+
+                                   shakeBake(100);
+
+
+
+
+                                $('.daContent').toggle(4000, function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          });
+
+                                });
+
                                 pop.cue(17.7, function(){
 
 
@@ -163,7 +173,16 @@ $(document).ready(function(){
 
 
 
+                              function shakeBake(speedz){
 
+                                 $('.wholeShabang').effect("shake", { times:5 }, speedz, function(){
+
+                                    pop.play();
+
+                                 });
+
+                                 
+                              }
 
 
 /////////// POPCORN JS STUFF STARTS HERE /////////////////////////////
@@ -397,7 +416,7 @@ $(document).ready(function(){
                     if (trigger != 1){
 
 
-                timeOutz(0, 4, 2); // case, timout count, loopOut
+                       timeOutz(0, 4, 2); // case, timout count, loopOut
                 
                 } else {
                     console.log('Trigger has been pulled');
@@ -445,11 +464,11 @@ $(document).ready(function(){
 
                     pop.cue( 1.29, function() {
 
-                      pop.currentTime(1.3);
-                    //killIntervals();  
+                            pop.currentTime(1.3);
+                          //killIntervals();  
 
-                    console.log('Loop Exit 1');
-                   loopTrigger(3);
+                          console.log('Loop Exit 1');
+                         loopTrigger(3);
 
 
                     });
@@ -506,37 +525,37 @@ $(document).ready(function(){
                // if (pop.currentTime()<=1) {
 
                  pop.cue( 1.25, function() {
-                  // idleTime = 0;
-                 //clearInterval(t2);
-                  //clearInterval();
-                 //clearInterval(t2);
-                 // clearTimeout();
-                 //trigga(0);
-                 
-                 pop.currentTime(2.5);
-                 //trigger=1;
-                  safetyEscape = safetyEscape+1;
+                      // idleTime = 0;
+                     //clearInterval(t2);
+                      //clearInterval();
+                     //clearInterval(t2);
+                     // clearTimeout();
+                     //trigga(0);
+                     
+                     pop.currentTime(2.5);
+                     //trigger=1;
+                      safetyEscape = safetyEscape+1;
 
-               //  if (pop.currentTime()>=1) {
-                 // killIntervals();
+                   //  if (pop.currentTime()>=1) {
+                     // killIntervals();
 
-             //   };
-                  console.log('im in twwwzey');
+                 //   };
+                      console.log('im in twwwzey');
 
-                    
-                    if (safetyEscape >=12){
+                        
+                        if (safetyEscape >=12){
 
-                      console.log('rrruuuun from twwezy '+safetyEscape);
+                          console.log('rrruuuun from twwezy '+safetyEscape);
 
-                      pop.currentTime(1.5);
+                          pop.currentTime(1.5);
 
-                      
+                          
 
-                      safetyEscape = 0;
-                      killIntervals();
-                      trigger = 0;
+                          safetyEscape = 0;
+                          killIntervals();
+                          trigger = 0;
 
-                      //loopExit(1);
+                          //loopExit(1);
 
 
 
@@ -556,12 +575,12 @@ $(document).ready(function(){
               // } else{  console.log('its go time towards 3');
 
                   pop.cue( 5.29, function() {
-                    //killIntervals();  
+                          //killIntervals();  
 
-                    console.log('case 2 cue22');
-                    trigger = 0;
-                   loopTrigger(3);
-                   safetyEscape = 12;
+                          console.log('case 2 cue22');
+                          trigger = 0;
+                         loopTrigger(3);
+                         safetyEscape = 12;
 
 
                     });
