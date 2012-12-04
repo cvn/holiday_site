@@ -301,28 +301,12 @@
                               <script type="text/javascript">
 
                               var bgFadeWait = 6000;
+                              var goLiveCatch = 0;
+
+                        
 
 
-
-
-                              function goLive(){
-
-
-                                $('.daContent').toggle(3000, function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
-
-
-                                bgMatte(1000);
-
-
-
-                              }
-
-
-
-
+                            
 
                               function toggleRed(){
 
@@ -379,8 +363,7 @@
 
                               }
 
-                             
-
+                          
 
                                  var $frame = $('<button class="closeForm" onClick="toggleRed();">Close X </button><br><iframe id="crossFrame" name="redCrossFrame" src="http://rdcrss.org/10OsFID" width="100%" height="100%">');
                          

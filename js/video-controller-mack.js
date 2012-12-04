@@ -73,25 +73,17 @@ $(document).ready(function(){
             status.text('finished');
 
 
-               $('#player_1').fadeOut(3000, function(){
-                  $('#player_1').css({visibility: "hidden"});
-
-               });
-             //  $('#htmlvideo').show().fadeIn(2000);
-
-                 // $('#htmlvideo').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
-
-                
-                  $('#vimeoControls').hide('normal');
-                  playPop();
+              
         }
+
+
 
         function onPlayProgress(data) {
             status.text(data.seconds + 's played');
 
-            if (data.seconds >= 65){
+            if (data.seconds >= 67){
                 
-
+               goLive();
 
             };
         }
@@ -104,10 +96,99 @@ $(document).ready(function(){
 
 
 
+/////////// The Transition Functions /////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////
+
+
+
+
+
+  function goLive(){
+
+          
+
+          if (goLiveCatch == 0){
+
+                         goLiveCatch = 1;
+
+                                 $('#player_1').fadeOut(1000, function(){
+
+                                  bellThrow();
+
+                                  $('#player_1').css({visibility: "hidden"});
+
+                              });
+                         //  $('#htmlvideo').show().fadeIn(2000);
+
+                             // $('#htmlvideo').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
+
+                            
+                              $('#vimeoControls').hide('normal');
+                             // playPop();
+
+                              
+
+
+                                $('.daContent').toggle(4000, function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          });
+
+
+                                
+
+                                bgMatte(1000);
+
+                              }
+
+
+
+                              }
+
+                              function bellThrow(){
+
+
+
+                                pop.play(5.375);
+
+                                pop.cue(17.7, function(){
+
+
+                                    playPop();
+
+                                });
+                              }
+
+
+
+
+
+
 /////////// POPCORN JS STUFF STARTS HERE /////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
        var intervalArr = new Array();
         function intervalOne () { console.log ('foo');};
@@ -256,7 +337,7 @@ $(document).ready(function(){
     function playPop(){
 
         //toggleRed();
-        goLive();
+       // goLive();
 
          
 
