@@ -148,11 +148,11 @@
 
                                 $('#doVal').val(amount);
                    
-                            pop.currentTime(23).play();
+                          //  pop.currentTime(23).play();
 
                            //  console.log('Test Form Toga  case zero '+testFormToggle);
 
-                            formPopFix();
+                          //  formPopFix();
                           
                            // $('.flipper:first-child').removeClass('shy');
 
@@ -161,6 +161,25 @@
                            // $('.confirmed').addClass('shy');
 
                            // $('.confirmed').closest('.flipper').addClass('shy').next().removeClass('shy');
+
+
+
+
+                             pop.play(17);
+
+                                pop.cue(18.52, function(){
+
+                                   // $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
+
+                                  //  $('.playPopTrigger').html('1');
+
+                               //  });
+
+
+
+
+
+                                });
     
 
                     break;
@@ -175,7 +194,7 @@
 
                                  $('#doVal').val(amount);
                    
-                            pop.currentTime(36).play();
+                            pop.currentTime(8.125).play();
 
                             formPopFix();
 

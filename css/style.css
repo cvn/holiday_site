@@ -8,8 +8,8 @@ html, body, .centerer-container {
 
 body {
 	font-family: sans-serif;
-	background-image:url('../images/nonLive/bgSplice_03.png');
-	background-color:#201e1c;
+	//background-image:url('../images/nonLive/bgSplice_03.png');
+	background-color:#2f282d;
 	background-repeat: repeat-x;
 }
 
@@ -18,7 +18,7 @@ body {
 	background-image:url('../images/nonLive/preCompBGTex.png');
 	background-repeat: no-repeat;
 	opacity: 0.7;
-	top: -140px;
+	top: -160px;
 	left:-250px;
 	width: 1500px;
 	height: 1500px;
@@ -26,10 +26,206 @@ body {
 	
 }
 
+/*
+////////////////////
+
+
+		Non LIve
+
+/////////////////////////*/
+
+
+
+div.RoyalePresents {
+	position:absolute;
+	left:164px;
+	top:90px;
+	width:231px;
+	height:127px;
+}
+
+
+div.daBellRinga {
+	position:absolute;
+	left:495px;
+	top:90px;
+	width:276px;
+	height:127px;
+}
+
+div#CounterZone {
+	position:absolute;
+	left:224px;
+	top:810px;
+	width:908px;
+	//height:101px;
+}
+
+
+div.counterText {
+	position:absolute;
+	left:24px;
+	top:880px;
+	width:908px;
+	height:74px;
+}
+
+
+
+
+/*
+////////////////////
+
+
+	Donation Panel
+
+/////////////////////////*/
+
+
+div.donatePlate {
+
+	
+}
+
+
+
+div.donateHeader {
+	position:absolute;
+	left:656px;
+	top:340px;
+	width:370px;
+	height:138px;
+	display: block; 
+	z-index: 8;
+
+}
+
+
+div.Donate-div-BG {
+	position:absolute;
+	left:594px;
+	top:280px;
+	width:348px;
+	height:440px;
+	z-index: 7;
+	
+}
+
+
+div.redCrossTray {
+	position:absolute;
+	left:646px;
+	top:560px;
+	width:248px;
+	height:60px;
+	z-index: 7;
+	
+}
+
+
+div.crossText {
+	position:absolute;
+	left:646px;
+	top:605px;
+	width:248px;
+	height:60px;
+	z-index: 7;
+	
+}
+
+/* Coins */
+
+
+ div.zeroDolla {
+
+ 	position:absolute;
+	//color: #CDCDCD;
+	left:746px;
+	top:440px;
+	width:110px;
+	//height:60px;
+
+	z-index: 8;
+	
+
+ }
+
+
+div.fiveDolla {
+
+ 	position:absolute;
+	//color: #CDCDCD;
+	left:746px;
+	top:480px;
+	width:110px;
+	//height:60px;
+
+	z-index: 8;
+	
+
+ }
+
+
+/* ^^^^^  Coins  ^^^^^ */
+
+
+
+
+
+
+div.soloCoin {
+	position:absolute;
+	left:702px;
+	top:470px;
+	width:40px;
+	height:40px;
+	z-index: 9;
+}
+
+
+div.soloCoin2 {
+	position:absolute;
+	left:702px;
+	top:510px;
+	width:40px;
+	height:40px;
+	z-index: 9;
+}
+
+div#soloCoin {
+	position:absolute;
+	color: #CDCDCD;
+	left:452px;
+	top:1140px;
+	width:80px;
+	height:60px;
+	font-size:180%;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+////////////////////
+
+
+		LIve
+
+/////////////////////////*/
+
+
+
+
 div.wholeShabang {
 
 	position: relative;
-	top: -100px;
+	top: -80px;
 }
 
 div.dividers {
@@ -47,13 +243,16 @@ div.centerCont {
 
 }
 
-div.TitleSlice {
+/*div.TitleSlice {
 	position:absolute;
 	//left:238px;
 	top:82px;
 	width:1024px;
 	height:140px;
-}
+}*/
+
+
+
 
 div.VideoSlice {
 	position:absolute;
@@ -139,15 +338,7 @@ div.underCrossContent {
 }
 
 
-div.donateHeader {
-	position:absolute;
-	left:352px;
-	top:762px;
-	width:370px;
-	height:138px;
-	display: block; 
 
-}
 
 
 
@@ -157,15 +348,15 @@ div.donateHeader {
 
 div.mattePainting {
 	position: absolute;
-	background-image: url('../images/live/112812_wide_png24_002.png');
+	background-image: url('../images/live/112812_wide_jpg48_002.jpg');
 	background-repeat: no-repeat;
 	 //top: -150px;
 	//left:-1240px;
-
+	opacity: 0.2;
 	 top: 100px;
-	left:-600px;
+	left:-1000px;
 	width: 2800px;
-	height: 1400px;
+	height: 2800px;
 	z-index: 0;
 }
 
@@ -212,61 +403,12 @@ div.rightDivider {
 
 }
 
-div.soloCoin {
-	position:absolute;
-	left:402px;
-	top:970px;
-	width:40px;
-	height:40px;
-	z-index: 5;
-}
 
-
-div.soloCoin2 {
-	position:absolute;
-	left:402px;
-	top:1010px;
-	width:40px;
-	height:40px;
-	z-index: 5;
-}
-
-div#soloCoin {
-	position:absolute;
-	color: #CDCDCD;
-	left:452px;
-	top:1140px;
-	width:80px;
-	height:60px;
-	font-size:180%;
-}
 /*///////////////////////*/
 
 
 
- div.zeroDolla {
 
- 	position:absolute;
-	//color: #CDCDCD;
-	left:452px;
-	top:940px;
-	//width:80px;
-	//height:60px;
-	
-
- }
-
-div.fiveDolla {
-
- 	position:absolute;
-	//color: #CDCDCD;
-	left:452px;
-	top:980px;
-	//width:80px;
-	//height:60px;
-	
-
- }
 
 div.fifteenDolla {
 

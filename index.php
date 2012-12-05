@@ -39,6 +39,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/cardcheck.js"></script>
     <script src="js/form-handling.js"></script>
+
+
     <script src="js/video-controller-mack.js"></script>
     <script src="js/coinMultiDrag-Mack.js"></script>
    
@@ -46,6 +48,7 @@
 
 
     <script src="js/jquery.easy-ticker.js" type="text/javascript"></script>
+    <script src="js/jquery.flipCounter.1.2.pack.js" type="text/javascript"></script>
 
     
 
@@ -78,18 +81,80 @@
                
 
                   <div class="nonLIve">
-                                    <div class="TitleSlice"><a target="_parent" href="http://weareroyale.com/">
-                        <img src="images/nonLive/TitleSlice.png" alt=""></a>
-                    </div>
-                                 <div class="bgTexture"></div>
 
 
-                  </div>
+                                   <!--  <div class="TitleSlice"><a target="_parent" href="http://weareroyale.com/">
+                                   <img src="images/nonLive/TitleSlice.png" alt=""></a>
+                                 </div> -->
 
-                        <div class="mattePainting" style='display: none;'></div>
+                         <div class="RoyalePresents">
+                                 <img src="images/nonLive/RoyalePresents.png" width="231" height="127" alt="">
+                         </div>
+                         
+                         <div class="daBellRinga">
+                              <img src="images/nonLive/daBellRinga.png" width="276" height="127" alt="">
+                        </div>
+                        
+
+
+                         <div class="bgTexture"></div>
+
+                         <div id="CounterZone">
+                              
+                         <div id="counter"> <input type="hidden" name="counter-value" value="100" ></div>
+
+
+                         </div>
+                                <script type="text/javascript">
+                                /* <![CDATA[ */
+                                        jQuery(document).ready(function($) {
+                                               // $(".CounterZone").flipCounter();   
+
+
+                                                $("#CounterZone").flipCounter(
+                                                   "startAnimation", // scroll counter from the current number to the specified number
+                                                      {
+                                                              number: 0000000000001, // the number we want to scroll from
+                                                              end_number: 00000001024, // the number we want the counter to scroll to
+                                                              easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+                                                              duration: 5000, // number of ms animation should take to complete
+                                                      //  number:0, // the initial number the counter should display, overrides the hidden field
+                                                        numIntegralDigits:16, // number of places left of the decimal point to maintain
+                                                      //  numFractionalDigits:0, // number of places right of the decimal point to maintain
+                                                        digitClass:"counter-digit", // class of the counter digits
+                                                        counterFieldName:"counter-value", // name of the hidden field
+                                                        digitHeight:40, // the height of each digit in the flipCounter-medium.png sprite image
+                                                        digitWidth:30, // the width of each digit in the flipCounter-medium.png sprite image
+                                                        imagePath:"img/flipCounter-medium.png", // the path to the sprite image relative to your html document
+                                                        easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
+                                                        duration:10000, // duration of animations
+                                                        onAnimationStarted:false, // call back for animation upon starting
+                                                        onAnimationStopped:false, // call back for animation upon stopping
+                                                        onAnimationPaused:false, // call back for animation upon pausing
+                                                        onAnimationResumed:false // call back for animation upon resuming from pause
+                                                });
+
+
+
+                                        });
+                                /* ]]> */
+                                </script>
+
+
+
+                         
+
+                         <div class="counterText">
+                               <img src="images/nonLive/counterText.png" width="908" height="74" alt="">
+                        </div>
+
+
+                   </div>
+
+                       
 
                           
-                            
+                           <div class='playPopTrigger' style='display: none'>0</div> 
 
                           
 
@@ -102,8 +167,8 @@
 
 
                                                 
-                                        <source src="video/Anim_loops_v01.m4v">
-                                        <source src="video/Anim_loops_v01.webm" type='video/webm'>
+                                        <source src="video/Holiday_Interactive_Loops_v01.m4v">
+                                        <source src="video/Holiday_Interactive_Loops_v01.webm" type='video/webm'>
                                             
                                                         
                                                 
@@ -213,8 +278,68 @@
 
 
 
-                                <div class='daContent' style="display: none">
+                                <div class='daContent' style="display: none;">
 
+                                   <div class="mattePainting" style='display: none;'></div>
+
+
+                                    <div class="donatePlate" >
+
+
+
+
+                                            <div class="donateHeader">
+                                                 <img src="images/live/DonateHeader.png"  alt="">
+                                            </div>
+
+
+
+
+
+                                             <div id="soloCoin">
+                                            
+                                                     <p></p>
+                                             </div>
+
+                                            <div class="soloCoin active">
+                                                    <img src="images/coinsSolo.png"  alt="">
+                                             </div>
+
+
+
+
+                                                      <div class="zeroDolla">
+                                                              <img src="images/live/0DollaramounSelector.png"  alt="">
+                                                      </div>
+
+
+                                              <div class="soloCoin2 active">
+                                                 <img src="images/coinsSolo.png"  alt="">
+                                             </div>
+
+                                               <div class="fiveDolla">
+                                                    <img src="images/live/5DollaramounSelector.png"  alt="">
+                                              </div>
+
+
+                                        <div class="Donate-div-BG"  >
+                                            <img src="images/live/donationPlatter.png"  alt="">
+                                        </div>  
+
+
+                                        <div class="redCrossTray"  >
+                                            <img src="images/live/redCrossLogoDonationTray.png"  alt="">
+                                        </div>  
+                                        
+
+                                          <div class="crossText"  >
+                                            <img src="images/live/proceedsText.png"  alt="">
+                                        </div>  
+                                        
+
+
+                                    </div>
+  <!--  
                                         <div class="leftContent" >
                                         
                                             <img src="images/nonLive/leftContent.png" alt="">
@@ -222,7 +347,7 @@
 
                                         </div>
 
-                                        <div class='dividers'>
+                                     <div class='dividers'>
                                                   <div class="leftDivider">
                                                 <img src="images/live/leftDivider.png"  alt="">
                                                  </div>
@@ -230,9 +355,10 @@
                                                   <div class="rightDivider">
                                                 <img src="images/live/rightDivider.png"  alt="">
                                                  </div>
-                                         </div>
-
+                                         </div> -->
+<!-- 
                                       <div class="centerCont" >
+
 
                                             <div class="donateHeader">
                                                  <img src="images/live/DonateHeader.png"  alt="">
@@ -283,7 +409,7 @@
                                           <img src="images/nonLive/underCrossContent.png"  alt="">
                                      </div>
 
-
+ -->
                                  </div>
                         
                               <!--   </div> -->
@@ -302,6 +428,7 @@
 
                               var bgFadeWait = 6000;
                               var goLiveCatch = 0;
+                              var contentLock = 0;
 
                         
 
@@ -387,7 +514,7 @@
                                         var donVal = $("doval").val();
 
                                      //  $('#crossFrame').contents().getElementById('custom-amount').value = donVal;
-                                       window.frames['redCrossFrame'].document.getElementById('custom-amount').value = 'test successful';
+                                     //  window.frames['redCrossFrame'].document.getElementById('custom-amount').value = 'test successful';
 
 
 
@@ -443,6 +570,7 @@
 
                          <div class="testForm"  style="display: none">   
                             <div class='closedTest' style='display: none'>0</div>
+                            
 
                             <button class='closeTest' onClick="closeTestForm();">Close X</button>
                                 <form action="db/postDb.php" >
@@ -506,7 +634,7 @@
                                                 $datez = $row['date'];
                                                 $value = array('name' => $namez, 'amount' =>$amountz, 'date' => $datez);
 
-                                                echo '<li>' . $row['name'].' </li> ';
+                                               // echo '<li>' . $row['name'].' </li> ';
 
 
 

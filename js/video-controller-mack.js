@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+var finCatch = 0;
+
    // $('#htmlvideo').hide('fast');
    $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
 
@@ -71,7 +74,12 @@ $(document).ready(function(){
 
         function onFinish() {
             status.text('finished');
+           
+            if(finCatch == 0){
+                
+                  goLive();
 
+            };
 
               
         }
@@ -84,6 +92,7 @@ $(document).ready(function(){
             if (data.seconds >= 67){
                 
                goLive();
+               finCatch = 1;
 
             };
         }
@@ -113,11 +122,13 @@ $(document).ready(function(){
 
                          goLiveCatch = 1;
 
-                                 $('#player_1').fadeOut(1000, function(){
+                                 $('#player_1').fadeOut(1500, function(){
 
-                                  bellThrow();
+                                 
 
                                   $('#player_1').css({visibility: "hidden"});
+
+                                   bellThrow();
 
                               });
                          //  $('#htmlvideo').show().fadeIn(2000);
@@ -147,35 +158,85 @@ $(document).ready(function(){
 
 
 
-                                pop.play(5.375);
+                                pop.play(17.1);
 
-                                pop.cue(7.2, function(){
+                                pop.cue(18.3, function(){
 
-                                   shakeBake(100);
+                                   bellHitEffect(500, 3000);
 
-
-
-
-                                $('.daContent').toggle(4000, function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
 
                                 });
 
-                                pop.cue(17.7, function(){
+                                pop.cue(18.75, function(){
+
+                                   //shakeBake(100);
 
 
-                                    playPop();
+                                   
+
+
+
+
 
                                 });
+                                 
+
+                              //  pop.cue(17.7, function(){
+
+                                     // playPop();
+                                    
+
+                              //  });
                               }
 
 
 
+
+                               function bellHitEffect(outz, inz){
+
+
+
+                                   if (contentLock == 0){
+                                            contentLock = 1;
+
+                                              $('.daContent').fadeIn(1000, function() {
+                                                       // launchRed();
+                                                        // Animation complete.
+
+                                                       //  $('.donatePlate').fadeIn(2000);
+
+                                                        contentLock = 1;
+                                                      });
+
+                                    } else {
+
+                                                 $('.daContent').fadeOut(outz, function() {
+
+
+                                                     $('.daContent').fadeIn(inz, function() {
+
+
+                                                            playPop();
+
+
+
+                                                     });
+
+
+                                                 });
+
+                                       }
+
+
+
+
+
+                                }
+
+
                               function shakeBake(speedz){
 
-                                 $('.wholeShabang').effect("shake", { times:5 }, speedz, function(){
+                                 $('.wholeShabang').effect("shake", { times:3 }, speedz, function(){
 
                                     pop.play();
 
@@ -185,7 +246,7 @@ $(document).ready(function(){
                               }
 
 
-/////////// POPCORN JS STUFF STARTS HERE /////////////////////////////
+/////////// Coin PlayBack Catches /////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////
@@ -195,11 +256,34 @@ $(document).ready(function(){
 
 
 
+$('.playPopTrigger').on("change", function(event) {
+    
+
+     $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
+
+                                   // $('.playPopTrigger').html('1');
+
+                                   // playPop();
+
+                                    loopTrigger(0);
+
+                                 });
+
+    console.log('I saw that change Dawg, Cooinz!!');
+
+  
+
+});
 
 
 
 
 
+
+/////////// POPCORN JS STUFF STARTS HERE /////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////
 
 
 
@@ -488,7 +572,7 @@ $(document).ready(function(){
 
                 idleTime = 0;
 
-                pop.currentTime(0).play();
+                pop.currentTime(6.7).play();
                  trigga(0);
                  safetyEscape = 0;
                 
@@ -501,9 +585,9 @@ $(document).ready(function(){
 
             case 1:
 
-                pop.cue( 1.25, function() {
+                pop.cue( 7.95, function() {
 
-                pop.currentTime(0);
+                pop.currentTime(6.7);
 
 
                
@@ -524,7 +608,7 @@ $(document).ready(function(){
 
                // if (pop.currentTime()<=1) {
 
-                 pop.cue( 1.25, function() {
+                 pop.cue( 7.95, function() {
                       // idleTime = 0;
                      //clearInterval(t2);
                       //clearInterval();
@@ -532,7 +616,7 @@ $(document).ready(function(){
                      // clearTimeout();
                      //trigga(0);
                      
-                     pop.currentTime(2.5);
+                     pop.currentTime(5.5);
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
 
@@ -547,7 +631,7 @@ $(document).ready(function(){
 
                           console.log('rrruuuun from twwezy '+safetyEscape);
 
-                          pop.currentTime(1.5);
+                          pop.currentTime(0);
 
                           
 
@@ -574,7 +658,7 @@ $(document).ready(function(){
 
               // } else{  console.log('its go time towards 3');
 
-                  pop.cue( 5.29, function() {
+                  pop.cue( 5.4, function() {
                           //killIntervals();  
 
                           console.log('case 2 cue22');
@@ -618,8 +702,8 @@ $(document).ready(function(){
                           
 
 
-                pop.cue( 1.29, function() {
-                        pop.currentTime(0);
+                pop.cue( 7.95, function() {
+                        pop.currentTime(6.7);
 
                      loopTrigger(0);
 
