@@ -59,10 +59,10 @@ div.daBellRinga {
 
 div#CounterZone {
 	position:absolute;
-	left:224px;
+	left:124px;
 	top:810px;
-	//width:908px;
-	//height:101px;
+	width:908px;
+	height:101px;
 	z-index: 12;
 }
 
@@ -89,10 +89,7 @@ div.counterText {
 /////////////////////////*/
 
 
-div.donatePlate {
 
-	
-}
 
 
 
