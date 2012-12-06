@@ -165,13 +165,13 @@
 
 
 
-                             pop.play(17);
+                             pop.currentTime(5.4).play();
 
-                                pop.cue(18.52, function(){
+                                pop.cue(8.8, function(){
 
                                    // $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
 
-                                  //  $('.playPopTrigger').html('1');
+                                 $('.playPopTrigger').change();
 
                                //  });
 
@@ -194,7 +194,12 @@
 
                                  $('#doVal').val(amount);
                    
-                            pop.currentTime(8.125).play();
+                            pop.currentTime(13.45).play();
+
+                            pop.cue(18.79, function(){
+                               $('.playPopTrigger').change();
+
+                            });
 
                             formPopFix();
 

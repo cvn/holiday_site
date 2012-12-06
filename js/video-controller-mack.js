@@ -118,17 +118,17 @@ var finCatch = 0;
 
           
 
-          if (goLiveCatch == 0){
+                if (goLiveCatch == 0){
 
                          goLiveCatch = 1;
 
-                                 $('#player_1').fadeOut(1500, function(){
+                                 $('#player_1').fadeOut(2000, function(){
 
                                  
 
                                   $('#player_1').css({visibility: "hidden"});
 
-                                   bellThrow();
+                                   
 
                               });
                          //  $('#htmlvideo').show().fadeIn(2000);
@@ -144,30 +144,30 @@ var finCatch = 0;
 
 
 
-                                
+                                bellThrow();
 
                                 bgMatte(1000);
 
-                              }
+                          }
 
 
 
-                              }
+          }
 
                               function bellThrow(){
 
 
 
-                                pop.play(17.1);
+                                pop.play(5.4);
 
-                                pop.cue(18.3, function(){
+                                pop.cue(8.7, function(){
 
-                                   bellHitEffect(500, 3000);
+                                   bellHitEffect(50, 2000);
 
 
                                 });
 
-                                pop.cue(18.75, function(){
+                                pop.cue(9, function(){
 
                                    //shakeBake(100);
 
@@ -192,28 +192,39 @@ var finCatch = 0;
 
 
 
-                               function bellHitEffect(outz, inz){
+                               function bellHitEffect(inz, outz){
 
 
 
                                    if (contentLock == 0){
                                             contentLock = 1;
 
-                                              $('.daContent').fadeIn(1000, function() {
+                                              $('.brotherDarkness').fadeIn(inz, function(){
                                                        // launchRed();
                                                         // Animation complete.
 
-                                                       //  $('.donatePlate').fadeIn(2000);
+                                                         $('.donatePlate').fadeIn(2000);
 
                                                         contentLock = 1;
+
+                                                         $('.brotherDarkness').fadeOut(outz, function() {
+
+
+                                                               playPop();
+
+                                                         });
+
+
                                                       });
 
                                     } else {
 
-                                                 $('.daContent').fadeOut(outz, function() {
+                                                 $('.brotherDarkness').fadeIn(inz, function() {
+
+                                                 
 
 
-                                                     $('.daContent').fadeIn(inz, function() {
+                                                     $('.brotherDarkness').fadeOut(outz, function() {
 
 
                                                             playPop();
@@ -251,25 +262,25 @@ var finCatch = 0;
 
 /////////////////////////////////////////////////////////////////////
 
+var $popTriggerz = $('.playPopTrigger').html();
 
 
 
 
-
-$('.playPopTrigger').on("change", function(event) {
+$('.playPopTrigger').change(function() {
     
-
-     $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
+ console.log('I saw that change Dawg, Cooinz!!');
+   //  $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
 
                                    // $('.playPopTrigger').html('1');
 
-                                   // playPop();
+                                   playPop();
 
-                                    loopTrigger(0);
+                                  //  loopTrigger(0);
 
-                                 });
+                             //    });
 
-    console.log('I saw that change Dawg, Cooinz!!');
+   
 
   
 
@@ -572,7 +583,7 @@ $('.playPopTrigger').on("change", function(event) {
 
                 idleTime = 0;
 
-                pop.currentTime(6.7).play();
+                pop.currentTime(0).play();
                  trigga(0);
                  safetyEscape = 0;
                 
@@ -585,9 +596,9 @@ $('.playPopTrigger').on("change", function(event) {
 
             case 1:
 
-                pop.cue( 7.95, function() {
+                pop.cue( 1.33, function() {
 
-                pop.currentTime(6.7);
+                pop.currentTime(0);
 
 
                
@@ -608,7 +619,7 @@ $('.playPopTrigger').on("change", function(event) {
 
                // if (pop.currentTime()<=1) {
 
-                 pop.cue( 7.95, function() {
+                 pop.cue( 1.33, function() {
                       // idleTime = 0;
                      //clearInterval(t2);
                       //clearInterval();
@@ -616,7 +627,7 @@ $('.playPopTrigger').on("change", function(event) {
                      // clearTimeout();
                      //trigga(0);
                      
-                     pop.currentTime(5.5);
+                     pop.currentTime(0);
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
 
@@ -631,7 +642,7 @@ $('.playPopTrigger').on("change", function(event) {
 
                           console.log('rrruuuun from twwezy '+safetyEscape);
 
-                          pop.currentTime(0);
+                          pop.currentTime(1.35);
 
                           
 
@@ -702,8 +713,8 @@ $('.playPopTrigger').on("change", function(event) {
                           
 
 
-                pop.cue( 7.95, function() {
-                        pop.currentTime(6.7);
+                pop.cue( 1.33, function() {
+                        pop.currentTime(0);
 
                      loopTrigger(0);
 

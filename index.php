@@ -67,10 +67,14 @@
     <!-- Primary Page Layout
     ================================================== -->
 
-    <!-- Delete everything in this .container and get started on your own site! -->
+   
 
     <div class="container">
 
+
+
+
+                   <div class="brotherDarkness" style='display: none;' width="100%" height="100%"></div>
 
         
 
@@ -119,15 +123,15 @@
                                                               easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
                                                               duration: 5000, // number of ms animation should take to complete
                                                       //  number:0, // the initial number the counter should display, overrides the hidden field
-                                                        numIntegralDigits:16, // number of places left of the decimal point to maintain
+                                                         numIntegralDigits:16, // number of places left of the decimal point to maintain
                                                       //  numFractionalDigits:0, // number of places right of the decimal point to maintain
                                                         digitClass:"counter-digit", // class of the counter digits
                                                         counterFieldName:"counter-value", // name of the hidden field
-                                                        digitHeight:40, // the height of each digit in the flipCounter-medium.png sprite image
-                                                        digitWidth:30, // the width of each digit in the flipCounter-medium.png sprite image
-                                                        imagePath:"img/flipCounter-medium.png", // the path to the sprite image relative to your html document
+                                                        digitHeight:72, // the height of each digit in the flipCounter-medium.png sprite image
+                                                        digitWidth:46, // the width of each digit in the flipCounter-medium.png sprite image
+                                                        imagePath:"img/flipCounter-medium2.png", // the path to the sprite image relative to your html document
                                                         easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
-                                                        duration:10000, // duration of animations
+                                                        duration:20000, // duration of animations
                                                         onAnimationStarted:false, // call back for animation upon starting
                                                         onAnimationStopped:false, // call back for animation upon stopping
                                                         onAnimationPaused:false, // call back for animation upon pausing
@@ -154,7 +158,7 @@
                        
 
                           
-                           <div class='playPopTrigger' style='display: none'>0</div> 
+                           <input type="number" class='playPopTrigger' style='display: none'>0</input> 
 
                           
 
@@ -167,8 +171,8 @@
 
 
                                                 
-                                        <source src="video/Holiday_Interactive_Loops_v01.m4v">
-                                        <source src="video/Holiday_Interactive_Loops_v01.webm" type='video/webm'>
+                                        <source src="video/Holiday_Interactive_Loops_v02.m4v">
+                                        <source src="video/Holiday_Interactive_Loops_v02.webm" type='video/webm'>
                                             
                                                         
                                                 
@@ -278,12 +282,14 @@
 
 
 
-                                <div class='daContent' style="display: none;">
+                                <div class='daContent' >
 
                                    <div class="mattePainting" style='display: none;'></div>
 
 
-                                    <div class="donatePlate" >
+                                 
+
+                                    <div class="donatePlate" style='display: none;'>
 
 
 
@@ -479,7 +485,7 @@
                                   //containerFadeIn(inSpeed);
                                   setTimeout(function() {
 
-                                     $('.mattePainting').fadeIn(inSpeed+4000);
+                                     $('.mattePainting').fadeIn(inSpeed+3000);
 
 
                                   }, bgFadeWait);
@@ -652,7 +658,7 @@
 
                                     </div>
                                         <div class="openForm"> </div>
-                                        <div class="redForm alpha" style="display: none">
+                                        <div class="redForm alpha" style="display: none"></div>
 
 
                                         
