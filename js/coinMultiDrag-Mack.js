@@ -5,7 +5,7 @@
         var coin1;
        var  testFormToggle = 0;
        var closedTestForm = $('.closedTest').html();
-
+       
 
 
 
@@ -162,6 +162,9 @@
 
                            // $('.confirmed').closest('.flipper').addClass('shy').next().removeClass('shy');
 
+                           //  killIntervals();
+                         //    idleTime = 0;
+                            // trigger = 0;
 
 
 
@@ -169,11 +172,15 @@
 
                                 pop.cue(8.8, function(){
 
+
+
+
+
+
                                    // $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
 
                                  $('.playPopTrigger').change();
 
-                               //  });
 
 
 
@@ -193,8 +200,18 @@
                                .html( "Dropped $"+amount );
 
                                  $('#doVal').val(amount);
+
+
+                               
+
+
+
                    
-                            pop.currentTime(13.45).play();
+                                  //   pop.currentTime(13.5);
+
+                                     $('.bellThrowTrigger').change();
+
+                           
 
                             pop.cue(18.79, function(){
                                $('.playPopTrigger').change();
@@ -205,6 +222,62 @@
 
                           //  $('.flipper:first-child').removeClass('shy');
                           //  $('input:radio[name=amount]')[1].checked = true;
+
+
+
+
+
+                                  $.post('services/add-donation.php', {amount: 5}, function(data){
+
+
+                                     var updatedz = $.parseJSON(data);
+                                    
+
+                                     var updatedTotalz = updatedz.total;
+
+                                     console.log (Number(updatedTotalz));
+
+                                     var oldTotalz = $("#CounterZone").flipCounter("getNumber");
+
+                                    console.log( $("#CounterZone").flipCounter("getNumber"));
+
+
+
+
+                                               $("#CounterZone").flipCounter(
+                                            "startAnimation", // scroll counter from the current number to the specified number
+                                    { 
+
+                                      number: oldTotalz, // the number we want to scroll from
+                                      end_number: updatedTotalz, // the number we want the counter to scroll to
+                                     // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+                                     // duration: 1500, // number of ms animation should take to complete
+                                      counterFieldName:"counter-value", // name of the hidden field
+                                    //  onAnimationStarted: false, // the function to call when animation starts
+                                   //   onAnimationStopped: false, // the function to call when animation stops
+                                   //   onAnimationPaused: false, // the function to call when animation pauses
+                                   //   onAnimationResumed: false // the function to call when animation resumes from pause
+                              }
+                      );
+
+
+
+                                  });
+
+                               //  });
+
+
+
+                          
+
+
+
+
+
+
+
+
+
 
 
 

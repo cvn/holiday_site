@@ -1,3 +1,4 @@
+<?php include_once "services/donation-functions.php" ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -47,8 +48,12 @@
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 
-    <script src="js/jquery.easy-ticker.js" type="text/javascript"></script>
+
+
     <script src="js/jquery.flipCounter.1.2.pack.js" type="text/javascript"></script>
+    <script src="js/jshashtable-2.1.js" type="text/javascript"></script>
+    <script src="js/jquery.numberformatter-1.2.3.min.js" type="text/javascript"></script>
+
 
     
 
@@ -105,33 +110,37 @@
 
                          <div id="CounterZone">
                               
-                         <div id="counter"> <input type="hidden" name="counter-value" value="100" ></div>
+                          <input type="hidden" name="counter-value" value="<?php $donationsArray = getDonations();  echo ($donationsArray[1][total]); ?>" >
 
 
                          </div>
                                 <script type="text/javascript">
+
                                 /* <![CDATA[ */
                                         jQuery(document).ready(function($) {
+
+                                          var donationTotal = 1;
                                                // $(".CounterZone").flipCounter();   
 
 
                                                 $("#CounterZone").flipCounter(
                                                    "startAnimation", // scroll counter from the current number to the specified number
                                                       {
-                                                              number: 1, // the number we want to scroll from
-                                                              end_number: 1024, // the number we want the counter to scroll to
+                                                             // number: <?php $donationsArray = getDonations();  echo ($donationsArray[1][total]); ?>, // the number we want to scroll from
+                                                              end_number: <?php $donationsArray = getDonations();  echo ($donationsArray[0][total]); ?>, // the number we want the counter to scroll to
                                                               easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-                                                              duration: 2000, // number of ms animation should take to complete
+                                                              duration: 1400, // number of ms animation should take to complete
                                                       //  number:0, // the initial number the counter should display, overrides the hidden field
                                                          numIntegralDigits:16, // number of places left of the decimal point to maintain
-                                                      //  numFractionalDigits:0, // number of places right of the decimal point to maintain
+                                                        numFractionalDigits:0, // number of places right of the decimal point to maintain
                                                         //digitClass:"counter-digit", // class of the counter digits
                                                         counterFieldName:"counter-value", // name of the hidden field
+                                                        formatNumberOptions:{format:"000,000,000,000",locale:"us"},
                                                         digitHeight:72, // the height of each digit in the flipCounter-medium.png sprite image
                                                         digitWidth:46, // the width of each digit in the flipCounter-medium.png sprite image
-                                                        imagePath:"img/flipCounter-medium2.png", // the path to the sprite image relative to your html document
+                                                        imagePath:"img/flipCounter-medium3.png", // the path to the sprite image relative to your html document
                                                         easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
-                                                        duration:20000, // duration of animations
+                                                       // duration:20000, // duration of animations
                                                         onAnimationStarted:false, // call back for animation upon starting
                                                         onAnimationStopped:false, // call back for animation upon stopping
                                                         onAnimationPaused:false, // call back for animation upon pausing
@@ -160,7 +169,7 @@
                           
                            <input type="number" class='playPopTrigger' style='display: none'>0</input> 
 
-                          
+                           <input type="number" class='bellThrowTrigger' style='display: none'>0</input> 
 
 
                                 <div class="VideoSlice">
@@ -289,7 +298,7 @@
 
                                  
 
-                                    <div class="donatePlate" style='display: none;'>
+                                    <div class="donatePlate" >
 
 
 
@@ -341,7 +350,17 @@
                                           <div class="crossText"  >
                                             <img src="images/live/proceedsText.png"  alt="">
                                         </div>  
-                                        
+
+
+
+                                        <div class="shareIcon">
+                                               <img src="images/live/shareIcon.png" width="78" height="43" alt="">
+                                        </div>
+                                                    
+
+                                      <div class="facebook-Icon">
+                                           <img src="images/live/facebook_Icon.png" width="44" height="43" alt="">
+                                      </div>                  
 
 
                                     </div>
@@ -422,10 +441,10 @@
 
                           <script type="text/javascript">
                             $(document).ready(function(){
-                                $('.nameTicker').easyTicker({
+                               /* $('.nameTicker').easyTicker({
                                     visible: 1,
                                     interval: 1500
-                                });
+                                });*/
                             });
                          </script>
                         
@@ -504,14 +523,14 @@
                             $(function() {
 
                                
-                                $('.redForm').html( $frame );
+                      /*          $('.redForm').html( $frame );
                                                     setTimeout( function() {
                                                     var doc = $frame[0].contentWindow.document;
                                                     var $body = $('.redForm',doc);
                                                    //$body.html('<h1>Test</h1>');
                                                 }, 1 );
 
-                           
+                           */
 
 
                             });

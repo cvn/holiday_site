@@ -208,9 +208,11 @@ var finCatch = 0;
                                                         contentLock = 1;
 
                                                          $('.brotherDarkness').fadeOut(outz, function() {
-
+                                                             pop.cue(13, function(){
 
                                                                playPop();
+
+                                                             });
 
                                                          });
 
@@ -265,7 +267,11 @@ var finCatch = 0;
 var $popTriggerz = $('.playPopTrigger').html();
 
 
+ $('.bellThrowTrigger').change(function(){
 
+     pop.currentTime(13.5);
+     
+ });
 
 $('.playPopTrigger').change(function() {
     
@@ -274,7 +280,20 @@ $('.playPopTrigger').change(function() {
 
                                    // $('.playPopTrigger').html('1');
 
-                                   playPop();
+
+                                //   killIntervals();
+                                   // idleTime = 0;
+                                  //  trigger = 0;
+
+
+                                          playPop();
+
+
+
+
+                                          playPop();
+
+                             
 
                                   //  loopTrigger(0);
 
@@ -501,7 +520,7 @@ $('.playPopTrigger').change(function() {
 
     var trigger = 0;
 
-
+     var safetyEscape = 0;
 
 
 
@@ -514,7 +533,8 @@ $('.playPopTrigger').change(function() {
                        timeOutz(0, 4, 2); // case, timout count, loopOut
                 
                 } else {
-                    console.log('Trigger has been pulled');
+                    console.log('Trigger has been pulled saftey equals ' + safetyEscape);
+                    safetyEscape = safetyEscape+1;
                   //  idleTime = 0;
                
                  
@@ -585,7 +605,7 @@ $('.playPopTrigger').change(function() {
 
                 pop.currentTime(0).play();
                  trigga(0);
-                 safetyEscape = 0;
+                
                 
                 
                      loopTrigger(1);
@@ -596,7 +616,8 @@ $('.playPopTrigger').change(function() {
 
             case 1:
 
-                pop.cue( 1.33, function() {
+                pop.cue( 1.3, function() {
+
 
                 pop.currentTime(0);
 
@@ -615,11 +636,11 @@ $('.playPopTrigger').change(function() {
             case 2:
                   
 
-                    var safetyEscape = 0;
+                   
 
                // if (pop.currentTime()<=1) {
 
-                 pop.cue( 1.33, function() {
+                 pop.cue( 1.3, function() {
                       // idleTime = 0;
                      //clearInterval(t2);
                       //clearInterval();
@@ -627,9 +648,11 @@ $('.playPopTrigger').change(function() {
                      // clearTimeout();
                      //trigga(0);
                      
-                     pop.currentTime(0);
+                     
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
+
+                         pop.currentTime(1.4);
 
                    //  if (pop.currentTime()>=1) {
                      // killIntervals();
@@ -638,23 +661,25 @@ $('.playPopTrigger').change(function() {
                       console.log('im in twwwzey');
 
                         
-                        if (safetyEscape >=12){
+                        if (safetyEscape >=4){
 
                           console.log('rrruuuun from twwezy '+safetyEscape);
 
-                          pop.currentTime(1.35);
+                          pop.currentTime(1.4).play();
 
                           
 
                           safetyEscape = 0;
-                          killIntervals();
-                          trigger = 0;
+                         // killIntervals();
+                         trigger = 0;
 
                           //loopExit(1);
 
 
 
                     };
+                
+
                 
                    // pop.cue( 22, function() {
 
@@ -692,7 +717,7 @@ $('.playPopTrigger').change(function() {
                 console.log('on third Case');
                 // pop.play(0);
                  idleTime = 0;
-                 pop.currentTime(0);
+                 pop.currentTime(1.33);
                  
 
                  //killIntervals();
@@ -713,8 +738,9 @@ $('.playPopTrigger').change(function() {
                           
 
 
-                pop.cue( 1.33, function() {
+                pop.cue( 5.4, function() {
                         pop.currentTime(0);
+                        
 
                      loopTrigger(0);
 
