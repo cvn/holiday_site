@@ -203,11 +203,11 @@ div.mail-icon{
  div.zeroDolla {
 
  	position:absolute;
-	//color: #CDCDCD;
+	
 	left:746px;
 	top:440px;
 	width:110px;
-	//height:60px;
+	
 
 	z-index: 8;
 	
@@ -218,11 +218,11 @@ div.mail-icon{
 div.fiveDolla {
 
  	position:absolute;
-	//color: #CDCDCD;
+
 	left:746px;
 	top:480px;
 	width:110px;
-	//height:60px;
+	
 
 	z-index: 8;
 	
@@ -296,7 +296,39 @@ div.brotherDarkness {
 
 
 
+/*
+////////////////////
 
+
+		Share Forms
+
+/////////////////////////*/
+
+
+
+
+
+div .facePost .twitterPost {
+	position:absolute;
+	left:338px;
+	top:200px;
+	width:424px;
+	color: #CDCDCD;
+	height:473px;
+	font-size:180%;
+
+}
+
+/*div.twitterPost {
+	position:absolute;
+	left:338px;
+	top:200px;
+	width:424px;
+	color: #CDCDCD;
+	height:473px;
+	font-size:180%;*/
+
+}
 
 
 

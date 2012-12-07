@@ -66,6 +66,72 @@
                                 <script type="text/javascript" src="js/houseCleaningScript_mh.js"></script>
 
 
+                                    <script type="text/javascript">
+
+                              var bgFadeWait = 6000;
+                              var goLiveCatch = 0;
+                              var contentLock = 0;
+
+                                
+
+                              function toggleFace(){
+
+
+
+
+                              window.open("http://www.facebook.com/sharer/sharer.php?u=http://www.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
+
+                                /*  $('.facePost').toggle('slow', function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          });*/
+                              }
+
+                               function toggleTwit(){
+
+
+
+
+
+                              window.open("http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://www.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+
+/*
+                                  $('.twitterPost').toggle('slow', function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          });*/
+
+
+                              }
+
+
+
+                           //  $(document).ready(function(){
+
+                            //  var $faceFrame = $('<button class="closeForm" onClick="toggleFace();">Close X </button><br><iframe id="faceFrame" name="facebookFrame" src="http://www.facebook.com/sharer/sharer.php?u=http://www.weareroyale.com" width="100%" height="100%">');
+                         
+                           //   var $twitterFrame = $('<button class="closeForm" onClick="toggleTwit();">Close X </button><br><iframe id="twitterFrame" name="twitterFrame" src="http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://www.weareroyale.com" width="100%" height="100%">');
+                         
+                        
+                            //    $('.facePost').html( $faceFrame );
+
+                             //  $('.twitterPost').html( $twitterFrame );
+
+                                                 //   setTimeout( function() {
+                                                  //  var doc = $frame[0].contentWindow.document;
+                                                   // var $body = $('.facePost', doc);
+                                                   //$body.html('<h1>Test</h1>');
+                                              //  }, 1 );
+
+
+
+
+                                            //          });
+ 
+                              </script>
+
+
+
 </head>
             
 
@@ -90,6 +156,8 @@
 
                    <div class="brotherDarkness" style='display: none;' width="100%" height="100%"></div>
 
+                    <div class="facePost" style="display: none"></div>
+                    <div class="twitterPost" style="display: none"></div>
         
 
                 <div class="wholeShabang">
@@ -331,15 +399,14 @@
                                                             
 
                                               <div class="facebook-Icon">
-                                                  <a target="_parent" href="http://www.facebook.com/sharer/sharer.php?u=http://www.weareroyale.com">
-                                                   <img src="images/live/facebook_Icon.png" width="44" height="43" alt="">
+                                                 
+                                                   <img src="images/live/facebook_Icon.png" onClick="toggleFace();" width="44" height="43" alt="">
                                                  </a>
                                               </div>           
 
                                               <div class="twitter-icon">
-                                                <a target="_parent" href="http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays!%20&url=http://www.weareroyale.com">
-                                                </a>
-                                                <img src="images/live/twitter_icon.png" width="61" height="43" alt="">
+                                               
+                                                <img src="images/live/twitter_icon.png" onClick="toggleTwit();" width="61" height="43" alt="">
                                               </div>    
 
                                               <div class="mail-icon">
@@ -433,17 +500,6 @@
                          </script>
                         
 
-                              <script type="text/javascript">
-
-                              var bgFadeWait = 6000;
-                              var goLiveCatch = 0;
-                              var contentLock = 0;
-
-                        
-
-
- 
-                              </script>
 
 
 
@@ -535,7 +591,7 @@
 
                                     </div>
                                         <div class="openForm"> </div>
-                                        <div class="redForm alpha" style="display: none"></div>
+                                        
 
 
                                         

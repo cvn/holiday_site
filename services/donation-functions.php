@@ -7,11 +7,11 @@ $donationsTable = 'donatedTest';
 
 
 // This function returns an array of donation objects in descending order
-function getDonations($limit){
+function getDonations($limit=2){
     global $username, $password, $donationsTable;
 
     if ($limit) {
-        $limit = intval($limit);
+        $limit = (int)$limit;
     } else {
         $limit = 2;
     }

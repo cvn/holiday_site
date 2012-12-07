@@ -1,4 +1,6 @@
 <?php
+// Script based on: http://net.tutsplus.com/tutorials/php/how-to-process-credit-cards-with-paypal-payments-pro-using-php/
+
 // Set sandbox (test mode) to true/false.
 $sandbox = TRUE;
 
@@ -10,31 +12,20 @@ $api_password = $sandbox ? '1354849166' : 'LIVE_PASSWORD_GOES_HERE';
 $api_signature = $sandbox ? 'AWdwG6X9ibFpirfJwA1o0VRdIz91AetAyWc5cdcrTyEXkpmUwuavkWtB' : 'LIVE_SIGNATURE_GOES_HERE';
 
 // Store request params in an array
-$request_params = array
+$api_arguments = array
 					(
-					'METHOD' => 'DoDirectPayment', 
-					'USER' => $api_username, 
-					'PWD' => $api_password, 
-					'SIGNATURE' => $api_signature, 
-					'VERSION' => $api_version, 
-					'PAYMENTACTION' => 'Sale', 					
-					'IPADDRESS' => $_SERVER['REMOTE_ADDR'],
-					'CREDITCARDTYPE' => 'Visa', 
-					'ACCT' => '4939237357941588', 						
-					'EXPDATE' => '122017', 			
-					'CVV2' => '123', 
-					'FIRSTNAME' => 'Buyer', 
-					'LASTNAME' => 'Account', 
-					'STREET' => '707 W. Bay Drive', 
-					'CITY' => 'Largo', 
-					'STATE' => 'FL', 					
-					'COUNTRYCODE' => 'US', 
-					'ZIP' => '33770', 
-					'AMT' => '100.00', 
-					'CURRENCYCODE' => 'USD', 
-					'DESC' => 'Testing Payments Pro' 
+					'METHOD' => 'DoDirectPayment',
+					'USER' => $api_username,
+					'PWD' => $api_password,
+					'SIGNATURE' => $api_signature,
+					'VERSION' => $api_version,
+					'PAYMENTACTION' => 'Sale',
+					'IPADDRESS' => $_SERVER['REMOTE_ADDR']
 					);
-					
+
+// Merge API arguments array with user input array
+$request_params = array_merge($api_arguments, $_REQUEST);
+
 // Loop through $request_params array to generate the NVP string.
 $nvp_string = '';
 foreach($request_params as $var=>$val)
@@ -52,7 +43,6 @@ $curl = curl_init();
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $nvp_string);
 
 $result = curl_exec($curl);
-echo $result.'<br /><br />';
 curl_close($curl);
 
 // Parse the API response

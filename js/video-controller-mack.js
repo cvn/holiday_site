@@ -547,7 +547,30 @@ $('.playPopTrigger').change(function() {
                     console.log('Trigger has been pulled saftey equals ' + safetyEscape);
                     safetyEscape = safetyEscape+1;
                   //  idleTime = 0;
-               
+
+
+                        if (safetyEscape >=8){
+
+                           safetyEscape = 0;
+
+                          pop.cue( 5.4, function() {
+
+                         // console.log('rrruuuun from twwezy '+safetyEscape);
+
+                          pop.currentTime(0).play();
+
+                          
+
+                         
+                         // killIntervals();
+                         trigger = 0;
+
+                          //loopExit(1);
+
+                            });
+
+                    };
+                
                  
 
 
@@ -674,7 +697,7 @@ $('.playPopTrigger').change(function() {
                       console.log('im in twwwzey');
 
                         
-                        if (safetyEscape >=4){
+                        if (safetyEscape >=8){
 
                           console.log('rrruuuun from twwezy '+safetyEscape);
 

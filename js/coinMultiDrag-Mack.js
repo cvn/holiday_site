@@ -21,7 +21,7 @@
                       //  $( '#soloCoin' ).removeClass( "dropped" ).html('');
                   };
 
-                 console.log('closed test Form ' + closedTestForm);
+                // console.log('closed test Form ' + closedTestForm);
 
                   if(closedTestForm == 1){
 
@@ -49,7 +49,7 @@
                   if(  $( '#soloCoin' ).hasClass( "dropped" )){
                             console.log('Im outta here');
                             coin1 = 0;
-                              pop.currentTime(5.4).play();
+                              pop.play(5.4);
                              return "true";
 
                   } else{
