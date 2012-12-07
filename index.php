@@ -37,6 +37,7 @@
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/froogaloop2.min.js"></script>
     <script src="js/popcorn-complete.min.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
     <script src="js/cardcheck.js"></script>
     <script src="js/form-handling.js"></script>
@@ -55,7 +56,15 @@
     <script src="js/jquery.numberformatter-1.2.3.min.js" type="text/javascript"></script>
 
 
-    
+    <script type="text/javascript">
+
+                                 var donationTotal = <?php $donationsArray = getDonations();  echo ($donationsArray[0][total]); ?>;
+
+                              
+                                </script>
+
+                                <script type="text/javascript" src="js/houseCleaningScript_mh.js"></script>
+
 
 </head>
             
@@ -114,44 +123,6 @@
 
 
                          </div>
-                                <script type="text/javascript">
-
-                                /* <![CDATA[ */
-                                        jQuery(document).ready(function($) {
-
-                                          var donationTotal = 1;
-                                               // $(".CounterZone").flipCounter();   
-
-
-                                                $("#CounterZone").flipCounter(
-                                                   "startAnimation", // scroll counter from the current number to the specified number
-                                                      {
-                                                             // number: <?php $donationsArray = getDonations();  echo ($donationsArray[1][total]); ?>, // the number we want to scroll from
-                                                              end_number: <?php $donationsArray = getDonations();  echo ($donationsArray[0][total]); ?>, // the number we want the counter to scroll to
-                                                              easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-                                                              duration: 1400, // number of ms animation should take to complete
-                                                      //  number:0, // the initial number the counter should display, overrides the hidden field
-                                                         numIntegralDigits:16, // number of places left of the decimal point to maintain
-                                                        numFractionalDigits:0, // number of places right of the decimal point to maintain
-                                                        //digitClass:"counter-digit", // class of the counter digits
-                                                        counterFieldName:"counter-value", // name of the hidden field
-                                                        formatNumberOptions:{format:"000,000,000,000",locale:"us"},
-                                                        digitHeight:72, // the height of each digit in the flipCounter-medium.png sprite image
-                                                        digitWidth:46, // the width of each digit in the flipCounter-medium.png sprite image
-                                                        imagePath:"img/flipCounter-medium3.png", // the path to the sprite image relative to your html document
-                                                        easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
-                                                       // duration:20000, // duration of animations
-                                                        onAnimationStarted:false, // call back for animation upon starting
-                                                        onAnimationStopped:false, // call back for animation upon stopping
-                                                        onAnimationPaused:false, // call back for animation upon pausing
-                                                        onAnimationResumed:false // call back for animation upon resuming from pause
-                                                });
-
-
-
-                                        });
-                                /* ]]> */
-                                </script>
 
 
 
@@ -170,7 +141,7 @@
                            <input type="number" class='playPopTrigger' style='display: none'>0</input> 
 
                            <input type="number" class='bellThrowTrigger' style='display: none'>0</input> 
-
+                          <input type="number" class='moneyCollectTrigger' style='display: none'>0</input> 
 
                                 <div class="VideoSlice">
 
@@ -180,9 +151,10 @@
 
 
                                                 
-                                        <source src="video/Holiday_Interactive_Loops_v02.m4v">
+                                        <source src="video/Holiday_Interactive_Loops_v02.m4v" >
+
                                         <source src="video/Holiday_Interactive_Loops_v02.webm" type='video/webm'>
-                                            
+                                          <source src="video/Holiday_Interactive_Loops_v02.ogv" type='video/ogv'>
                                                         
                                                 
 
@@ -194,10 +166,11 @@
 
 
 
+                                </div>
 
 
 
-<div class="flip-container">
+<div class="flip-container" style='display: none'>
             <form class="mini-form form-inline" >
                 <div class="flipper shy">
                     <h5 class="form-title">How much would you like to donate?</h5>
@@ -286,7 +259,6 @@
 
 
 
-                                </div>
 
 
 
@@ -298,7 +270,7 @@
 
                                  
 
-                                    <div class="donatePlate" >
+                                    <div class="donatePlate" style='display: none;'>
 
 
 
@@ -351,17 +323,29 @@
                                             <img src="images/live/proceedsText.png"  alt="">
                                         </div>  
 
+                                        <div class="share">
 
+                                                <div class="shareIcon">
+                                                       <img src="images/live/shareIcon.png" width="78" height="43" alt="">
+                                                </div>
+                                                            
 
-                                        <div class="shareIcon">
-                                               <img src="images/live/shareIcon.png" width="78" height="43" alt="">
-                                        </div>
-                                                    
+                                              <div class="facebook-Icon">
+                                                  <a target="_parent" href="http://www.facebook.com/sharer/sharer.php?u=http://www.weareroyale.com">
+                                                   <img src="images/live/facebook_Icon.png" width="44" height="43" alt="">
+                                                 </a>
+                                              </div>           
 
-                                      <div class="facebook-Icon">
-                                           <img src="images/live/facebook_Icon.png" width="44" height="43" alt="">
-                                      </div>                  
+                                              <div class="twitter-icon">
+                                                <a target="_parent" href="http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays!%20&url=http://www.weareroyale.com">
+                                                </a>
+                                                <img src="images/live/twitter_icon.png" width="61" height="43" alt="">
+                                              </div>    
 
+                                              <div class="mail-icon">
+                                                <img src="images/live/mail_icon.png" width="59" height="43" alt="">
+                                              </div>   
+                                       </div>
 
                                     </div>
   <!--  
@@ -440,12 +424,12 @@
                               <!--   </div> -->
 
                           <script type="text/javascript">
-                            $(document).ready(function(){
+                          //  $(document).ready(function(){
                                /* $('.nameTicker').easyTicker({
                                     visible: 1,
                                     interval: 1500
                                 });*/
-                            });
+                          //  });
                          </script>
                         
 
@@ -458,133 +442,7 @@
                         
 
 
-                            
-
-                              function toggleRed(){
-
-                                 $('.redForm').toggle('slow', function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
-                              }
-
-
-
-
-
-
-
-                             function containerFadeOut(outSpeed){
-
-                                 $('.container').fadeOut(outSpeed);
-
-                                 containerFadeIn(6000);
-
-                                 // var inSpeed = 3000;
-
-                              }
-                             
-
-
-                               function containerFadeIn(inSpeed){
-
-                                    $('.container').fadeIn(inSpeed);
-                                      // bgMatte(1000)
-
-                              }
-
-
-                              function bgMatte(inSpeed){
-
-                               
-                                   $('#htmlvideo').css({ opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, inSpeed-500).fadeIn(inSpeed-500);
-                               
-                                
-
-                                  //containerFadeIn(inSpeed);
-                                  setTimeout(function() {
-
-                                     $('.mattePainting').fadeIn(inSpeed+3000);
-
-
-                                  }, bgFadeWait);
-
-                                
-
-
-
-                              }
-
-                          
-
-                                 var $frame = $('<button class="closeForm" onClick="toggleRed();">Close X </button><br><iframe id="crossFrame" name="redCrossFrame" src="http://rdcrss.org/10OsFID" width="100%" height="100%">');
-                         
-
-                            $(function() {
-
-                               
-                      /*          $('.redForm').html( $frame );
-                                                    setTimeout( function() {
-                                                    var doc = $frame[0].contentWindow.document;
-                                                    var $body = $('.redForm',doc);
-                                                   //$body.html('<h1>Test</h1>');
-                                                }, 1 );
-
-                           */
-
-
-                            });
-
-                                function crossVal(){
-                                        var donVal = $("doval").val();
-
-                                     //  $('#crossFrame').contents().getElementById('custom-amount').value = donVal;
-                                     //  window.frames['redCrossFrame'].document.getElementById('custom-amount').value = 'test successful';
-
-
-
-
-                                }
-
-                                
-
-                                    $('.RedCrossIcon').click(function() {
-                                          $('.redForm').toggle('slow', function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
-
-                                      });
-
-                                     function closeTestForm(){
-
-                                        testFormToggle = 0;
-                                        $('.closedTest').html('1');
-
-
-
-                                          $('.testForm').toggle('slow', function() {
-
-                                            console.log('Test Form Toga '+testFormToggle);
-                                           
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
-                                        }
-                               
-                                    function closedTest(){
-                                      closedTestForm = 1;
-
-                                        }
-
-
-
-
-                                 /*   var $currentIFrame = $('#crossFrame');
-                                        $currentIFrame.contents().find("body #custom-amount").val(donVal);
-
-*/
-
+ 
                               </script>
 
 

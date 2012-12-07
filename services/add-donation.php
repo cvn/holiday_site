@@ -3,6 +3,6 @@
 include_once 'donation-functions.php';
 
 $output = addDonation($_REQUEST['name'],$_REQUEST['amount']);
-echo json_encode($output);
+echo json_encode($output, JSON_NUMERIC_CHECK);
 
 ?>

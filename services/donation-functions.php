@@ -10,7 +10,9 @@ $donationsTable = 'donatedTest';
 function getDonations($limit){
     global $username, $password, $donationsTable;
 
-    if (!$limit) {
+    if ($limit) {
+        $limit = intval($limit);
+    } else {
         $limit = 2;
     }
 
@@ -34,7 +36,7 @@ function getDonations($limit){
             $i++;
         }
 
-        // Return JSON
+        // Return array
         return $result;
 
     } catch(PDOException $e) {
@@ -92,7 +94,7 @@ function addDonation($name,$amount){
             $result = $row;
         }
 
-        // Return
+        // Return object
         return $result;
 
     } catch(PDOException $e) {

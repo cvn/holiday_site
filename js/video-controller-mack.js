@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 var finCatch = 0;
+var secondFade = 0;
 
    // $('#htmlvideo').hide('fast');
    $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
@@ -203,9 +204,12 @@ var finCatch = 0;
                                                        // launchRed();
                                                         // Animation complete.
 
+                                                         console.log('first BG Fade');
+
                                                          $('.donatePlate').fadeIn(2000);
 
                                                         contentLock = 1;
+                                                        secondFade = 0;
 
                                                          $('.brotherDarkness').fadeOut(outz, function() {
                                                              pop.cue(13, function(){
@@ -219,15 +223,19 @@ var finCatch = 0;
 
                                                       });
 
-                                    } else {
+                                    } 
+
+                                               
+                                 if(secondFade == 1){
 
                                                  $('.brotherDarkness').fadeIn(inz, function() {
 
                                                  
-
+                                                      console.log('second BG Fade');
 
                                                      $('.brotherDarkness').fadeOut(outz, function() {
 
+                                                            secondFade = 0;
 
                                                             playPop();
 
@@ -238,8 +246,9 @@ var finCatch = 0;
 
                                                  });
 
-                                       }
+                                               }
 
+                                    
 
 
 
@@ -267,10 +276,12 @@ var finCatch = 0;
 var $popTriggerz = $('.playPopTrigger').html();
 
 
- $('.bellThrowTrigger').change(function(){
+ $('#bellThrowTrigger').change(function(){
 
-     pop.currentTime(13.5);
-     
+  console.log('bellShould be thrown');
+
+     pop.currentTime(13.5).play();
+
  });
 
 $('.playPopTrigger').change(function() {
@@ -291,7 +302,7 @@ $('.playPopTrigger').change(function() {
 
 
 
-                                          playPop();
+                                        //  playPop();
 
                              
 
@@ -602,7 +613,7 @@ $('.playPopTrigger').change(function() {
             case 0:
 
                 idleTime = 0;
-
+               
                 pop.currentTime(0).play();
                  trigga(0);
                 
@@ -621,7 +632,9 @@ $('.playPopTrigger').change(function() {
 
                 pop.currentTime(0);
 
+               setTimeout(function(){
 
+              secondFade = 1; }, 2000)  
                
 
                 

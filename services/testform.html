@@ -7,10 +7,22 @@
 <body>
 
 <form action="add-donation.php" method="post">
-	<input type="text" name="name" id="" placeholder="Name">
-	<input type="text" name="amount" id="" placeholder="Amount">
-	<input type="submit" value="Submit">
+	<fieldset>
+		<legend>Submit to DB</legend>
+		<input type="text" name="name" id="" placeholder="Name">
+		<input type="text" name="amount" id="" placeholder="Amount">
+		<input type="submit" value="Submit">
+	</fieldset>
 </form>
-	
+
+<br>
+
+<form action="process-credit-card.php" method="post">
+	<fieldset>
+		<legend>Process credit card</legend>
+		<input type="submit" value="Submit">
+	</fieldset>
+</form>	
+
 </body>
 </html>

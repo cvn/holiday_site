@@ -5,6 +5,7 @@
         var coin1;
        var  testFormToggle = 0;
        var closedTestForm = $('.closedTest').html();
+       var postAdd = 0;
        
 
 
@@ -48,7 +49,7 @@
                   if(  $( '#soloCoin' ).hasClass( "dropped" )){
                             console.log('Im outta here');
                             coin1 = 0;
-                            
+                              pop.currentTime(5.4).play();
                              return "true";
 
                   } else{
@@ -99,7 +100,7 @@
                   if(  $( '#soloCoin' ).hasClass( "dropped" )){
                             console.log('Im outta here 2');
                             coin1 = 1;
-
+                         pop.currentTime(13.5).play();
                             return "true";
 
                   } else{
@@ -167,8 +168,9 @@
                             // trigger = 0;
 
 
+                               $('.bellThrowTrigger').change();
 
-                             pop.currentTime(5.4).play();
+                                 pop.currentTime(5.4).play();
 
                                 pop.cue(8.8, function(){
 
@@ -207,71 +209,83 @@
 
 
                    
-                                  //   pop.currentTime(13.5);
+                                    pop.currentTime(13.5);
 
-                                     $('.bellThrowTrigger').change();
+                                    
 
                            
 
                             pop.cue(18.79, function(){
                                $('.playPopTrigger').change();
 
-                            });
+                           
 
-                            formPopFix();
+                            
 
                           //  $('.flipper:first-child').removeClass('shy');
                           //  $('input:radio[name=amount]')[1].checked = true;
 
 
+                              if(postAdd == 0){
+
+                                postAdd = 1;
+
+                                            $.post('services/add-donation.php', {amount: 5}, function(data){
+
+
+                                       var updatedz = $.parseJSON(data);
+                                      
+
+                                       var updatedTotalz = updatedz.total;
+
+                                       console.log (Number(updatedTotalz));
+
+                                       var oldTotalz = $("#CounterZone").flipCounter("getNumber");
+
+                                      console.log( $("#CounterZone").flipCounter("getNumber"));
+
+                                          setTimeout(function(){ postAdd = 0}, 1000);
+
+
+                                                           $("#CounterZone").flipCounter(
+                                                        "startAnimation", // scroll counter from the current number to the specified number
+                                                { 
+
+                                                  number: oldTotalz, // the number we want to scroll from
+                                                  end_number: updatedTotalz, // the number we want the counter to scroll to
+                                                 // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+                                                 // duration: 1500, // number of ms animation should take to complete
+                                                  counterFieldName:"counter-value", // name of the hidden field
+                                                //  onAnimationStarted: false, // the function to call when animation starts
+                                               //   onAnimationStopped: false, // the function to call when animation stops
+                                               //   onAnimationPaused: false, // the function to call when animation pauses
+                                               //   onAnimationResumed: false // the function to call when animation resumes from pause
+                                               }
+                                                   );
 
 
 
-                                  $.post('services/add-donation.php', {amount: 5}, function(data){
-
-
-                                     var updatedz = $.parseJSON(data);
-                                    
-
-                                     var updatedTotalz = updatedz.total;
-
-                                     console.log (Number(updatedTotalz));
-
-                                     var oldTotalz = $("#CounterZone").flipCounter("getNumber");
-
-                                    console.log( $("#CounterZone").flipCounter("getNumber"));
+                                              });
 
 
 
-
-                                               $("#CounterZone").flipCounter(
-                                            "startAnimation", // scroll counter from the current number to the specified number
-                                    { 
-
-                                      number: oldTotalz, // the number we want to scroll from
-                                      end_number: updatedTotalz, // the number we want the counter to scroll to
-                                     // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-                                     // duration: 1500, // number of ms animation should take to complete
-                                      counterFieldName:"counter-value", // name of the hidden field
-                                    //  onAnimationStarted: false, // the function to call when animation starts
-                                   //   onAnimationStopped: false, // the function to call when animation stops
-                                   //   onAnimationPaused: false, // the function to call when animation pauses
-                                   //   onAnimationResumed: false // the function to call when animation resumes from pause
-                              }
-                      );
+                                  }
 
 
 
-                                  });
+                      
+
+
+                                
 
                                //  });
 
 
 
-                          
+                          }); 
 
 
-
+                formPopFix();
 
 
 
