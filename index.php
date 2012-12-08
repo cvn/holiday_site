@@ -12,6 +12,9 @@
         <!-- Mobile Specific Metas
   ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=.3, maximum-scale=1">
+    <meta property="og:image" content="images/siteMetaImage_v001.png"/>
+    <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
+
 
     <!-- CSS
   ================================================== -->
@@ -79,7 +82,7 @@
 
 
 
-                              window.open("http://www.facebook.com/sharer/sharer.php?u=http://www.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
+                              window.open("http://www.facebook.com/sharer/sharer.php?u=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
 
                                 /*  $('.facePost').toggle('slow', function() {
                                            // launchRed();
@@ -93,13 +96,25 @@
 
 
 
-                              window.open("http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://www.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+                              window.open("http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
 
 /*
                                   $('.twitterPost').toggle('slow', function() {
                                            // launchRed();
                                             // Animation complete.
                                           });*/
+
+
+                              }
+
+                              function toggleMail(){
+
+                                  console.log('Mail should be Toggled');
+
+                                  $('.mailPost').toggle('slow', function() {
+                                           // launchRed();
+                                            // Animation complete.
+                                          });
 
 
                               }
@@ -158,7 +173,8 @@
 
                     <div class="facePost" style="display: none"></div>
                     <div class="twitterPost" style="display: none"></div>
-        
+
+                   
 
                 <div class="wholeShabang">
     
@@ -207,6 +223,7 @@
 
                           
                            <input type="number" class='playPopTrigger' style='display: none'>0</input> 
+                            <input type="number" class='playPopTrigger2' style='display: none'>0</input> 
 
                            <input type="number" class='bellThrowTrigger' style='display: none'>0</input> 
                           <input type="number" class='moneyCollectTrigger' style='display: none'>0</input> 
@@ -238,7 +255,7 @@
 
 
 
-<div class="flip-container" style='display: none'>
+<div class="flip-container" >
             <form class="mini-form form-inline" >
                 <div class="flipper shy">
                     <h5 class="form-title">How much would you like to donate?</h5>
@@ -410,11 +427,32 @@
                                               </div>    
 
                                               <div class="mail-icon">
-                                                <img src="images/live/mail_icon.png" width="59" height="43" alt="">
+                                                <img src="images/live/mail_icon.png" onClick="toggleMail();" width="59" height="43" alt="">
                                               </div>   
                                        </div>
 
                                     </div>
+
+
+
+
+
+
+                                     <div class="mailPost" style="display: none" >
+                                         <button class="closeForm" onClick="toggleMail();">Close X </button><br />
+                                           <form method="post" id="mailPost" name="myemailform" action="emailSend.php">
+                                             Your Name: <input type="text" name="name"><br />
+
+                                             Friend's Name: <input type="text" name="fname"><br />
+
+                                             Friend's Email Address:    <input type="text" name="email"><br />
+                                             Custom Message?  <textarea name="message"></textarea><br />
+                                            <input type="submit" value="Send Form">
+                                    </form>
+
+
+
+                                     </div>
   <!--  
                                         <div class="leftContent" >
                                         

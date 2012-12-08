@@ -101,6 +101,7 @@
                             console.log('Im outta here 2');
                             coin1 = 1;
                          pop.currentTime(13.5).play();
+
                             return "true";
 
                   } else{
@@ -211,12 +212,13 @@
                    
                                     pop.currentTime(13.5);
 
+
                                     
 
                            
 
                             pop.cue(18.79, function(){
-                               $('.playPopTrigger').change();
+                               $('.playPopTrigger2').change();
 
                            
 

@@ -59,20 +59,28 @@
 <br>
 
 <span class="payment-errors"></span>
-<form action="" method="POST" id="payment-form">
+<form action="add-donation.php" method="POST" id="payment-form">
+    <div class="form-row">
+        <label>Name</label>
+        <input type="text" autocomplete="off" name="name" value="Test User" />
+    </div>
+    <div class="form-row">
+        <label>Amount</label>
+        <input type="text" autocomplete="off" name="amount" value="20" />
+    </div>
     <div class="form-row">
         <label>Card Number</label>
-        <input type="text" size="20" autocomplete="off" class="card-number" />
+        <input type="text" size="20" autocomplete="off" class="card-number" value="4242424242424242" />
     </div>
     <div class="form-row">
         <label>CVC</label>
-        <input type="text" size="4" autocomplete="off" class="card-cvc" />
+        <input type="text" size="4" autocomplete="off" class="card-cvc" value="123" />
     </div>
     <div class="form-row">
         <label>Expiration (MM/YYYY)</label>
-        <input type="text" size="2" class="card-expiry-month"/>
+        <input type="text" size="2" class="card-expiry-month" value="12" />
         <span> / </span>
-        <input type="text" size="4" class="card-expiry-year"/>
+        <input type="text" size="4" class="card-expiry-year" value="2013" />
     </div>
     <button type="submit" class="submit-button">Submit Payment</button>
 </form>

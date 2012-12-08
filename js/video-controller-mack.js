@@ -235,11 +235,13 @@ var secondFade = 0;
 
                                                      $('.brotherDarkness').fadeOut(outz, function() {
 
+                                                      pop.cue(13, function(){
+
                                                             secondFade = 0;
 
                                                             playPop();
 
-
+                                                          });
 
                                                      });
 
@@ -284,7 +286,19 @@ var $popTriggerz = $('.playPopTrigger').html();
 
  });
 
+$('.playPopTrigger2').change(function() {
+
+$('.flipper:first-child').removeClass('shy');
+  console.log('this is play pop triggz 2');
+
+   playPop();
+
+});
+
+
 $('.playPopTrigger').change(function() {
+
+
     
  console.log('I saw that change Dawg, Cooinz!!');
    //  $('.wholeShabang').effect("shake", { times:3 }, 200, function(){

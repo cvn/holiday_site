@@ -187,7 +187,7 @@ div.twitter-icon{
 
 div.mail-icon{
 	position:absolute;
-	left:806px;
+	left:816px;
 	top:645px;
 	width:248px;
 	height:60px;
@@ -195,6 +195,26 @@ div.mail-icon{
 
 }
 
+div.mailForm{
+
+	position: absolute;
+	background: url('../images/creampaper.png');
+	background-color: #030303;
+	left: 200px;
+	top: 800px;
+	opacity: 1;
+	z-index: 7;
+}
+div#mailForm{
+
+	position: absolute;
+	background: url('../images/creampaper.png');
+	background-color: #030303;
+	left: 200px;
+	top: 800px;
+	opacity: 1;
+	z-index: 7;
+}
 
 
 /* Coins */
