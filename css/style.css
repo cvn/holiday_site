@@ -1,29 +1,36 @@
-html, body, .centerer-container {
+html, body {
 	padding: 0;
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	position: relative;
 }
 
 body {
 	font-family: sans-serif;
-	//background-image:url('../images/nonLive/bgSplice_03.png');
 	background-color:#2f282d;
-	background-repeat: repeat-x;
+	/* background-image:url('../images/nonLive/bgSplice_03.png');
+	background-repeat: repeat-x; */
 }
 
-.bgTexture {
-	position:absolute;
+.bgwrapper {
+	min-width: 960px;
 	background-image:url('../images/nonLive/preCompBGTex.png');
 	background-repeat: no-repeat;
-	opacity: 0.7;
-	top: -180px;
-	left:-250px;
-	width: 1500px;
-	height: 1500px;
-	z-index: -1;
-	
+	background-position: center -270px;
+}
+
+.container {
+	width: 960px;
+	margin: auto;	
+	position: relative;
+}
+
+.row {
+	text-align: center;
+}
+
+.footer {
+	margin-top: 20px;
 }
 
 
@@ -32,53 +39,28 @@ body {
 ////////////////////
 
 
-		Non LIve
+		Non Live
 
 /////////////////////////*/
 
 
 
-div.RoyalePresents {
-	position:absolute;
-	left:164px;
-	top:90px;
-	width:231px;
-	height:127px;
+.RoyalePresents,
+.daBellRinga,
+#CounterZone,
+.counterText {
+	position: relative;
 	z-index: 12;
 }
 
-
-div.daBellRinga {
-	position:absolute;
-	left:405px;
-	top:90px;
-	width:276px;
-	height:127px;
-	z-index: 12;
+.RoyalePresents,
+.daBellRinga,
+.header-spacer {
+	display: inline-block;
 }
-
-div#CounterZone {
-	position:absolute;
-	text-align: center;
-	left:124px;
-	top:810px;
-	width:100;
-	height:101px;
-	z-index: 12;
+.header-spacer {
+	width: 100px;
 }
-
-
-div.counterText {
-	position:absolute;
-	left:24px;
-	top:880px;
-	width:1208px;
-	height:104px;
-	z-index: 12;
-}
-
-
-
 
 
 /*
@@ -89,115 +71,104 @@ div.counterText {
 
 /////////////////////////*/
 
-
-
-
-
-
-div.donateHeader {
+.donatePlate {
+	background-image: url('../images/live/donationPlatter.png');
 	position:absolute;
-	left:656px;
-	top:340px;
-	width:370px;
-	height:138px;
-	display: block; 
-	z-index: 8;
-
-}
-
-
-div.Donate-div-BG {
-	position:absolute;
-	left:594px;
-	top:280px;
+	left:50%;
+	top:200px;
+	margin-left: 130px;
 	width:348px;
 	height:440px;
 	z-index: 7;
-	
+	text-align: center;
 }
 
+.donateHeader {
+	margin-top: 50px;
+}
 
-div.redCrossTray {
+.redCrossTray {
 	position:absolute;
-	left:646px;
-	top:560px;
+	left:52px;
+	top:280px;
 	width:248px;
 	height:60px;
 	z-index: 7;
 	
 }
 
-
-div.crossText {
+.crossText {
 	position:absolute;
-	left:646px;
-	top:605px;
+	left:52px;
+	top:325px;
 	width:248px;
 	height:60px;
 	z-index: 7;
 	
 }
 
-
-/*
-////////////////////
-
-
-	Share Panel
-
-/////////////////////////*/
-
-div.share {
-
-	position: absolute;
-	top: 12px;
-	left: 14px;
+.zeroDolla {
+ 	position:absolute;
+	left:152px;
+	top:160px;
+	width:110px;
 }
 
+.fiveDolla {
+ 	position:absolute;
+	left:152px;
+	top:200px;
+	width:110px;
+}
 
-
-div.shareIcon {
+.soloCoin {
 	position:absolute;
-	left:646px;
-	top:645px;
-	width:248px;
-	height:60px;
-	z-index: 7;
-	
+	left:108px;
+	top:190px;
+	width:40px;
+	height:40px;
+	z-index: 9;
 }
 
-div.facebook-Icon{
-
+.soloCoin2 {
 	position:absolute;
-	left:716px;
-	top:645px;
-	width:248px;
-	height:60px;
-	z-index: 7;
+	left:108px;
+	top:230px;
+	width:40px;
+	height:40px;
+	z-index: 9;
 }
 
-div.twitter-icon{
+#soloCoin {
 	position:absolute;
-	left:756px;
-	top:645px;
-	width:248px;
+	color: #CDCDCD;
+	left:-142px;
+	top:860px;
+	width:80px;
 	height:60px;
-	z-index: 7;
-
+	font-size:180%;
 }
 
-div.mail-icon{
+.share {
 	position:absolute;
-	left:816px;
-	top:645px;
-	width:248px;
+	left:0px;
+	top:365px;
+	width:100%;
 	height:60px;
-	z-index: 7;
-
+	text-align: center;
 }
+
+.shareIcon,
+.facebook-Icon,
+.twitter-icon,
+.mail-icon{
+	display: inline-block;
+}
+
+
+
 
 div.mailForm{
-
 	position: absolute;
 	background: url('../images/creampaper.png');
 	background-color: #030303;
@@ -218,77 +189,6 @@ div#mailForm{
 }
 
 
-/* Coins */
-
-
- div.zeroDolla {
-
- 	position:absolute;
-	
-	left:746px;
-	top:440px;
-	width:110px;
-	
-
-	z-index: 8;
-	
-
- }
-
-
-div.fiveDolla {
-
- 	position:absolute;
-
-	left:746px;
-	top:480px;
-	width:110px;
-	
-
-	z-index: 8;
-	
-
- }
-
-
-/* ^^^^^  Coins  ^^^^^ */
-
-
-
-
-
-
-div.soloCoin {
-	position:absolute;
-	left:702px;
-	top:470px;
-	width:40px;
-	height:40px;
-	z-index: 9;
-}
-
-
-div.soloCoin2 {
-	position:absolute;
-	left:702px;
-	top:510px;
-	width:40px;
-	height:40px;
-	z-index: 9;
-}
-
-div#soloCoin {
-	position:absolute;
-	color: #CDCDCD;
-	left:452px;
-	top:1140px;
-	width:80px;
-	height:60px;
-	font-size:180%;
-}
-
-
-
 
 /*
 ////////////////////
@@ -301,7 +201,7 @@ div#soloCoin {
 
 
 
-div.brotherDarkness {
+.brotherDarkness {
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -309,80 +209,33 @@ div.brotherDarkness {
 	bottom: 0;
 	background-color: #000;
 	opacity: 1.0;
-	
 	z-index: 7;
-
-};
-
-
+}
 
 
 /*
 ////////////////////
 
 
-		Share Forms
+		Live
 
 /////////////////////////*/
 
-
-
-
-
-div .facePost .twitterPost {
-	position:absolute;
-	left:338px;
-	top:200px;
-	width:424px;
-	color: #CDCDCD;
-	height:473px;
-	font-size:180%;
-
-}
-
-/*div.twitterPost {
-	position:absolute;
-	left:338px;
-	top:200px;
-	width:424px;
-	color: #CDCDCD;
-	height:473px;
-	font-size:180%;*/
-
-}
-
-
-
-
-/*
-////////////////////
-
-
-		LIve
-
-/////////////////////////*/
-
-div.mattePainting {
+.mattePainting {
 	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-width: 960px;
+	height: 1217px;
+	z-index: 0;
 	background-image: url('../images/live/112812_wide_jpg48_002.jpg');
 	background-repeat: no-repeat;
-	 //top: -150px;
-	//left:-1240px;
+	background-position: center top;
 	opacity: 0.2;
-	 //top: 100px;
-	left:-1000px;
-	width: 2800px;
-	height: 2800px;
-	z-index: 0;
 }
 
 
-
-div.wholeShabang {
-
-	position: absolute;
-	top: -80px;
-}
 
 div.dividers {
 	position: absolute;
@@ -399,60 +252,10 @@ div.centerCont {
 
 }
 
-/*div.TitleSlice {
-	position:absolute;
-	//left:238px;
-	top:82px;
-	width:1024px;
-	height:140px;
-}*/
 
 
-
-
-div.VideoSlice {
-	position:absolute;
-	
-	top:222px;
-	width:1024px;
-	height:540px;
+div.video-container {
 	z-index: 2;
-}
-
-
-div.SiteContent {
-	position:absolute;
-	//left:238px;
-	top:762px;
-	width:1024px;
-	height:473px;
-}
-
-
-div.leftContent {
-	position:absolute;
-	left:58px;
-	top:762px;
-	width:331px;
-	height:473px;
-}
-
-div.centerCoins {
-	position:absolute;
-	
-	top:962px;
-	width:323px;
-	height:473px;
-}
-
-div.RedCrossIcon {
-	position:absolute;
-	left:652px;
-	top:722px;
-	width:370px;
-	height:138px;
-	display: block;
-	z-index: 0; 
 }
 
 button.closeForm {
@@ -463,25 +266,6 @@ button.closeForm {
 	height:50px;
 	z-index: 4;
 	font-size: 100%;
-}
-
-
-
-div.redForm {
-
-	position:absolute;
-	left:652px;
-	top:830px;
-	width:370px;
-	height:465px;
-	z-index: 3;
-	
-	/*position:absolute;
-	//left:238px;
-	top:800px;
-	width:400px;
-	height:473px;
-	z-index: 3;*/
 }
 
 div.underCrossContent {
@@ -543,58 +327,6 @@ div.rightDivider {
 
 }
 
-
-/*///////////////////////*/
-
-
-
-
-
-div.fifteenDolla {
-
- 	position:absolute;
-	
-	left:452px;
-	top:1017px;
-	
-
- }
-
-
-
-div.fiftyDolla {
-
- 	position:absolute;
-	
-	left:452px;
-	top:1056px;
-	
-	
-
- }
-
-
-
-
-
-
-
-
-
-/*///////////////////////*/
-
-
-
-
-.centerer-container {
-	display: table;
-
-}
-.centerer {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-}
 
 
 .tableBG {
@@ -765,52 +497,6 @@ input.type-radio {
 }
 .form-submit {
 	right: 20px;
-}
-
-.card-container {
-	float: left;
-	width: 50%;
-	text-align: center;
-	margin-top: 30px;
-}
-
-.cards-intro {
-	margin: 1.9em 0 2em;
-}
-.card-link {
-	display: block;
-	color: black;
-	text-decoration: none;
-}
-.card-label {
-	display: block;
-	font-size: 10px;
-}
-
-.card-link,
-.card {
-	-webkit-transition: all .2s;
-	-moz-transition: all .2s;
-	-ms-transition: all .2s;
-	-o-transition: all .2s;
-	transition: all .2s;
-}
-.card-link:hover {
-	color: #08F;
-}
-.card-link:hover .card {
-	-webkit-transform: scale(1.1) rotate(-3deg);
-	-moz-transform: scale(1.1) rotate(-3deg);
-	-ms-transform: scale(1.1) rotate(-3deg);
-	-o-transform: scale(1.1) rotate(-3deg);
-	transform: scale(1.1) rotate(-3deg);
-}
-.right .card-link:hover .card {
-	-webkit-transform: scale(1.1) rotate(3deg);
-	-moz-transform: scale(1.1) rotate(3deg);
-	-ms-transform: scale(1.1) rotate(3deg);
-	-o-transform: scale(1.1) rotate(3deg);
-	transform: scale(1.1) rotate(3deg);
 }
 
 .button-container {

@@ -120,7 +120,7 @@
 
 
 
-    $( ".VideoSlice" ).droppable({
+    $( ".video-container" ).droppable({
             drop: function( event, ui ) {
 
 

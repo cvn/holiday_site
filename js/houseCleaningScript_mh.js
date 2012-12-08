@@ -38,23 +38,6 @@
 
 
 
-
-
-
-                              function toggleRed(){
-
-                                 $('.redForm').toggle('slow', function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
-                              }
-
-
-
-
-
-
-
                              function containerFadeOut(outSpeed){
 
                                  $('.container').fadeOut(outSpeed);
@@ -101,21 +84,6 @@
                                  var $frame = $('<button class="closeForm" onClick="toggleRed();">Close X </button><br><iframe id="crossFrame" name="redCrossFrame" src="http://rdcrss.org/10OsFID" width="100%" height="100%">');
                          
 
-                          //  $(function() {
-
-                               
-                      /*          $('.redForm').html( $frame );
-                                                    setTimeout( function() {
-                                                    var doc = $frame[0].contentWindow.document;
-                                                    var $body = $('.redForm',doc);
-                                                   //$body.html('<h1>Test</h1>');
-                                                }, 1 );
-
-                           */
-
-
-                          //  });
-
                                 function crossVal(){
                                         var donVal = $("doval").val();
 
@@ -128,15 +96,6 @@
                                 }
 
                                 
-
-                                    $('.RedCrossIcon').click(function() {
-                                          $('.redForm').toggle('slow', function() {
-                                           // launchRed();
-                                            // Animation complete.
-                                          });
-
-                                      });
-
                                      function closeTestForm(){
 
                                         testFormToggle = 0;
@@ -165,3 +124,123 @@
                                         $currentIFrame.contents().find("body #custom-amount").val(donVal);
 
 */
+
+      var bgFadeWait = 6000;
+      var goLiveCatch = 0;
+      var contentLock = 0;
+
+      function toggleFace(){
+        window.open("http://www.facebook.com/sharer/sharer.php?u=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
+      }
+
+      function toggleTwit(){
+        window.open("http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+      }
+
+      function toggleMail(){
+
+          console.log('Mail should be Toggled');
+
+          $('.mailPost').toggle('slow', function() {
+                   // launchRed();
+                    // Animation complete.
+                  });
+      }
+
+
+
+                              $('.moneyCollectTrigger').change(function() {
+
+
+
+                                    console.log('Heeeeeeeey HEEEEEEy');
+                                     pop.currentTime(13.5).play();
+
+
+                                  pop.cue(18.79, function(){
+                               
+
+                           
+
+                            
+
+                          //  $('.flipper:first-child').removeClass('shy');
+                          //  $('input:radio[name=amount]')[1].checked = true;
+
+
+                              if(postAdd == 0){
+
+                                postAdd = 1;
+
+                                            $.post('services/add-donation.php', {amount: 5}, function(data){
+
+
+                                       var updatedz = $.parseJSON(data);
+                                      
+
+                                       var updatedTotalz = updatedz.total;
+
+                                       console.log (Number(updatedTotalz));
+
+                                       var oldTotalz = $("#CounterZone").flipCounter("getNumber");
+
+                                      console.log( $("#CounterZone").flipCounter("getNumber"));
+
+                                          setTimeout(function(){ postAdd = 0}, 1000);
+
+
+                                                           $("#CounterZone").flipCounter(
+                                                        "startAnimation", // scroll counter from the current number to the specified number
+                                                { 
+
+                                                  number: oldTotalz, // the number we want to scroll from
+                                                  end_number: updatedTotalz, // the number we want the counter to scroll to
+                                                 // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+                                                 // duration: 1500, // number of ms animation should take to complete
+                                                  counterFieldName:"counter-value", // name of the hidden field
+                                                //  onAnimationStarted: false, // the function to call when animation starts
+                                               //   onAnimationStopped: false, // the function to call when animation stops
+                                               //   onAnimationPaused: false, // the function to call when animation pauses
+                                               //   onAnimationResumed: false // the function to call when animation resumes from pause
+                                               }
+                                                   );
+
+
+
+                                              });
+
+
+
+                                  }
+
+
+
+                       playPop();
+
+
+                                
+
+                               //  });
+
+
+
+                          }); 
+
+
+
+
+                              })
+
+                              function playDropped(){
+                                  console.log('I saw this');
+
+                                  pop.currentTime(13.5).play();
+
+                                  
+                                //
+
+                                    
+                               //  $('.moneyCollectTrigger').change();
+
+                              }
+ 
