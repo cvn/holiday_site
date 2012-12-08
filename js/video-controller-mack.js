@@ -3,6 +3,21 @@ $(document).ready(function(){
 var finCatch = 0;
 var secondFade = 0;
 
+
+
+    pop = Popcorn('#htmlvideo', {
+                frameAnimation: true
+            });
+
+
+    pop.on('loadeddata', function(){
+                $('.loading').hide();
+                $('video').show();
+                
+            });
+
+
+
    // $('#htmlvideo').hide('fast');
    $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
 
@@ -288,10 +303,18 @@ var $popTriggerz = $('.playPopTrigger').html();
 
 $('.playPopTrigger2').change(function() {
 
-$('.flipper:first-child').removeClass('shy');
+
+
+  $('.flipper:first-child').removeClass('shy');
+
+                          
+
+
   console.log('this is play pop triggz 2');
 
-   playPop();
+
+
+   //playPop();
 
 });
 
@@ -310,10 +333,10 @@ $('.playPopTrigger').change(function() {
                                    // idleTime = 0;
                                   //  trigger = 0;
 
-
+                                   pop.cue(13, function(){
                                           playPop();
 
-
+                                        });
 
 
                                         //  playPop();
@@ -478,17 +501,6 @@ $('.playPopTrigger').change(function() {
 
 
 
-    pop = Popcorn('#htmlvideo', {
-                frameAnimation: true
-            });
-
-
-    pop.on('loadeddata', function(){
-                $('.loading').hide();
-                $('video').show();
-                
-            });
-
     var loopFrom = 1;
     
 
@@ -546,7 +558,7 @@ $('.playPopTrigger').change(function() {
     var trigger = 0;
 
      var safetyEscape = 0;
-
+     var safetyStop = 0;
 
 
     function trigga(triggz){
@@ -558,10 +570,11 @@ $('.playPopTrigger').change(function() {
                        timeOutz(0, 4, 2); // case, timout count, loopOut
                 
                 } else {
-                    console.log('Trigger has been pulled saftey equals ' + safetyEscape);
+                    console.log('Trigger has been pulled saftey equals ' + safetyEscape + 'safetystop value is ' + safetyStop);
                     safetyEscape = safetyEscape+1;
                   //  idleTime = 0;
 
+                    safetyStop = safetyStop+1;
 
                         if (safetyEscape >=8){
 
@@ -585,7 +598,8 @@ $('.playPopTrigger').change(function() {
 
                     };
                 
-                 
+
+
 
 
                 }
@@ -650,6 +664,9 @@ $('.playPopTrigger').change(function() {
             case 0:
 
                 idleTime = 0;
+
+
+                 
                
                 pop.currentTime(0).play();
                  trigga(0);
@@ -657,6 +674,8 @@ $('.playPopTrigger').change(function() {
                 
                 
                      loopTrigger(1);
+
+
 
 
 
@@ -730,7 +749,30 @@ $('.playPopTrigger').change(function() {
                     };
                 
 
-                
+                       if(safetyStop >= 10){
+                  console.log('safetyStoped!')
+                 // killIntervals();
+                  idleTime = 0;
+                  pop.pause();
+
+
+
+                  $('body').mousemove(function (e) {
+                            safetyStop = 0;
+                           pop.play();
+                          //  console.log('party continues');
+                        });
+                        $(this).keypress(function (e) {
+                          safetyStop = 0;
+                            pop.play();
+                         //   console.log('party continues from keys');
+                        });
+
+
+
+                }
+
+
                    // pop.cue( 22, function() {
 
                    //  });

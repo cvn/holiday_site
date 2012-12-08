@@ -51,6 +51,7 @@
 	<fieldset>
 		<legend>Submit to DB</legend>
 		<input type="text" name="name" id="" placeholder="Name">
+		<input type="text" name="email" id="" placeholder="Email">
 		<input type="text" name="amount" id="" placeholder="Amount">
 		<input type="submit" value="Submit">
 	</fieldset>
@@ -60,29 +61,42 @@
 
 <span class="payment-errors"></span>
 <form action="add-donation.php" method="POST" id="payment-form">
-    <div class="form-row">
-        <label>Name</label>
-        <input type="text" autocomplete="off" name="name" value="Test User" />
-    </div>
-    <div class="form-row">
-        <label>Amount</label>
-        <input type="text" autocomplete="off" name="amount" value="20" />
-    </div>
-    <div class="form-row">
-        <label>Card Number</label>
-        <input type="text" size="20" autocomplete="off" class="card-number" value="4242424242424242" />
-    </div>
-    <div class="form-row">
-        <label>CVC</label>
-        <input type="text" size="4" autocomplete="off" class="card-cvc" value="123" />
-    </div>
-    <div class="form-row">
-        <label>Expiration (MM/YYYY)</label>
-        <input type="text" size="2" class="card-expiry-month" value="12" />
-        <span> / </span>
-        <input type="text" size="4" class="card-expiry-year" value="2013" />
-    </div>
-    <button type="submit" class="submit-button">Submit Payment</button>
+	<fieldset>
+		<legend>Process credit card with Stripe</legend>
+	    <div class="form-row">
+	        <label>Name</label>
+	        <input type="text" autocomplete="off" name="name" value="Test User" />
+	    </div>
+	    <div class="form-row">
+	        <label>Email</label>
+	        <input type="text" autocomplete="off" name="email" value="test@user.com" />
+	    </div>
+	    <div class="form-row">
+	        <label>Amount</label>
+	        <label><input type="radio" name="amount" id="" value="5"> $5</label>
+	        <label><input type="radio" name="amount" id="" value="15" checked> $15</label>
+	        <label><input type="radio" name="amount" id="" value="50"> $50</label>
+	        <label>
+	        	<input type="radio" name="amount" id="" value="other"> Other
+	        	<input type="text" autocomplete="off" name="amount-other">
+	        </label>
+	    </div>
+	    <div class="form-row">
+	        <label>Card Number</label>
+	        <input type="text" size="20" autocomplete="off" class="card-number" value="4242424242424242" />
+	    </div>
+	    <div class="form-row">
+	        <label>CVC</label>
+	        <input type="text" size="4" autocomplete="off" class="card-cvc" value="123" />
+	    </div>
+	    <div class="form-row">
+	        <label>Expiration (MM/YYYY)</label>
+	        <input type="text" size="2" class="card-expiry-month" value="12" />
+	        <span> / </span>
+	        <input type="text" size="4" class="card-expiry-year" value="2013" />
+	    </div>
+	    <button type="submit" class="submit-button">Submit Payment</button>
+	</fieldset>
 </form>
 
 <br>

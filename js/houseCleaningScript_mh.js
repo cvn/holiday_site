@@ -15,11 +15,11 @@
                                                               easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
                                                               duration: 1000, // number of ms animation should take to complete
                                                       //  number:0, // the initial number the counter should display, overrides the hidden field
-                                                         numIntegralDigits:16, // number of places left of the decimal point to maintain
+                                                         numIntegralDigits:6, // number of places left of the decimal point to maintain
                                                         numFractionalDigits:0, // number of places right of the decimal point to maintain
                                                         //digitClass:"counter-digit", // class of the counter digits
                                                         counterFieldName:"counter-value", // name of the hidden field
-                                                        formatNumberOptions:{format:"000,000,000,000",locale:"us"},
+                                                        formatNumberOptions:{format:"0,000",locale:"us"},
                                                         digitHeight:72, // the height of each digit in the flipCounter-medium.png sprite image
                                                         digitWidth:46, // the width of each digit in the flipCounter-medium.png sprite image
                                                         imagePath:"img/flipCounter-medium3.png", // the path to the sprite image relative to your html document

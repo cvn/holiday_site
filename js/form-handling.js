@@ -26,15 +26,15 @@ $(document).ready(function(){
 		}, 0);
 	});
 
-	$('.next').on('click', function(){
+	$('body').on('click', '.next', function(event){
 		event.preventDefault();
 		$(this).closest('.flipper').addClass('shy').next().removeClass('shy');
 	});
-	$('.back').on('click', function(){
+	$('.back').on('click', function(event){
 		event.preventDefault();
 		$(this).closest('.flipper').addClass('shy').prev().removeClass('shy');
 	});
-	$('.cancel').on('click', function(){
+	$('.cancel').on('click', function(event){
 		event.preventDefault();
 		$(this).closest('.flipper').addClass('shy');
 	});

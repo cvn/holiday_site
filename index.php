@@ -5,15 +5,22 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    <base target="_parent" />
+    
+   
     <title>The Bell Ringer Test</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Don't get your bell rung by an old lady during the holiday #saggybells">
+    <meta name="author" content="Royale">
+    <meta property="og:image" content="http://holiday.weareroyale.com/images/siteMetaImage_v001.png"/>
+    <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
+    <meta property="og:description" content="Don't get your bell rung by an old lady during the holiday #saggybells"/>
+   
+   
+    
+     <base target="_parent" />
         <!-- Mobile Specific Metas
   ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=.3, maximum-scale=1">
-    <meta property="og:image" content="images/siteMetaImage_v001.png"/>
-    <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
+
 
 
     <!-- CSS
@@ -107,6 +114,8 @@
 
                               }
 
+
+
                               function toggleMail(){
 
                                   console.log('Mail should be Toggled');
@@ -116,6 +125,103 @@
                                             // Animation complete.
                                           });
 
+
+                              }
+
+
+
+                              $('.moneyCollectTrigger').change(function() {
+
+
+
+                                    console.log('Heeeeeeeey HEEEEEEy');
+                                     pop.currentTime(13.5).play();
+
+
+                                  pop.cue(18.79, function(){
+                               
+
+                           
+
+                            
+
+                          //  $('.flipper:first-child').removeClass('shy');
+                          //  $('input:radio[name=amount]')[1].checked = true;
+
+
+                              if(postAdd == 0){
+
+                                postAdd = 1;
+
+                                            $.post('services/add-donation.php', {amount: 5}, function(data){
+
+
+                                       var updatedz = $.parseJSON(data);
+                                      
+
+                                       var updatedTotalz = updatedz.total;
+
+                                       console.log (Number(updatedTotalz));
+
+                                       var oldTotalz = $("#CounterZone").flipCounter("getNumber");
+
+                                      console.log( $("#CounterZone").flipCounter("getNumber"));
+
+                                          setTimeout(function(){ postAdd = 0}, 1000);
+
+
+                                                           $("#CounterZone").flipCounter(
+                                                        "startAnimation", // scroll counter from the current number to the specified number
+                                                { 
+
+                                                  number: oldTotalz, // the number we want to scroll from
+                                                  end_number: updatedTotalz, // the number we want the counter to scroll to
+                                                 // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+                                                 // duration: 1500, // number of ms animation should take to complete
+                                                  counterFieldName:"counter-value", // name of the hidden field
+                                                //  onAnimationStarted: false, // the function to call when animation starts
+                                               //   onAnimationStopped: false, // the function to call when animation stops
+                                               //   onAnimationPaused: false, // the function to call when animation pauses
+                                               //   onAnimationResumed: false // the function to call when animation resumes from pause
+                                               }
+                                                   );
+
+
+
+                                              });
+
+
+
+                                  }
+
+
+
+                       playPop();
+
+
+                                
+
+                               //  });
+
+
+
+                          }); 
+
+
+
+
+                              })
+
+                              function playDropped(){
+                                  console.log('I saw this');
+
+                                  pop.currentTime(13.5).play();
+
+                                  
+                                //
+
+                                    
+                               //  $('.moneyCollectTrigger').change();
 
                               }
 
@@ -228,6 +334,8 @@
                            <input type="number" class='bellThrowTrigger' style='display: none'>0</input> 
                           <input type="number" class='moneyCollectTrigger' style='display: none'>0</input> 
 
+                           <input type="number" class='moneyAnimTrigger' style='display: none'>0</input> 
+
                                 <div class="VideoSlice">
 
                                   <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
@@ -322,13 +430,13 @@
                         <button class="btn back">Back</button>
                     </div>
                     <div class="form-submit">
-                        <button class="btn next btn-primary">Donate</button>
+                        <button onClick="playDropped();" class="btn next btn-primary donateButtonz">Donate</button>
                     </div>
                 </div>
                 <div class="flipper shy">
                     <h5 class="form-title">Thank you!</h5>
                     <div class="form-submit">
-                        <button class="btn next btn-primary">Done</button>
+                        <button class="btn next btn-primary donateButtonz">Done</button>
                     </div>
                 </div>
             </form>
@@ -567,7 +675,7 @@
 
                             </div>
 
-                                <div class="nameTicker">
+                                <div class="nameTickerz">
                                     <ul>
                           
                                         <?php

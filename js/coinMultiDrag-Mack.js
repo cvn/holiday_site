@@ -210,81 +210,17 @@
 
 
                    
-                                    pop.currentTime(13.5);
+                                 
 
 
-                                    
+
+
+                                    $('.playPopTrigger2').change();
+
+                                   // pop.pause();
 
                            
 
-                            pop.cue(18.79, function(){
-                               $('.playPopTrigger2').change();
-
-                           
-
-                            
-
-                          //  $('.flipper:first-child').removeClass('shy');
-                          //  $('input:radio[name=amount]')[1].checked = true;
-
-
-                              if(postAdd == 0){
-
-                                postAdd = 1;
-
-                                            $.post('services/add-donation.php', {amount: 5}, function(data){
-
-
-                                       var updatedz = $.parseJSON(data);
-                                      
-
-                                       var updatedTotalz = updatedz.total;
-
-                                       console.log (Number(updatedTotalz));
-
-                                       var oldTotalz = $("#CounterZone").flipCounter("getNumber");
-
-                                      console.log( $("#CounterZone").flipCounter("getNumber"));
-
-                                          setTimeout(function(){ postAdd = 0}, 1000);
-
-
-                                                           $("#CounterZone").flipCounter(
-                                                        "startAnimation", // scroll counter from the current number to the specified number
-                                                { 
-
-                                                  number: oldTotalz, // the number we want to scroll from
-                                                  end_number: updatedTotalz, // the number we want the counter to scroll to
-                                                 // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-                                                 // duration: 1500, // number of ms animation should take to complete
-                                                  counterFieldName:"counter-value", // name of the hidden field
-                                                //  onAnimationStarted: false, // the function to call when animation starts
-                                               //   onAnimationStopped: false, // the function to call when animation stops
-                                               //   onAnimationPaused: false, // the function to call when animation pauses
-                                               //   onAnimationResumed: false // the function to call when animation resumes from pause
-                                               }
-                                                   );
-
-
-
-                                              });
-
-
-
-                                  }
-
-
-
-                      
-
-
-                                
-
-                               //  });
-
-
-
-                          }); 
 
 
                 formPopFix();
@@ -340,4 +276,4 @@
 
 
 
-    });
+    })

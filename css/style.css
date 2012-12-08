@@ -50,7 +50,7 @@ div.RoyalePresents {
 
 div.daBellRinga {
 	position:absolute;
-	left:495px;
+	left:405px;
 	top:90px;
 	width:276px;
 	height:127px;
@@ -59,9 +59,10 @@ div.daBellRinga {
 
 div#CounterZone {
 	position:absolute;
+	text-align: center;
 	left:124px;
 	top:810px;
-	width:908px;
+	width:100;
 	height:101px;
 	z-index: 12;
 }

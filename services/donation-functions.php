@@ -7,7 +7,7 @@ $donationsTable = 'donatedTest';
 
 
 // This function returns an array of donation objects in descending order
-function getDonations($limit=2){
+function getDonations($limit){
     global $username, $password, $donationsTable;
 
     if ($limit) {
@@ -46,7 +46,7 @@ function getDonations($limit=2){
 
 
 // This function returns an object of the inserted DB row
-function addDonation($name,$amount){
+function addDonation($amount,$name,$email){
     global $username, $password, $donationsTable;
 
     if (!$amount) {
@@ -58,7 +58,7 @@ function addDonation($name,$amount){
     }
 
     // SQL statements
-    $sql = 'INSERT INTO '.$donationsTable.' (name,amount,total) VALUES (:name,:amount,:total)';
+    $sql = 'INSERT INTO '.$donationsTable.' (name,email,amount,total) VALUES (:name,:email,:amount,:total)';
     $validateSql = 'SELECT * FROM `'.$donationsTable.'` WHERE `key` = :id';
     $sumSql = 'SELECT SUM(amount) AS sumTotal FROM `'.$donationsTable;
 
@@ -80,6 +80,7 @@ function addDonation($name,$amount){
         // Insert new donation
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':amount', $amount);
         $stmt->bindParam(':total', $sum);
         $stmt->execute();

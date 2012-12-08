@@ -1,6 +1,16 @@
 <?php
 
-include_once 'donation-functions.php';
+require_once 'donation-functions.php';
+
+// Get request variables
+$userName = $_REQUEST['name'];
+$userEmail = $_REQUEST['email'];
+if($_REQUEST['amount']=="other"){
+	$userAmount = $_REQUEST['amount-other'];
+} else {
+	$userAmount = $_REQUEST['amount'];
+}
+$amountInCents = intval($userAmount * 100);
 
 // Stripe
 require_once("stripe-php-1.7.10/lib/Stripe.php");
@@ -14,14 +24,13 @@ $token = $_POST['stripeToken'];
 
 // create the charge on Stripe's servers - this will charge the user's card
 $charge = Stripe_Charge::create(array(
-  "amount" => 1000, // amount in cents, again
+  "amount" => $amountInCents, // amount in cents, again
   "currency" => "usd",
   "card" => $token,
-  "description" => "payinguser@example.com")
+  "description" => $userEmail)
 );
 
-
-$output = addDonation($_REQUEST['name'],$_REQUEST['amount']);
+$output = addDonation($userAmount,$userName,$userEmail);
 echo json_encode($output, JSON_NUMERIC_CHECK);
 
 ?>
