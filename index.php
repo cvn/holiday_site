@@ -55,12 +55,13 @@
 <body>
     <div class="brotherDarkness" style="display: none;"></div>
     <div class="mattePainting" style='display: none;'></div>
+    <!-- <div class="photoshop-overlay"></div> -->
         
-    <input type="number" class='playPopTrigger' style='display: none'>0</input> 
-    <input type="number" class='playPopTrigger2' style='display: none'>0</input> 
-    <input type="number" class='bellThrowTrigger' style='display: none'>0</input> 
-    <input type="number" class='moneyCollectTrigger' style='display: none'>0</input> 
-    <input type="number" class='moneyAnimTrigger' style='display: none'>0</input> 
+    <input type="text" class='playPopTrigger' style='display: none' value="0">
+    <input type="text" class='playPopTrigger2' style='display: none' value="0">
+    <input type="text" class='bellThrowTrigger' style='display: none' value="0">
+    <input type="text" class='moneyCollectTrigger' style='display: none' value="0">
+    <input type="text" class='moneyAnimTrigger' style='display: none' value="0">
 
     <div class="bgwrapper">
       <div class="container">
@@ -68,9 +69,7 @@
         <div class="row header">
           <div class="RoyalePresents">
             <img src="images/nonLive/RoyalePresents.png" width="231" height="127" alt="Royale Presents">
-          </div>
-          <div class="header-spacer"></div>
-          <div class="daBellRinga">
+          </div><div class="daBellRinga">
             <img src="images/nonLive/daBellRinga.png" width="276" height="127" alt="The Bell Ringer">
           </div>        
         </div>
@@ -81,19 +80,21 @@
             <video id="htmlvideo" class="video">
                 <source src="video/Holiday_Interactive_Loops_v02.m4v">
                 <source src="video/Holiday_Interactive_Loops_v02.webm" type="video/webm">
+                    <p>Please update your browser</p>
             </video>
           </div>
         </div>
 
         <div class="row footer">
-          <div id="CounterZone">
-            <input type="hidden" name="counter-value" value="<?php $donationsArray = getDonations(); echo ($donationsArray[1][total]); ?>" >
+          <div>
+            <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone">
+              <input type="hidden" name="counter-value" value="<?php $donationsArray = getDonations(); echo ($donationsArray[1][total]); ?>" >
+            </div>
           </div>
           <div class="counterText">
             <img src="images/nonLive/counterText.png" width="908" height="74" alt="">
           </div>
         </div>
-        
         <div class="donatePlate" style='display: none;'>
           <div class="donateHeader">
              <img src="images/live/DonateHeader.png"  alt="">
@@ -105,13 +106,13 @@
              <img src="images/coinsSolo.png" width="40" alt="">
           </div>
           <div class="zeroDolla">
-            <img src="images/live/0DollaramounSelector.png" alt="">
+            <button onClick="heckNo();">Hecketh No</button>
           </div>
           <div class="soloCoin2 active">
              <img src="images/coinsSolo.png" width="40" alt="">
           </div>
           <div class="fiveDolla">
-            <img src="images/live/5DollaramounSelector.png"  alt="">
+            <button onClick="heckYes();">Helleth Yes</button>
           </div>
           <div class="redCrossTray"  >
             <img src="images/live/redCrossLogoDonationTray.png"  alt="">
@@ -122,29 +123,20 @@
           <div class="share">
             <div class="shareIcon">
               <img src="images/live/shareIcon.png" width="78" height="43" alt="">
-            </div>
-            <div class="facebook-Icon">
+            </div><div class="facebook-Icon">
               <img src="images/live/facebook_Icon.png" onClick="toggleFace();" width="44" height="43" alt="">
-            </div>           
-            <div class="twitter-icon">
+            </div><div class="twitter-icon">
               <img src="images/live/twitter_icon.png" onClick="toggleTwit();" width="61" height="43" alt="">
-            </div>
-            <div class="mail-icon">
+            </div><div class="mail-icon">
               <img src="images/live/mail_icon.png" onClick="toggleMail();" width="59" height="43" alt="">
             </div>   
           </div>
         </div> <!-- /donatePlate -->
+
+
+        <div class="credFormz" style='display: none'><button onClick="finalTreat();">Done</button></div>
         
-        <div class="mailPost" style="display: none" >
-          <button class="closeForm" onClick="toggleMail();">Close X </button><br />
-          <form method="post" id="mailPost" name="myemailform" action="emailSend.php">
-            Your Name: <input type="text" name="name"><br />
-            Friend's Name: <input type="text" name="fname"><br />
-            Friend's Email Address:    <input type="text" name="email"><br />
-            Custom Message?  <textarea name="message"></textarea><br />
-            <input type="submit" value="Send Form">
-          </form>
-        </div> <!-- /mailPost -->
+       <!-- /mailPost -->
 
         <div class="flip-container">
           <form class="mini-form form-inline">

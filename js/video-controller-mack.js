@@ -1,119 +1,151 @@
-$(document).ready(function(){
-
+   
 var finCatch = 0;
 var secondFade = 0;
 
 
 
-    pop = Popcorn('#htmlvideo', {
-                frameAnimation: true
-            });
+     var intervalArr = new Array();
+        function intervalOne () { console.log ('foo');};
+        function intervalTwo () { console.log ('bar');};
+
+        function killIntervals(){
+            while(intervalArr.length > 0)
+            clearInterval(intervalArr.pop());
+        };
+ 
+ 
+   function timeOutz(numzz, timez, loopOut){  console.log(timez);
+            switch(numzz){
 
 
-    pop.on('loadeddata', function(){
-                $('.loading').hide();
-                $('video').show();
-                
-            });
+
+                case 0:
+
+                        idleTime = 0;
+                        trigger = 1;
+
+                        
+                       // idleTime = 0;
+
+                        setTimeOutFunction1(timez, loopOut, 3000);
+
+                            
+                            
+                        
 
 
+                break;
 
-   // $('#htmlvideo').hide('fast');
-   $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
+                case 1:
 
-        var f = $('iframe'),
-            url = f.attr('src').split('?')[0],
-            status = $('.status');
 
-        // Listen for messages from the player
-        if (window.addEventListener){
-            window.addEventListener('message', onMessageReceived, false);
-        }
-        else {
-            window.attachEvent('onmessage', onMessageReceived, false);
-        }
+                     intervalArr.push(setTimeout(function(){
 
-        // Handle messages received from the player
-        function onMessageReceived(e) {
-            var data = JSON.parse(e.data);
-            
-            switch (data.event) {
-                case 'ready':
-                    onReady();
-                    break;
-                   
-                case 'playProgress':
-                    onPlayProgress(data.data);
-                    break;
-                    
-                case 'pause':
-                    onPause();
+                            
+                            console.log('Waiting');
+                                //updateLooper(5);
+                            
 
-                    break;
-                   
-                case 'finish':
-                    onFinish();
-                    break;
+                        },5000));
+
+                          //Zero the idle timer on mouse movement.
+                        $(this).mousemove(function (e) {
+                            idleTime = 0;
+                        });
+                        $(this).keypress(function (e) {
+                            idleTime = 0;
+                        });
+
+
+                            console.log(idleTime);
+                            
+                        
+
+                        if( idleTime == timez){
+
+                                clearTimeout(t2);
+                                loopFrom = 3;
+                                   idleTime = 0;
+
+                                console.log('Timeout '+ numzz +' Reached');
+
+                                
+                            }
+
+                break;
+
+
+                    }
             }
-        }
-
-        // Call the API when a button is pressed
-        $('button').on('click', function() {
-            post($(this).text().toLowerCase());
-        });
-
-        // Helper function for sending a message to the player
-        function post(action, value) {
-            var data = { method: action };
-            
-            if (value) {
-                data.value = value;
-            }
-            
-            f[0].contentWindow.postMessage(JSON.stringify(data), url);
-        } 
-
-        function onReady() {
-            status.text('ready');
-            post('play');
-            post('addEventListener', 'pause');
-            post('addEventListener', 'finish');
-            post('addEventListener', 'playProgress');
-        }
-
-        function onPause() {
-            status.text('paused');
-
-             console.log('pausseed');
-                 
-        }
-
-        function onFinish() {
-            status.text('finished');
-           
-            if(finCatch == 0){
-                
-                  goLive();
-
-            };
-
-              
-        }
 
 
 
-        function onPlayProgress(data) {
-            status.text(data.seconds + 's played');
 
-            if (data.seconds >= 67){
-                
-               goLive();
-               finCatch = 1;
+    function setTimeOutFunction1(timez, loopOut, intervalz){
 
-            };
-        }
+        console.log('timoutFunc1 vals Count: ' + timez + 'loopOut ' + loopOut + ' and interval ' + intervalz );
+        
 
 
+        intervalArr.push(setInterval(function(){
+
+                             idleTime = idleTime + 1;
+                                console.log('Waiting');
+                                //updateLooper(5);
+                                 console.log(idleTime);
+
+
+                                 if( idleTime == timez){
+
+                                //clearInterval(t2);
+                                killIntervals();
+                                loopFrom = loopOut;
+
+
+                                console.log(loopOut);
+                               
+                                idleTime = 0;
+
+                                trigger = 0;
+                                
+                                loopTrigger(loopOut);
+                                
+                            }
+
+                        }, intervalz));
+
+                          //Zero the idle timer on mouse movement.
+                        $(this).mousemove(function (e) {
+                            idleTime = 0;
+                        });
+                        $(this).keypress(function (e) {
+                            idleTime = 0;
+                        });
+
+                        console.log(idleTime);
+
+                        
+
+
+    }
+    
+     
+
+
+
+
+    var loopFrom = 1;
+    
+
+    function playPop(){
+
+        //toggleRed();
+       // goLive();
+
+         
+
+        loopTrigger(0);
+    }
 
 
 
@@ -273,6 +305,20 @@ var secondFade = 0;
                                 }
 
 
+
+                                function playMoneyDrop(){
+
+                                      pop.currentTime(14).play();
+
+                                       pop.cue(18.79, function(){
+
+
+                                          playPop();
+
+                                       });
+
+                                }
+
                               function shakeBake(speedz){
 
                                  $('.wholeShabang').effect("shake", { times:3 }, speedz, function(){
@@ -305,7 +351,7 @@ $('.playPopTrigger2').change(function() {
 
 
 
-  $('.flipper:first-child').removeClass('shy');
+ // $('.flipper:first-child').removeClass('shy');
 
                           
 
@@ -370,7 +416,7 @@ $('.playPopTrigger').change(function() {
 
 
 
-
+/*
        var intervalArr = new Array();
         function intervalOne () { console.log ('foo');};
         function intervalTwo () { console.log ('bar');};
@@ -380,140 +426,7 @@ $('.playPopTrigger').change(function() {
             clearInterval(intervalArr.pop());
         };
  
-
-   function timeOutz(numzz, timez, loopOut){  console.log(timez);
-            switch(numzz){
-
-
-
-                case 0:
-
-                        idleTime = 0;
-                        trigger = 1;
-
-                        
-                       // idleTime = 0;
-
-                        setTimeOutFunction1(timez, loopOut, 3000);
-
-                            
-                            
-                        
-
-
-                break;
-
-                case 1:
-
-
-                     intervalArr.push(setTimeout(function(){
-
-                            
-                            console.log('Waiting');
-                                //updateLooper(5);
-                            
-
-                        },5000));
-
-                          //Zero the idle timer on mouse movement.
-                        $(this).mousemove(function (e) {
-                            idleTime = 0;
-                        });
-                        $(this).keypress(function (e) {
-                            idleTime = 0;
-                        });
-
-
-                            console.log(idleTime);
-                            
-                        
-
-                        if( idleTime == timez){
-
-                                clearTimeout(t2);
-                                loopFrom = 3;
-                                   idleTime = 0;
-
-                                console.log('Timeout '+ numzz +' Reached');
-
-                                
-                            }
-
-                break;
-
-
-                    }
-            }
-
-
-
-
-    function setTimeOutFunction1(timez, loopOut, intervalz){
-
-        console.log('timoutFunc1 vals Count: ' + timez + 'loopOut ' + loopOut + ' and interval ' + intervalz );
-        
-
-
-        intervalArr.push(setInterval(function(){
-
-                             idleTime = idleTime + 1;
-                                console.log('Waiting');
-                                //updateLooper(5);
-                                 console.log(idleTime);
-
-
-                                 if( idleTime == timez){
-
-                                //clearInterval(t2);
-                                killIntervals();
-                                loopFrom = loopOut;
-
-
-                                console.log(loopOut);
-                               
-                                idleTime = 0;
-
-                                trigger = 0;
-                                
-                                loopTrigger(loopOut);
-                                
-                            }
-
-                        }, intervalz));
-
-                          //Zero the idle timer on mouse movement.
-                        $(this).mousemove(function (e) {
-                            idleTime = 0;
-                        });
-                        $(this).keypress(function (e) {
-                            idleTime = 0;
-                        });
-
-                        console.log(idleTime);
-
-                        
-
-
-    }
-    
-     
-
-
-
-
-    var loopFrom = 1;
-    
-
-    function playPop(){
-
-        //toggleRed();
-       // goLive();
-
-         
-
-        loopTrigger(0);
-    }
-
+*/
 
 /*
     if (loopFrom == 1){
@@ -574,11 +487,12 @@ $('.playPopTrigger').change(function() {
                     safetyEscape = safetyEscape+1;
                   //  idleTime = 0;
 
-                    safetyStop = safetyStop+1;
+                   // safetyStop = safetyStop+1;
 
                         if (safetyEscape >=8){
 
                            safetyEscape = 0;
+                          // safetyStop = safetyStop+1;
 
                           pop.cue( 5.4, function() {
 
@@ -749,7 +663,7 @@ $('.playPopTrigger').change(function() {
                     };
                 
 
-                       if(safetyStop >= 10){
+                       if(safetyStop >= 80){
                   console.log('safetyStoped!')
                  // killIntervals();
                   idleTime = 0;
@@ -879,6 +793,134 @@ $('.playPopTrigger').change(function() {
 
 
     }
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+
+
+
+
+    pop = Popcorn('#htmlvideo', {
+                frameAnimation: true
+            });
+
+
+    pop.on('loadeddata', function(){
+                $('.loading').hide();
+                $('video').show();
+                
+            });
+
+
+
+   // $('#htmlvideo').hide('fast');
+   $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
+
+        var f = $('iframe'),
+            url = f.attr('src').split('?')[0],
+            status = $('.status');
+
+        // Listen for messages from the player
+        if (window.addEventListener){
+            window.addEventListener('message', onMessageReceived, false);
+        }
+        else {
+            window.attachEvent('onmessage', onMessageReceived, false);
+        }
+
+        // Handle messages received from the player
+        function onMessageReceived(e) {
+            var data = JSON.parse(e.data);
+            
+            switch (data.event) {
+                case 'ready':
+                    onReady();
+                    break;
+                   
+                case 'playProgress':
+                    onPlayProgress(data.data);
+                    break;
+                    
+                case 'pause':
+                    onPause();
+
+                    break;
+                   
+                case 'finish':
+                    onFinish();
+                    break;
+            }
+        }
+
+        // Call the API when a button is pressed
+        $('button').on('click', function() {
+            post($(this).text().toLowerCase());
+        });
+
+        // Helper function for sending a message to the player
+        function post(action, value) {
+            var data = { method: action };
+            
+            if (value) {
+                data.value = value;
+            }
+            
+            f[0].contentWindow.postMessage(JSON.stringify(data), url);
+        } 
+
+        function onReady() {
+            status.text('ready');
+            post('play');
+            post('addEventListener', 'pause');
+            post('addEventListener', 'finish');
+            post('addEventListener', 'playProgress');
+        }
+
+        function onPause() {
+            status.text('paused');
+
+             console.log('pausseed');
+                 
+        }
+
+        function onFinish() {
+            status.text('finished');
+           
+            if(finCatch == 0){
+                
+                  goLive();
+
+            };
+
+              
+        }
+
+
+
+        function onPlayProgress(data) {
+            status.text(data.seconds + 's played');
+
+            if (data.seconds >= 67){
+                
+               goLive();
+               finCatch = 1;
+
+            };
+        }
+
+
+
+
+
+
+
+
 
     pop.on('timeupdate', function(){
 

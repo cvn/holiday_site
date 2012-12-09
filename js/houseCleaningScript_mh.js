@@ -1,4 +1,115 @@
+   function finalTreat(){
+
+                                          console.log('Trigger Final Animation finalTreat');
+                                          
+                                           killIntervals();
+                                           idleTime = 0;
+                                           //trigger = 0;
+                                           pop.pause();
+
+                                           playMoneyDrop();
+/*
+                                             pop.cue(1.2, function(){
+
+                                           pop.play(13.5);
+
+                                         });
+*/
+                                        // pop.pause();
+
+                                              // pop.currentTime(13.5);
+
+
+                                         //      $('.playPopTrigger2').change();
+                                            console.log('im playing treat maybe?');
+                                    
+
+
+
+                                                      //   console.log('Heeeeeeeey HEEEEEEy');
+                                                        //  pop.currentTime(13.5).play();
+
+
+                                                       pop.cue(18.79, function(){
+                                                    
+
+                                                
+
+                                                 
+
+                                               //  $('.flipper:first-child').removeClass('shy');
+                                               //  $('input:radio[name=amount]')[1].checked = true;
+
+
+                                                /*   if(postAdd == 0){
+
+                                                     postAdd = 1;
+
+                                                                 $.post('services/add-donation.php', {amount: 5}, function(data){
+
+
+                                                            var updatedz = $.parseJSON(data);
+                                                           
+
+                                                            var updatedTotalz = updatedz.total;
+
+                                                            console.log (Number(updatedTotalz));
+
+                                                            var oldTotalz = $("#CounterZone").flipCounter("getNumber");
+
+                                                           console.log( $("#CounterZone").flipCounter("getNumber"));
+
+                                                               setTimeout(function(){ postAdd = 0}, 1000);
+
+
+                                                                                $("#CounterZone").flipCounter(
+                                                                             "startAnimation", // scroll counter from the current number to the specified number
+                                                                     { 
+
+                                                                       number: oldTotalz, // the number we want to scroll from
+                                                                       end_number: updatedTotalz, // the number we want the counter to scroll to
+                                                                      // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+                                                                      // duration: 1500, // number of ms animation should take to complete
+                                                                       counterFieldName:"counter-value", // name of the hidden field
+                                                                     //  onAnimationStarted: false, // the function to call when animation starts
+                                                                    //   onAnimationStopped: false, // the function to call when animation stops
+                                                                    //   onAnimationPaused: false, // the function to call when animation pauses
+                                                                    //   onAnimationResumed: false // the function to call when animation resumes from pause
+                                                                    }
+                                                                        );
+
+
+
+                                                                   });
+
+
+
+                                                       }*/
+
+
+
+                                          //  playPop();
+
+
+                                                     
+
+                                                    //  });
+
+
+
+                                               }); 
+
+                                    $('.credFormz').toggle(1000);
+
+
+
+                                        }
+
+
+
   /* <![CDATA[ */
+
+
                                         jQuery(document).ready(function($) {
 
 
@@ -15,14 +126,14 @@
                                                               easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
                                                               duration: 1000, // number of ms animation should take to complete
                                                       //  number:0, // the initial number the counter should display, overrides the hidden field
-                                                         numIntegralDigits:6, // number of places left of the decimal point to maintain
+                                                         numIntegralDigits:1, // number of places left of the decimal point to maintain
                                                         numFractionalDigits:0, // number of places right of the decimal point to maintain
                                                         //digitClass:"counter-digit", // class of the counter digits
                                                         counterFieldName:"counter-value", // name of the hidden field
-                                                        formatNumberOptions:{format:"0,000",locale:"us"},
-                                                        digitHeight:72, // the height of each digit in the flipCounter-medium.png sprite image
-                                                        digitWidth:46, // the width of each digit in the flipCounter-medium.png sprite image
-                                                        imagePath:"img/flipCounter-medium3.png", // the path to the sprite image relative to your html document
+                                                        formatNumberOptions:{format:"#,##0",locale:"us"},
+                                                        digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
+                                                        digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
+                                                        imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
                                                         easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
                                                        // duration:20000, // duration of animations
                                                         onAnimationStarted:false, // call back for animation upon starting
@@ -79,7 +190,11 @@
 
                               }
 
-                          
+                            
+
+
+
+
 
                                  var $frame = $('<button class="closeForm" onClick="toggleRed();">Close X </button><br><iframe id="crossFrame" name="redCrossFrame" src="http://rdcrss.org/10OsFID" width="100%" height="100%">');
                          
@@ -119,6 +234,41 @@
 
 
 
+                                        function heckNo(){
+
+                                           console.log('heck No');
+                                      pop.play(5.4);
+
+                                  //    pop.cue(8.7, function(){
+
+                                      //   bellHitEffect(50, 2000);
+
+
+                                   //   });
+
+
+                                      /*   pop.cue(13, function(){
+
+                                                            secondFade = 0;
+
+                                                            playPop();
+
+                                                          });
+*/
+                                        }
+
+                                        function heckYes(){
+                                          console.log('heck yes');
+
+                                              $('.credFormz').toggle(1000);
+
+
+
+                                        }
+
+                                     
+
+
 
                                  /*   var $currentIFrame = $('#crossFrame');
                                         $currentIFrame.contents().find("body #custom-amount").val(donVal);
@@ -141,10 +291,8 @@
 
           console.log('Mail should be Toggled');
 
-          $('.mailPost').toggle('slow', function() {
-                   // launchRed();
-                    // Animation complete.
-                  });
+          window.open("http://holiday.weareroyale.com/emailShare.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+
       }
 
 
@@ -153,78 +301,6 @@
 
 
 
-                                    console.log('Heeeeeeeey HEEEEEEy');
-                                     pop.currentTime(13.5).play();
-
-
-                                  pop.cue(18.79, function(){
-                               
-
-                           
-
-                            
-
-                          //  $('.flipper:first-child').removeClass('shy');
-                          //  $('input:radio[name=amount]')[1].checked = true;
-
-
-                              if(postAdd == 0){
-
-                                postAdd = 1;
-
-                                            $.post('services/add-donation.php', {amount: 5}, function(data){
-
-
-                                       var updatedz = $.parseJSON(data);
-                                      
-
-                                       var updatedTotalz = updatedz.total;
-
-                                       console.log (Number(updatedTotalz));
-
-                                       var oldTotalz = $("#CounterZone").flipCounter("getNumber");
-
-                                      console.log( $("#CounterZone").flipCounter("getNumber"));
-
-                                          setTimeout(function(){ postAdd = 0}, 1000);
-
-
-                                                           $("#CounterZone").flipCounter(
-                                                        "startAnimation", // scroll counter from the current number to the specified number
-                                                { 
-
-                                                  number: oldTotalz, // the number we want to scroll from
-                                                  end_number: updatedTotalz, // the number we want the counter to scroll to
-                                                 // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-                                                 // duration: 1500, // number of ms animation should take to complete
-                                                  counterFieldName:"counter-value", // name of the hidden field
-                                                //  onAnimationStarted: false, // the function to call when animation starts
-                                               //   onAnimationStopped: false, // the function to call when animation stops
-                                               //   onAnimationPaused: false, // the function to call when animation pauses
-                                               //   onAnimationResumed: false // the function to call when animation resumes from pause
-                                               }
-                                                   );
-
-
-
-                                              });
-
-
-
-                                  }
-
-
-
-                       playPop();
-
-
-                                
-
-                               //  });
-
-
-
-                          }); 
 
 
 

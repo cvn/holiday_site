@@ -3,10 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Test Form</title>
+	
+	<style>
+		.error {
+			border-color: red;
+		}
+		.success {
+			border-color: green;
+		}
+	</style>
 
 	<script src="../js/jquery-1.8.2.min.js"></script>	
-	<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-	<script type="text/javascript">
+	<script src="https://js.stripe.com/v1/"></script>
+	<script src="../js/cardcheck.js"></script>
+	<script>
 	    // this identifies your website in the createToken call below
 	    Stripe.setPublishableKey('pk_test_Vt3bh8kq7E1FRWhk8Id61GZ8');
 
@@ -39,6 +49,22 @@
 	                exp_year: $('.card-expiry-year').val()
 	            }, stripeResponseHandler);
 	            return false; // submit from callback
+	        });
+
+	        var creditCard = $('.card-number')
+	        creditCard.cardcheck({
+	        	iconDir: '/images/cc-icons/',
+	        	acceptedCards: ['visa','mastercard','amex', 'discover', 'jcb'],
+	        	iconLocation: '#accepted-cards-images',
+	        	onReset: function() {			
+	        		creditCard.removeClass();
+	        	},
+	        	onError: function( type ) {
+	        		creditCard.removeClass().addClass('error');
+	        	},
+	        	onValidation: function( type, niceName ) {
+	        		creditCard.removeClass().addClass('success');
+	        	},
 	        });
 	    });
 
@@ -95,6 +121,7 @@
 	        <span> / </span>
 	        <input type="text" size="4" class="card-expiry-year" value="2013" />
 	    </div>
+	    <div id="accepted-cards-images"></div>
 	    <button type="submit" class="submit-button">Submit Payment</button>
 	</fieldset>
 </form>

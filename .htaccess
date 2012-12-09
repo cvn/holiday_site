@@ -1,6 +1,6 @@
-AddType video/ogg .ogv
 AddType video/mp4 .mp4
 AddType video/mp4 .m4v
+AddType video/ogg .ogv
 AddType video/webm .webm
 
 AuthType Basic
