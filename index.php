@@ -48,7 +48,7 @@
     <script src="js/cardcheck.js"></script>
 
     <script src="js/video-controller-mack.js"></script>
-    <script src="js/houseCleaningScript_mh.js"></script>
+    <script src="js/init.js"></script>
 </head>
 <body>
     <div class="brotherDarkness" style="display: none;"></div>
