@@ -137,41 +137,6 @@ body {
 	width:110px;
 }
 
-.fiveDolla {
- 	position:absolute;
-	left:152px;
-	top:200px;
-	width:110px;
-}
-
-.soloCoin {
-	position:absolute;
-	left:108px;
-	top:190px;
-	width:40px;
-	height:40px;
-	z-index: 9;
-}
-
-.soloCoin2 {
-	position:absolute;
-	left:108px;
-	top:230px;
-	width:40px;
-	height:40px;
-	z-index: 9;
-}
-
-#soloCoin {
-	position:absolute;
-	color: #CDCDCD;
-	left:-142px;
-	top:860px;
-	width:80px;
-	height:60px;
-	font-size:180%;
-}
-
 .share {
 	position:absolute;
 	left:0px;
@@ -187,30 +152,6 @@ body {
 .mail-icon{
 	display: inline-block;
 }
-
-
-
-
-div.mailForm{
-	position: absolute;
-	background: url('../images/creampaper.png');
-	background-color: #030303;
-	left: 200px;
-	top: 800px;
-	opacity: 1;
-	z-index: 7;
-}
-div#mailForm{
-
-	position: absolute;
-	background: url('../images/creampaper.png');
-	background-color: #030303;
-	left: 200px;
-	top: 800px;
-	opacity: 1;
-	z-index: 7;
-}
-
 
 .credFormz{
 	position:absolute;
