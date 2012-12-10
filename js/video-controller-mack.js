@@ -1,5 +1,3 @@
-   
-var finCatch = 0;
 var secondFade = 0;
 
 
@@ -158,248 +156,56 @@ var secondFade = 0;
 
 /////////////////////////////////////////////////////////////////////
 
-
-
-
-
-  function goLive(){
-
-          
-
-                if (goLiveCatch == 0){
-
-                         goLiveCatch = 1;
-
-                                 $('#player_1').fadeOut(2000, function(){
-
-                                 
-
-                                  $('#player_1').css({visibility: "hidden"});
-
-                                   
-
-                              });
-                         //  $('#htmlvideo').show().fadeIn(2000);
-
-                             // $('#htmlvideo').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
-
-                            
-                              $('#vimeoControls').hide('normal');
-                             // playPop();
-
-                              
-
-
-
-
-                                bellThrow();
-
-                                bgMatte(1000);
-
-                          }
-
-
-
-          }
-
-                              function bellThrow(){
-
-
-
-                                pop.play(5.4);
-
-                                pop.cue(8.7, function(){
-
-                                   bellHitEffect(50, 2000);
-
-
-                                });
-
-                                pop.cue(9, function(){
-
-                                   //shakeBake(100);
-
-
-                                   
-
-
-
-
-
-                                });
-                                 
-
-                              //  pop.cue(17.7, function(){
-
-                                     // playPop();
-                                    
-
-                              //  });
-                              }
-
-
-
-
-                               function bellHitEffect(inz, outz){
-
-
-
-                                   if (contentLock == 0){
-                                            contentLock = 1;
-
-                                              $('.brotherDarkness').fadeIn(inz, function(){
-                                                       // launchRed();
-                                                        // Animation complete.
-
-                                                         console.log('first BG Fade');
-
-                                                         $('.donatePlate').fadeIn(2000);
-
-                                                        contentLock = 1;
-                                                        secondFade = 0;
-
-                                                         $('.brotherDarkness').fadeOut(outz, function() {
-                                                             pop.cue(13, function(){
-
-                                                               playPop();
-
-                                                             });
-
-                                                         });
-
-
-                                                      });
-
-                                    } 
-
-                                               
-                                 if(secondFade == 1){
-
-                                                 $('.brotherDarkness').fadeIn(inz, function() {
-
-                                                 
-                                                      console.log('second BG Fade');
-
-                                                     $('.brotherDarkness').fadeOut(outz, function() {
-
-                                                      pop.cue(13, function(){
-
-                                                            secondFade = 0;
-
-                                                            playPop();
-
-                                                          });
-
-                                                     });
-
-
-                                                 });
-
-                                               }
-
-                                    
-
-
-
-
-                                }
-
-
-
-                                function playMoneyDrop(){
-
-                                      pop.currentTime(14).play();
-
-                                       pop.cue(18.79, function(){
-
-
-                                          playPop();
-
-                                       });
-
-                                }
-
-                              function shakeBake(speedz){
-
-                                 $('.wholeShabang').effect("shake", { times:3 }, speedz, function(){
-
-                                    pop.play();
-
-                                 });
-
-                                 
-                              }
-
-
-/////////// Coin PlayBack Catches /////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////
-
-var $popTriggerz = $('.playPopTrigger').html();
-
-
- $('#bellThrowTrigger').change(function(){
-
-  console.log('bellShould be thrown');
-
-     pop.currentTime(13.5).play();
-
- });
-
-$('.playPopTrigger2').change(function() {
-
-
-
- // $('.flipper:first-child').removeClass('shy');
-
-                          
-
-
-  console.log('this is play pop triggz 2');
-
-
-
-   //playPop();
-
-});
-
-
-$('.playPopTrigger').change(function() {
-
-
-    
- console.log('I saw that change Dawg, Cooinz!!');
-   //  $('.wholeShabang').effect("shake", { times:3 }, 200, function(){
-
-                                   // $('.playPopTrigger').html('1');
-
-
-                                //   killIntervals();
-                                   // idleTime = 0;
-                                  //  trigger = 0;
-
-                                   pop.cue(13, function(){
-                                          playPop();
-
-                                        });
-
-
-                                        //  playPop();
-
-                             
-
-                                  //  loopTrigger(0);
-
-                             //    });
-
-   
-
-  
-
-});
-
-
+function goLive(){
+    $('#htmlvideo').show();
+    $('#player_1').hide();
+    bellThrow();
+    bgMatte(1000);
+}
+
+function bellThrow(){
+  pop.play(5.4);
+  pop.cue(8.7, function(){
+     bellHitEffect(50, 2000);
+  });
+  pop.cue(9, function(){
+  });
+}
+
+function bellHitEffect(inz, outz){
+  if (contentLock == 0){
+    contentLock = 1;
+    $('.brotherDarkness').fadeIn(inz, function(){
+      console.log('first BG Fade');
+      $('.donatebox').fadeIn(2000);
+      contentLock = 1;
+      secondFade = 0;
+      $('.brotherDarkness').fadeOut(outz, function() {
+        pop.cue(13, function(){
+          playPop();
+        });
+      });
+    });
+  } 
+  if(secondFade == 1){
+    $('.brotherDarkness').fadeIn(inz, function() {
+      console.log('second BG Fade');
+      $('.brotherDarkness').fadeOut(outz, function() {
+        pop.cue(13, function(){
+          secondFade = 0;
+          playPop();
+        });
+      });
+    });
+  }
+}
+
+function playMoneyDrop(){
+  pop.currentTime(14).play();
+  pop.cue(18.79, function(){
+    playPop();
+  });
+}
 
 
 
@@ -409,64 +215,6 @@ $('.playPopTrigger').change(function() {
 
 /////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-/*
-       var intervalArr = new Array();
-        function intervalOne () { console.log ('foo');};
-        function intervalTwo () { console.log ('bar');};
-
-        function killIntervals(){
-            while(intervalArr.length > 0)
-            clearInterval(intervalArr.pop());
-        };
- 
-*/
-
-/*
-    if (loopFrom == 1){
-
-      pop.cue( 64.1, function() {
-
-                pop.play(62.3);
-
-
-                timeOutz(0, 4, 2);
-              // log count, which is 0 by default
-              //console.log( count );
-            });
-    }
-
-    if (loopFrom == 2){
-        pop.cue( 64.1, function() {
-
-                pop.play(11);
-
-                loopFrom = 3;
-
-
-               // timeOutz(0, 4);
-              // log count, which is 0 by default
-              //console.log( count );
-            });
-    }
-
-    if (loopFrom == 3 ){
-
-        pop.cue( 22, function() {
-
-             pop.play(62.3);
-
-              loopFrom = 1;
-
-        });
-
-    }   */
 
     var trigger = 0;
 
@@ -795,160 +543,102 @@ $('.playPopTrigger').change(function() {
     }
 
 
+var vimeoPlayer, 
+    vimeoUrl,
+    vimeoHasPlayed = 0;
 
+// Handle messages received from the player
+function onMessageReceived(e) {
+    var data = JSON.parse(e.data);
+    
+    switch (data.event) {
+        case 'ready':
+            onReady();
+            break;
+           
+        case 'playProgress':
+            onPlayProgress(data.data);
+            break;
+            
+        case 'play':
+            onPlay();
+            break;
+           
+        case 'pause':
+            onPause();
+            break;
+           
+        case 'finish':
+            onFinish();
+            break;
+    }
+}
 
+// Helper function for sending a message to the player
+function vimeoController(action, value) {
+    var data = { method: action };
+    
+    if (value) {
+        data.value = value;
+    }
+    
+    vimeoPlayer[0].contentWindow.postMessage(JSON.stringify(data), vimeoUrl);
+}
+
+function onReady() {
+    // vimeoController('play');
+    vimeoController('addEventListener', 'play');
+    vimeoController('addEventListener', 'pause');
+    vimeoController('addEventListener', 'finish');
+    vimeoController('addEventListener', 'playProgress');
+}
+
+function onPlay() {
+  if(!vimeoHasPlayed) {
+    $('.firstbox').fadeOut();
+    vimeoHasPlayed = 1;
+  }
+}
+
+function onPause() {
+}
+
+function onFinish() {
+    goLive();
+}
+
+function onPlayProgress(data) {
+    // if (data.seconds >= 67){
+    //    goLive();
+    // };
+}
 
 
 
 
 $(document).ready(function(){
 
-
-
-
     pop = Popcorn('#htmlvideo', {
-                frameAnimation: true
-            });
-
-
-    pop.on('loadeddata', function(){
-                $('.loading').hide();
-                $('video').show();
-                
-            });
-
-
-
-   // $('#htmlvideo').hide('fast');
-   $('#htmlvideo').css({ opacity: 0.0, visibility: "hidden", display: 'none'});
-
-        var f = $('iframe'),
-            url = f.attr('src').split('?')[0],
-            status = $('.status');
-
-        // Listen for messages from the player
-        if (window.addEventListener){
-            window.addEventListener('message', onMessageReceived, false);
-        }
-        else {
-            window.attachEvent('onmessage', onMessageReceived, false);
-        }
-
-        // Handle messages received from the player
-        function onMessageReceived(e) {
-            var data = JSON.parse(e.data);
-            
-            switch (data.event) {
-                case 'ready':
-                    onReady();
-                    break;
-                   
-                case 'playProgress':
-                    onPlayProgress(data.data);
-                    break;
-                    
-                case 'pause':
-                    onPause();
-
-                    break;
-                   
-                case 'finish':
-                    onFinish();
-                    break;
-            }
-        }
-
-        // Call the API when a button is pressed
-        $('button').on('click', function() {
-            post($(this).text().toLowerCase());
-        });
-
-        // Helper function for sending a message to the player
-        function post(action, value) {
-            var data = { method: action };
-            
-            if (value) {
-                data.value = value;
-            }
-            
-            f[0].contentWindow.postMessage(JSON.stringify(data), url);
-        } 
-
-        function onReady() {
-            status.text('ready');
-            post('play');
-            post('addEventListener', 'pause');
-            post('addEventListener', 'finish');
-            post('addEventListener', 'playProgress');
-        }
-
-        function onPause() {
-            status.text('paused');
-
-             console.log('pausseed');
-                 
-        }
-
-        function onFinish() {
-            status.text('finished');
-           
-            if(finCatch == 0){
-                
-                  goLive();
-
-            };
-
-              
-        }
-
-
-
-        function onPlayProgress(data) {
-            status.text(data.seconds + 's played');
-
-            if (data.seconds >= 67){
-                
-               goLive();
-               finCatch = 1;
-
-            };
-        }
-
-
-
-
-
-
-
-
-
-    pop.on('timeupdate', function(){
-
- 
-
-      //  if (loopFrom == 2){
-           
-      //  }
-
-
-          //   if (loopFrom == 3 ){
-
-            //loopTrigger(loopFrom);
-
-      //  }   
-
-
-
-        /*if (loopFrom == 1){
-
-          
-        }*/
-
-
-
+      frameAnimation: true
     });
 
+    $('#htmlvideo').hide();
 
+    vimeoPlayer = $('#player_1');
+    vimeoUrl = vimeoPlayer.attr('src').split('?')[0];
 
-});
+    // Listen for messages from the player
+    if (window.addEventListener){
+        window.addEventListener('message', onMessageReceived, false);
+    }
+    else {
+        window.attachEvent('onmessage', onMessageReceived, false);
+    }
+
+    // Call the API when a button is pressed
+    $('vimeoButton').on('click', function() {
+        vimeoController($(this).text().toLowerCase());
+    });
+
+}); /* end document ready */
 

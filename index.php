@@ -8,7 +8,7 @@
     <title>The Bell Ringer Test</title>
     <meta name="description" content="Don't get your bell rung by an old lady during the holiday #saggybells">
     <meta name="author" content="Royale">
-    <meta property="og:image" content="http://holiday.weareroyale.com/images/siteMetaImage_v001.png"/>
+    <meta property="og:image" content="http://holiday.weareroyale.com/images/video-thumbnail.jpg"/>
     <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
     <meta property="og:description" content="Don't get your bell rung by an old lady during the holiday #saggybells"/>
     
@@ -28,7 +28,7 @@
 
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- <link rel="shortcut icon" href="favicon.ico"> -->
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
@@ -36,13 +36,14 @@
     <!-- JS
     ================================================== -->
     <script type="text/javascript">
+     var donationInitial = <?php $donationsArray = getDonations(); echo ($donationsArray[1][total]); ?>;
      var donationTotal = <?php $donationsArray = getDonations(); echo ($donationsArray[0][total]); ?>;
     </script>
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/jquery-ui-1.9.2.min.js"></script>
     <script src="js/froogaloop2.min.js"></script>
     <script src="js/popcorn-complete.min.js"></script>
-    <script src="js/jquery.flipCounter.1.2.pack.js"></script>
+    <script src="js/jquery.flipCounter.1.2.js"></script>
     <script src="js/jshashtable-2.1.js"></script>
     <script src="js/jquery.numberformatter-1.2.3.min.js"></script>
     <script src="js/cardcheck.js"></script>
@@ -54,12 +55,6 @@
     <div class="brotherDarkness" style="display: none;"></div>
     <div class="mattePainting" style='display: none;'></div>
     <!-- <div class="photoshop-overlay"></div> -->
-        
-    <input type="text" class='playPopTrigger' style='display: none' value="0">
-    <input type="text" class='playPopTrigger2' style='display: none' value="0">
-    <input type="text" class='bellThrowTrigger' style='display: none' value="0">
-    <input type="text" class='moneyCollectTrigger' style='display: none' value="0">
-    <input type="text" class='moneyAnimTrigger' style='display: none' value="0">
 
     <div class="bgwrapper">
       <div class="container">
@@ -75,55 +70,62 @@
         <div class="row main">
           <div class="video-container">
             <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
-            <video id="htmlvideo" class="video">
-                <source src="video/Holiday_Interactive_Loops_v02.m4v">
+            <video id="htmlvideo" class="video" preload>
+                <source src="video/Holiday_Interactive_Loops_v02.mp4">
                 <source src="video/Holiday_Interactive_Loops_v02.webm" type="video/webm">
-                    <p>Please update your browser</p>
+                <p>Please update your browser</p>
             </video>
+          </div>
+          
+          <div class="plaque firstbox">
+            <div class="firstbox-buttons">
+              <div class="spritebutton donatebutton playmovie"></div>
+              <div class="spritebutton donatebutton skipmovie"></div>
+            </div>
+            <div class="share">
+              <div class="spritebutton sharebutton facebook">
+              </div><div class="spritebutton sharebutton twitter">
+              </div><div class="spritebutton sharebutton mail"></div>   
+            </div>
+          </div>
+          
+          <div class="plaque donatebox" style='display: none;'>
+            <div class="donatebox-header">
+               <img src="images/donate-script.png"  alt="">
+            </div>
+            <div class="donatebox-buttons">
+              <div class="spritebutton donatebutton yes"></div>
+              <div class="spritebutton donatebutton no"></div>
+              <div class="spritebutton donatebutton question"></div>
+            </div>
+            <div class="donatebox-redcross">
+              <img src="images/live/redCrossLogoDonationTray.png"  alt="">
+            </div>
+            <div class="donatebox-proceeds">
+              <img src="images/live/proceedsText.png"  alt="">
+            </div>
+            <div class="share">
+              <div class="spritebutton sharebutton facebook">
+              </div><div class="spritebutton sharebutton twitter">
+              </div><div class="spritebutton sharebutton mail"></div>   
+            </div>
+          </div>
+
+          <div class="donateshelf" style='display: none'>
+            <button class="shelf-submit">Donate now</button>
           </div>
         </div>
 
         <div class="row footer">
           <div>
-            <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone">
-              <input type="hidden" name="counter-value" value="<?php $donationsArray = getDonations(); echo ($donationsArray[1][total]); ?>" >
-            </div>
+            <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone"></div>
           </div>
           <div class="counterText">
             <img src="images/nonLive/counterText.png" width="908" height="74" alt="">
           </div>
         </div>
         
-        <div class="donatePlate" style='display: none;'>
-          <div class="donateHeader">
-             <img src="images/live/DonateHeader.png"  alt="">
-          </div>
-          <div class="zeroDolla">
-            <button onClick="heckYes();">Yes</button>
-            <button onClick="heckNo();">No</button>
-          </div>
-          <div class="redCrossTray"  >
-            <img src="images/live/redCrossLogoDonationTray.png"  alt="">
-          </div>  
-          <div class="crossText"  >
-            <img src="images/live/proceedsText.png"  alt="">
-          </div>  
-          <div class="share">
-            <div class="shareIcon">
-              <img src="images/live/shareIcon.png" width="78" height="43" alt="">
-            </div><div class="facebook-Icon">
-              <img src="images/live/facebook_Icon.png" onClick="toggleFace();" width="44" height="43" alt="">
-            </div><div class="twitter-icon">
-              <img src="images/live/twitter_icon.png" onClick="toggleTwit();" width="61" height="43" alt="">
-            </div><div class="mail-icon">
-              <img src="images/live/mail_icon.png" onClick="toggleMail();" width="59" height="43" alt="">
-            </div>   
-          </div>
-        </div> <!-- /donatePlate -->
-
-        <div class="credFormz" style='display: none'><button onClick="finalTreat();">Done</button></div>
-              
-        </div><!-- /container -->
+      </div><!-- /container -->
     </div><!-- /bgwrapper -->
 </body>
 </html>

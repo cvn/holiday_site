@@ -3,7 +3,7 @@ AddType video/mp4 .m4v
 AddType video/ogg .ogv
 AddType video/webm .webm
 
-AuthType Basic
-AuthName "My Protected Area"
-AuthUserFile /var/www/.htpasswd
-Require valid-user
+# AuthType Basic
+# AuthName "My Protected Area"
+# AuthUserFile /var/www/.htpasswd
+# Require valid-user

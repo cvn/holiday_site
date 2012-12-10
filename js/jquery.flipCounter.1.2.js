@@ -49,7 +49,7 @@
 			counterFieldName: 'counter-value',// default name for the counter hidden field
 			digitHeight: 40, // default height of each digit in sprite image
 			digitWidth: 30, // default width of each digit in sprite image
-			imagePath: 'img/flipCounter-medium.png',// default path of sprite image relative to html document
+			imagePath: 'images/flip-counter.png',// default path of sprite image relative to html document
 			easing: false,// default easing function, this can be overridden by jQuery.easing methods (i.e.	 jQuery.easing.easeOutCubic)
 			duration: 10000, // default duration of animations
 			onAnimationStarted: false, // callback for animation starting

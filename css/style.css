@@ -62,9 +62,7 @@ body {
 
 
 
-/*
-////////////////////
-
+/*/////////////////////////
 
 		Non Live
 
@@ -93,77 +91,147 @@ body {
 }
 
 
-/*
-////////////////////
+/*/////////////////////////
 
-
-	Donation Panel
+	Buttons
 
 /////////////////////////*/
 
-.donatePlate {
-	background-image: url('../images/live/donationPlatter.png');
+.spritebutton {
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.donatebutton {
+	width: 161px;
+	height: 38px;
+	margin: auto;
+	margin-bottom: 4px;
+}
+.donatebutton:hover {
+	background-position: 0 -38px;
+}
+.donatebutton:active,
+.donatebutton.active {
+	background-position: 0 -76px;
+}
+.donatebutton.yes {
+	background-image: url('../images/button-yes.png');
+}
+.donatebutton.no {
+	background-image: url('../images/button-no.png');
+}
+.donatebutton.question {
+	background-image: url('../images/button-questionmark.png');
+}
+.donatebutton.playmovie {
+	background-image: url('../images/button-playmovie.png');
+}
+.donatebutton.skipmovie {
+	background-image: url('../images/button-skipmovie.png');
+}
+
+.amountbutton {
+	width: 112px;
+	height: 33px;
+}
+.amountbutton:hover {
+	background-position: 0 -33px;
+}
+.amountbutton:active,
+.amountbutton.active {
+	background-position: 0 -66px;
+}
+.amountbutton.5bucks {
+	background-image: url('../images/button-5bucks.png');
+}
+.amountbutton.15bucks {
+	background-image: url('../images/button-15bucks.png');
+}
+.amountbutton.50bucks {
+	background-image: url('../images/button-50bucks.png');
+}
+
+.sharebutton {
+	position: relative;
+	display: inline-block;
+	width: 46px;
+	height: 24px;
+}
+.sharebutton:hover {
+	background-position: 0 -24px;
+}
+.sharebutton:active,
+.sharebutton.active {
+	top: 1px;
+}
+.sharebutton.facebook {
+	background-image: url('../images/share-fb.png');
+}
+.sharebutton.twitter {
+	background-image: url('../images/share-twitter.png');
+}
+.sharebutton.mail {
+	background-image: url('../images/share-mail.png');
+}
+
+.shelf-submit {
+	margin-top: 150px;
+}
+
+/*/////////////////////////
+
+	Panels
+
+/////////////////////////*/
+
+.plaque {
+	background-image: url('../images/plaque.png');
 	position:absolute;
 	left:50%;
-	top:167px;
+	top:173px;
 	margin-left: 104px;
 	width:367px;
-	height:440px;
+	height:434px;
 	z-index: 7;
 	text-align: center;
 }
 
-.donateHeader {
-	margin-top: 30px;
-}
-
-.redCrossTray,
-.crossText {
-	position:absolute;
-	left:0;
-	width:100%;
-}
-.redCrossTray {
-	top:271px;
-}
-.crossText {
-	top:318px;
-}
-
-.zeroDolla {
- 	position:absolute;
-	left:152px;
-	top:160px;
-	width:110px;
+.firstbox-buttons {
+	margin-top: 150px;
 }
 
 .share {
 	position:absolute;
 	left:0px;
-	top:374px;
+	top:384px;
 	width:100%;
 	height:60px;
 	text-align: center;
 }
 
-.shareIcon,
-.facebook-Icon,
-.twitter-icon,
-.mail-icon{
-	display: inline-block;
+.donatebox-header {
+	margin-top: 24px;
+}
+.donatebox-buttons {
+}
+.donatebox-redcross {
+}
+.donatebox-proceeds {
 }
 
-.credFormz{
-	position:absolute;
-	left:30%;
-	top:167px;
-	margin-left: 104px;
-	width:367px;
-	height:440px;
+
+.donateshelf {
+	background: url('../images/shelf-donate.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	position: absolute;
+	right: 200px;
+	top: 173px;
+	width: 691px;
+	height: 366px;
 	z-index: 6;
-	text-align: center;
-
-
 }
 
 
