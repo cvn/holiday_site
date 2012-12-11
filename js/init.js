@@ -1,6 +1,6 @@
-var bgFadeWait = 6000;
-var goLiveCatch = 0;
-var contentLock = 0;
+var bgFadeWait = 6000
+    ,goLiveCatch = 0
+    ,contentLock = 0;
 
 function donateFormSubmit(){
   $.post('services/add-donation.php', {amount: 5}, function(data){
@@ -20,18 +20,41 @@ function donateFormSubmit(){
   });
 }
 
-function finalTreat(){
-  console.log('Trigger Final Animation finalTreat');
-  killIntervals();
-  idleTime = 0;
-  pop.pause();
-  playMoneyDrop();
-  console.log('im playing treat maybe?');
-  pop.cue(18.79, function(){
-    //  playPop();
-  });
-  $('.credFormz').toggle(1000);
+
+
+
+
+function heckNo(){
+
+ /* var events = pop.getTrackEvents();
+    if (events.length) {
+      for (var e in events) {
+      pop.removeTrackEvent(events[e]._id);
+      }
+    }*/
+
+     pop.cue('first', 1.3, function() {
+      bellThrow();
+     });
+
+   logger('Trigger Angry Throw');
+ // killIntervals();
+  //idleTime = 0;
+  //pop.pause();
+  playAngryThrow();
+
 }
+
+function playAngryThrow(){
+  logger('playing Angryness');
+  //  bellThrow();
+     // pPlay(5.4);
+    //  pop.cue(13.4, function(){
+
+
+      //  playPop();
+     // });
+  }
 
 function containerFadeOut(outSpeed){
   $('.container').fadeOut(outSpeed);
@@ -51,25 +74,27 @@ function bgMatte(inSpeed){
 }
 
 function playDropped(){
-  console.log('I saw this');
+  logger('I saw this');
   pop.currentTime(13.5).play();
 }
 
 jQuery(document).ready(function($) {
 
-  $('.donatebutton.playmovie').on('click',function(){
+  $('.playmovie').on('click',function(){
     $(this).toggleClass('active');
-    $('.firstbox').fadeOut();
+    $('.splash').fadeOut();
+    $('.main').css({visibility:'visible'});
     vimeoController('play');
   });
 
-  $('.donatebutton.skipmovie').on('click',function(){
+  $('.skipmovie').on('click',function(){
     $(this).toggleClass('active');
-    $('.firstbox').fadeOut();
+    $('.splash').fadeOut();
+    $('.main').css({visibility:'visible'});
     goLive();
   });
 
-  $('.donatebutton.yes').on('click',function(){
+  $('.standardbutton.yes').on('click',function(){
     $this = $(this);
     if ($this.hasClass('active')){
       $('.donateshelf').hide('slide', { direction: 'right' }, 500);
@@ -79,15 +104,16 @@ jQuery(document).ready(function($) {
     $(this).toggleClass('active');
   });
 
-  $('.donatebutton.no').on('click',function(){
+  $('.standardbutton.no').on('click',function(){
     $(this).addClass('active');
     setTimeout(function(){
-      $('.donatebutton.no').removeClass('active');
+      $('.standardbutton.no').removeClass('active');
     },5000);
-    pop.play(5.4);
+    //pop.play(5.4);
+    heckNo();
   });
 
-  $('.donatebutton.questionmark').on('click',function(){
+  $('.standardbutton.questionmark').on('click',function(){
 
   });
 
@@ -103,7 +129,7 @@ jQuery(document).ready(function($) {
 
   $('.shelf-submit').on('click',function(){
       $('.donateshelf').hide('slide', { direction: 'right' }, 500);
-      $('.donatebutton.yes').removeClass('active');
+      $('.standardbutton.yes').removeClass('active');
       finalTreat();
   });
 
@@ -114,10 +140,10 @@ jQuery(document).ready(function($) {
       end_number: donationTotal, // the number we want the counter to scroll to
       easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
       duration: 1000, // number of ms animation should take to complete
-      numIntegralDigits:1, // number of places left of the decimal point to maintain
+      numIntegralDigits:10, // number of places left of the decimal point to maintain
       numFractionalDigits:0, // number of places right of the decimal point to maintain
       //digitClass:"counter-digit", // class of the counter digits
-      formatNumberOptions:{format:"#,##0",locale:"us"},
+      formatNumberOptions:{format:"0,000,000,000",locale:"us"},
       digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
       digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
       imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
@@ -127,6 +153,21 @@ jQuery(document).ready(function($) {
       onAnimationStopped:false, // call back for animation upon stopping
       onAnimationPaused:false, // call back for animation upon pausing
       onAnimationResumed:false // call back for animation upon resuming from pause
+    }
+  );
+
+  var currentDate = (new Date).getTime()
+      ,endDate = 1357027200000  // Jan 1, 2013 12:00AM PST in miliseconds
+      ,daysLeft = Math.floor((endDate - currentDate) / 1000 / 60 / 60 / 24);
+
+  $("#countdown").flipCounter(
+    {
+      number: daysLeft,
+      numIntegralDigits:2, // number of places left of the decimal point to maintain
+      numFractionalDigits:0, // number of places right of the decimal point to maintain
+      digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
+      digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
+      imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
     }
   );
 

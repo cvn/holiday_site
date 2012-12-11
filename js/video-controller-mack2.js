@@ -5,105 +5,8 @@
 //   }
 // }
 
-var debug = 1;
+var secondFade = 0;
 
-function logger(stuff){
-  if(debug){
-    console.log(stuff);
-  }
-}
-
-function pPlay(playPoint){
-
-  //pop.pause();
-
-   pop.currentTime(playPoint);
-
-   pop.play();
-
-  
-
-}
-
-function pPause(){
-     pop.pause();
-}
-
-function pClear(){
-  var events = pop.getTrackEvents();
-    if (events.length) {
-      for (var e in events) {
-      pop.removeTrackEvent(events[e]._id);
-      }
-    }
-    pop.cue(1.3, function(){
-
-      loopTrigger(0);
-    });
-
-    pop.cue(13.5, function(){
-
-      loopTrigger(0);
-    });
-   // setTimeout(function(){loopTrigger(0)}, 200);
-
-}
-
-function safetyStopz(){
-
-  if(safetyStop >= 100){
-    stopExit = 0;
-    safetyStop = 0;
-      // pop.pause();
-                  logger('safety Stopped!')
-                  killIntervals();
-                  idleTime = 0;
-               
-                //  pop.pause();
-                  var events = pop.getTrackEvents();
-                    if (events.length) {
-                      for (var e in events) {
-                      pop.removeTrackEvent(events[e]._id);
-                      }
-                    }
-                    //  pop.pause();
-
-                 
-
-                  $('body').mousemove(function (e) {
-                       if (stopExit == 0){
-                    stopExit = 1;
-                    safetyCont = 1;
-                            idleTime = 0;
-                            trigger = 0;
-                           trigga(0);
-
-                         }
-                         
-                          //  logger('party continues');
-                        });
-                        $(this).keypress(function (e) {
-                             if (stopExit == 0){
-                              idleTime = 0;
-                          stopExit = 1;
-                         // safetyStop = 0;
-                            //playPop;
-                             trigga(0);
-                          }
-
-                         //   logger('party continues from keys');
-                        });
-
-                      
-
-                         setTimeout(function(){pop.pause();}, 100); 
-
-                }
-
-}
-
-var secondFade = 1;
-var stopExit = 0;
 
 
      var intervalArr = new Array();
@@ -116,7 +19,7 @@ var stopExit = 0;
         };
  
  
-   function timeOutz(numzz, timez, loopOut){  logger(timez);
+   function timeOutz(numzz, timez, loopOut){  console.log(timez);
             switch(numzz){
 
 
@@ -144,7 +47,7 @@ var stopExit = 0;
                      intervalArr.push(setTimeout(function(){
 
                             
-                            logger('Waiting');
+                            console.log('Waiting');
                                 //updateLooper(5);
                             
 
@@ -159,7 +62,7 @@ var stopExit = 0;
                         });
 
 
-                            logger(idleTime);
+                            console.log(idleTime);
                             
                         
 
@@ -169,7 +72,7 @@ var stopExit = 0;
                                 loopFrom = 3;
                                    idleTime = 0;
 
-                                logger('Timeout '+ numzz +' Reached');
+                                console.log('Timeout '+ numzz +' Reached');
 
                                 
                             }
@@ -185,16 +88,16 @@ var stopExit = 0;
 
     function setTimeOutFunction1(timez, loopOut, intervalz){
 
-        logger('timoutFunc1 vals Count: ' + timez + 'loopOut ' + loopOut + ' and interval ' + intervalz );
+        console.log('timoutFunc1 vals Count: ' + timez + 'loopOut ' + loopOut + ' and interval ' + intervalz );
         
 
 
         intervalArr.push(setInterval(function(){
 
                              idleTime = idleTime + 1;
-                                logger('Waiting');
+                                console.log('Waiting');
                                 //updateLooper(5);
-                                 logger(idleTime);
+                                 console.log(idleTime);
 
 
                                  if( idleTime == timez){
@@ -204,7 +107,7 @@ var stopExit = 0;
                                 loopFrom = loopOut;
 
 
-                                logger(loopOut);
+                                console.log(loopOut);
                                
                                 idleTime = 0;
 
@@ -224,7 +127,7 @@ var stopExit = 0;
                             idleTime = 0;
                         });
 
-                        logger(idleTime);
+                        console.log(idleTime);
 
                         
 
@@ -245,7 +148,8 @@ var stopExit = 0;
        // goLive();
 
          
-       loopTrigger(0);
+
+        loopTrigger(0);
     }
 
 
@@ -262,27 +166,14 @@ var stopExit = 0;
 function goLive(){
     $('#htmlvideo').show();
     $('#player_1').hide();
-    //bellThrow();
-
-   // bellHitEffect(50, 2000);
-    
-    pPlay(8.8);
-
-     $('.donatebox').fadeIn(2000);
-
-    pop.cue(13, function(){
-          playPop();
-        });
-
-
+    bellThrow();
     bgMatte(1000);
 }
 
 function bellThrow(){
-  pPlay(5.4);
-  idleTime = 0;
+  pop.play(5.4);
   pop.cue(8.7, function(){
-     bellHitEffect(20, 2000);
+     bellHitEffect(50, 2000);
   });
   pop.cue(9, function(){
   });
@@ -292,10 +183,10 @@ function bellHitEffect(inz, outz){
   if (contentLock == 0){
     contentLock = 1;
     $('.brotherDarkness').fadeIn(inz, function(){
-      logger('first BG Fade');
+      console.log('first BG Fade');
       $('.donatebox').fadeIn(2000);
       contentLock = 1;
-    //  secondFade = 0;
+      secondFade = 0;
       $('.brotherDarkness').fadeOut(outz, function() {
         pop.cue(13, function(){
           playPop();
@@ -305,7 +196,7 @@ function bellHitEffect(inz, outz){
   } 
   if(secondFade == 1){
     $('.brotherDarkness').fadeIn(inz, function() {
-      logger('second BG Fade');
+      console.log('second BG Fade');
       $('.brotherDarkness').fadeOut(outz, function() {
         pop.cue(13, function(){
           secondFade = 0;
@@ -316,54 +207,11 @@ function bellHitEffect(inz, outz){
   }
 }
 
-
-
-function finalTreat(){
- /* var events = pop.getTrackEvents();
-    if (events.length) {
-      for (var e in events) {
-      pop.removeTrackEvent(events[e]._id);
-      }
-    }*/
-
-  logger('Trigger Final Animation finalTreat');
- // killIntervals();
-  idleTime = 0;
- // pop.pause();
-//  playMoneyDrop();
-  logger('im playing treat maybe?');
-// pop.cue('treat', 0, function() {
- 
- //pop.pause();
-playMoneyDrop();
-
-// });
-
-  //pop.cue(18.79, function(){
- //    playPop();
-//  });
-  $('.credFormz').toggle(1000);
-}
-
 function playMoneyDrop(){
-  pop.cue('first', function(){
-
-     setTimeout(function(){
-    
-    pop.currentTime(14).play();
-
-  }, 30);
-
-   pop.currentTime(14).play();
-  pop.cue(18.7, function(){
-    logger('in the mix! money drop exit');
-    pop.play();
-    pop.currentTime(0).play();
-    loopTrigger(0);
+  pop.currentTime(14).play();
+  pop.cue(18.79, function(){
     playPop();
   });
-});
-
 }
 
 
@@ -379,101 +227,46 @@ function playMoneyDrop(){
 
      var safetyEscape = 0;
      var safetyStop = 0;
-     var safetyCont = 0;
-     var firstPlayCount = 0;
-     var eraseAllowed = 1;
 
-
-     function countFirst(){
-       //eraseAllowed = 1;
-        logger('First Exit ');
-
-
-
-        if(eraseAllowed == 1){
-
-
-            pop.cue('first', 8, function() {
-
-              pPlay(7);
-
-            })
-      var eventId = pop.getLastTrackEventId();
-
-      pop
-     // pop.cue(eventId, 5.4);
-     // pop.cue(eventId, function(){
-
-    //    logger('ive moved');
-//
-     //   pop.pause();
-
-       //  loopTrigger(2);
-
-    //  });
-
-
-
-      //  pop.removeTrackEvent(eventId);
-
-       // var eventId2 = pop.getLastTrackEventId();
-
-      //  pop.removeTrackEvent(eventId2);
-
-
-}
-
-
-           // idleTime = 0;
-
-            // trigger = 0;
-            
-           
-
-        
-       // body...
-     }
 
     function trigga(triggz){
         switch(triggz){
             case 0:
                     if (trigger != 1){
 
-                      //  countFirst();
-                     //  timeOutz(0, 4, 2); // case, timout count, loopOut
-                         // if(safetyCont == 1){ pPlay(0); safetyCont = 0;}
+
+                       timeOutz(0, 4, 2); // case, timout count, loopOut
                 
                 } else {
-                    logger('Trigger has been pulled saftey equals ' + safetyEscape + 'safetystop value is ' + safetyStop);
+                    console.log('Trigger has been pulled saftey equals ' + safetyEscape + 'safetystop value is ' + safetyStop);
                     safetyEscape = safetyEscape+1;
                   //  idleTime = 0;
-                 // countFirst();
+
                    // safetyStop = safetyStop+1;
 
-                
-                  //  safetyStopz();
-                   if (safetyEscape >=14){
+                        if (safetyEscape >=8){
 
-                          logger('rrruuuun from twwezy '+safetyEscape);
+                           safetyEscape = 0;
+                          // safetyStop = safetyStop+1;
 
+                          pop.cue( 5.4, function() {
 
-                          pop.cue( 1.3, function() {
+                         // console.log('rrruuuun from twwezy '+safetyEscape);
+
+                          pop.currentTime(0).play();
+
+                          
+
                          
-
-                        
-                          safetyEscape = 0;
                          // killIntervals();
                          trigger = 0;
-                         loopTrigger(2);
 
                           //loopExit(1);
 
-                         safetyStopz();
-
                             });
 
-
                     };
+                
 
 
 
@@ -495,7 +288,7 @@ function playMoneyDrop(){
         switch(frameNum){
 
             case 0:
-                    logger('Im trying to exit here!');
+                    console.log('Im trying to exit here!');
 
                           idleTime = 0;
                           trigger = 0;
@@ -517,10 +310,10 @@ function playMoneyDrop(){
 
                     pop.cue( 1.29, function() {
 
-                            pPlay(1.3);
+                            pop.currentTime(1.3);
                           //killIntervals();  
 
-                          logger('Loop Exit 1');
+                          console.log('Loop Exit 1');
                          loopTrigger(3);
 
 
@@ -534,24 +327,6 @@ function playMoneyDrop(){
 
    
 
-   function case1Extend(){
-
-     if (firstPlayCount <= 2 ){
-
-       firstPlayCount = firstPlayCount + .25;
-
-        pop.cue('first', function() {
-
-                 
-              pop.play(0);
-              loopTrigger(1);
-
-            });
-
-
-     } else{ loopTrigger(1); }
-   }
-
     function loopTrigger(cuez){
         switch(cuez){
 
@@ -560,14 +335,12 @@ function playMoneyDrop(){
                 idleTime = 0;
 
 
-                 //pop.pause();
+                 
                
-                pPlay(0);
-              //   trigga(0);
-               //  safetyStopz();
-                setTimeout(function(){
-
-              secondFade = 1; }, 2000)  
+                pop.currentTime(0).play();
+                 trigga(0);
+                
+                
                 
                      loopTrigger(1);
 
@@ -579,107 +352,95 @@ function playMoneyDrop(){
 
             case 1:
 
+                pop.cue( 1.26, function() {
 
 
-                pop.cue('first', 1.3, function() {
+                pop.currentTime(0);
 
-                 
-              pop.play(0);
+               setTimeout(function(){
 
-              // pop.pause();
-               firstPlayCount = firstPlayCount + 1;
+              secondFade = 1; }, 2000)  
+               
 
-
-
-              logger('first play count is ' + firstPlayCount);
-
-                if (firstPlayCount >= 3 ){
-
-
-
-                 // countFirst();
-
-
-
-                  firstPlayCount = 0;
-
-                  loopTrigger(2);
-
-                 
-
-                }
-
-                else {
-
-                case1Extend();
                 
-              }
+
               // log count, which is 0 by default
-              //logger( count );
+              //console.log( count );
             });
-
-
-                       
-                
 
 
             break;
 
             case 2:
                   
-            
 
-                    // setTimeout(function(){pop.currentTime(1.35);}, 50);
+                   
 
                // if (pop.currentTime()<=1) {
 
-               //  pop.cue( 1.3, function() {
+                 pop.cue( 1.26, function() {
                       // idleTime = 0;
                      //clearInterval(t2);
                       //clearInterval();
                      //clearInterval(t2);
                      // clearTimeout();
                      //trigga(0);
-                      pop.cue('first', 5.25, function() {
-                     eraseAllowed = 0;
+                     
+                     
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
 
-                       
+                         pop.currentTime(1.4);
 
                    //  if (pop.currentTime()>=1) {
                      // killIntervals();
 
                  //   };
-                      logger('im in twwwzey');
+                      console.log('im in twwwzey');
 
-                      pop.play(1.35);
+                        
+                        if (safetyEscape >=8){
 
-                     
-/*    
-                        if (safetyEscape >=5){
+                          console.log('rrruuuun from twwezy '+safetyEscape);
 
-                           safetyEscape = 0;
-                           safetyStop = safetyStop+1;
-
-                          pop.cue( 5.4, function() {
-
-                         logger('rrruuuun from twwezy '+safetyEscape);
-
-                          pPlay(0);
+                          pop.currentTime(1.4).play();
 
                           
 
-                         
+                          safetyEscape = 0;
                          // killIntervals();
                          trigger = 0;
 
                           //loopExit(1);
 
-                            });
+
 
                     };
-                      */
+                
+
+                       if(safetyStop >= 80){
+                  console.log('safetyStoped!')
+                 // killIntervals();
+                  idleTime = 0;
+                  pop.pause();
+
+
+
+                  $('body').mousemove(function (e) {
+                            safetyStop = 0;
+                           pop.play();
+                          //  console.log('party continues');
+                        });
+                        $(this).keypress(function (e) {
+                          safetyStop = 0;
+                            pop.play();
+                         //   console.log('party continues from keys');
+                        });
+
+
+
+                }
+
 
                    // pop.cue( 22, function() {
 
@@ -689,19 +450,18 @@ function playMoneyDrop(){
 
                    // timeOutz(0, 4);
                   // log count, which is 0 by default
-                  //logger( count );
-            //    });
+                  //console.log( count );
+                });
 
-              // } else{  logger('its go time towards 3');
+              // } else{  console.log('its go time towards 3');
 
-                 
+                  pop.cue( 5.4, function() {
                           //killIntervals();  
 
-                          logger('case 2 cue22');
-                         // trigger = 0;
+                          console.log('case 2 cue22');
+                          trigger = 0;
                          loopTrigger(3);
                          safetyEscape = 12;
-                       //  safetyStopz();
 
 
                     });
@@ -713,12 +473,12 @@ function playMoneyDrop(){
 
             case 3:
 
-                eraseAllowed = 0;
+
             // pop.cue( 22, function() {
-                logger('on third Case');
+                console.log('on third Case');
                 // pop.play(0);
                  idleTime = 0;
-                 pPlay(0);
+                 pop.currentTime(1.33);
                  
 
                  //killIntervals();
@@ -733,18 +493,16 @@ function playMoneyDrop(){
              case 4:
             //  pop.play(0);
                 
-                    logger('Im trying to exit 4!' + idleTime);
+                    console.log('Im trying to exit 4!' + idleTime);
 
                           //idleTime = 0;
                           
 
-                    
 
-
-                pop.cue('first', 1.3, function() {
-                       pPlay(0);
+                pop.cue( 5.4, function() {
+                        pop.currentTime(0);
                         
-                       eraseAllowed = 0;
+
                      loopTrigger(0);
 
                  });
@@ -755,7 +513,7 @@ function playMoneyDrop(){
                      pop.cue( 5.29, function() {
                     //killIntervals();  
 
-                    logger('case 2 cue22');
+                    console.log('case 2 cue22');
                    loopTrigger(3);
 
 
@@ -853,15 +611,13 @@ function onPause() {
 }
 
 function onFinish() {
- //bellHitEffect(0, 2000);
     goLive();
 }
 
 function onPlayProgress(data) {
-   // if (data.seconds >= 84.2){
-     //  bellHitEffect(50, 2000);
-     //  goLive();
-   //  };
+    // if (data.seconds >= 67){
+    //    goLive();
+    // };
 }
 
 
@@ -892,4 +648,3 @@ $(document).ready(function(){
     });
 
 }); /* end document ready */
-

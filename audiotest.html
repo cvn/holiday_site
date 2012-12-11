@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/base/jquery-ui.css">
+	<style>
+		.audiotitle {
+			display: inline-block;
+			width: 80px;
+			text-align: right;
+			margin-right: 10px;
+		}
+		.volume-container {
+			display: inline-block;
+			width: 200px;
+			margin: 0 20px;
+			position: relative;
+			top: 4px;
+		}
+		.play, .stop, .zero {
+			vertical-align: top;
+		}
+	</style>
+	<script src="js/jquery-1.8.2.min.js"></script>
+	<script src="js/jquery-ui-1.9.2.min.js"></script>
+	<script>
+		var soundbedVolume = 1;
+		var bellVolume = 1;
+
+		var audioFadeIn = function($obj){
+			$obj[0].volume = 0;
+			$obj.trigger('play');
+			$obj.animate({volume: soundbedVolume}, 1000);
+		}
+		var audioFadeOut = function($obj){
+			$obj.animate({volume: 0}, 1000, function(){
+				$obj.trigger('pause');
+			});			
+		}
+		var zeroTime = function($obj){
+			$obj[0].currentTime = 0;
+		}
+		var adjustVolume = function($obj,volume){
+			if (!($obj instanceof jQuery)) {
+				var $this = $(this);
+				$obj = $($this.attr('rel')).eq(0);
+				volume = $this.slider('value');
+			}
+			$obj.siblings('.display').html(volume);
+			$obj[0].volume = volume / 100;
+		}
+		// var getVolume = function($obj){
+		// 	if (!($obj instanceof jQuery)) {
+		// 		var $this = $(this);
+		// 		$obj = $($this.attr('rel')).eq(0);
+		// 	}
+		// 	return $obj[0].volume * 100;
+		// }
+
+		$(document).ready(function(){
+			$('.volume').slider({
+				range: 'min'
+				,min: 0
+				,max: 100
+				,value: 100
+				,slide: adjustVolume
+				,change: adjustVolume
+				,create: adjustVolume
+			});
+
+			$('.play').on('click',function(event){
+				event.preventDefault();
+				var $audioObj = $($(this).attr('rel')).eq(0);
+				audioFadeIn($audioObj);
+			});
+			$('.stop').on('click',function(event){
+				event.preventDefault();
+				var $audioObj = $($(this).attr('rel')).eq(0);
+				audioFadeOut($audioObj);
+			});
+			$('.zero').on('click',function(event){
+				event.preventDefault();
+				var $audioObj = $($(this).attr('rel')).eq(0);
+				zeroTime($audioObj);
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div id="soundbedControls">
+	<audio id="soundbed" loop preload="auto">
+	    <source src="video/TBR_LoopLong_OptionA.mp3" type="audio/mpeg">
+	    <source src="video/TBR_LoopLong_OptionA.wav" type="audio/wav">
+	</audio>
+	<div class="audiotitle">
+		Soundbed
+	</div>
+	<button class="play" rel="#soundbed">&#9658;</button>
+	<button class="stop" rel="#soundbed">&#9724;</button>
+	<button class="zero" rel="#soundbed">&lt;&lt;</button>	
+	<div class="volume-container">
+		<div class="volume" rel="#soundbed"></div>
+	</div>
+	<span class="display"></span>
+</div>
+
+<br>
+
+<div id="bellControls">
+	<audio id="bell" loop preload="auto">
+	    <source src="video/TBR_RINGLOOP_02_v05_SFX.mp3" type="audio/mpeg">
+	    <source src="video/TBR_RINGLOOP_02_v05_SFX.wav" type="audio/wav">
+	</audio>
+	<div class="audiotitle">
+		Bell
+	</div>
+	<button class="play" rel="#bell">&#9658;</button>
+	<button class="stop" rel="#bell">&#9724;</button>
+	<button class="zero" rel="#bell">&lt;&lt;</button>
+	<div class="volume-container">
+		<div class="volume" rel="#bell"></div>
+	</div>
+	<span class="display"></span>
+</div>
+
+</body>
+</html>

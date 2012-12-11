@@ -16,7 +16,7 @@
     
     <!-- Mobile Specific Metas
     ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=.3, maximum-scale=1">
+    <meta name="viewport" content="width=1024, maximum-scale=1">
 
     <!-- CSS
     ================================================== -->
@@ -63,40 +63,45 @@
           <div class="RoyalePresents">
             <img src="images/nonLive/RoyalePresents.png" width="231" height="127" alt="Royale Presents">
           </div><div class="daBellRinga">
-            <img src="images/nonLive/daBellRinga.png" width="276" height="127" alt="The Bell Ringer">
+            <img src="images/nonLive/daBellRinga.png" width="276" height="127" alt="The Bell Ringer" onClick="$('#htmlvideo')[0].play()">
           </div>        
         </div>
-        
-        <div class="row main">
+
+        <div class="splash">
+          <div class="splash-fg">
+            <img src="images/splash-fg.png" alt="">
+          </div>
+          <div class="splash-bg">
+            <img src="images/splash-bg.png" alt="">
+          </div>
+          <div class="plaque firstbox t-font t-large">
+            <div class="plaque-inner">
+              <p>This holiday season we wanted to help our east coast friends who may not be having such a nice holiday season due to Hurricane Sandy.</p>
+              <p class="yellow">After watching "The Bell Ringer" feel free to help by donating to the American Red Cross.  With your contribution we can meet our goal of raising a billion dollars by January 1st!</p>
+            </div>
+            <div class="royale-script"><img src="images/royale-script.png" alt="Royale"></div>
+          </div>
+          <div class="spritebutton playbutton playmovie"></div>
+        </div>        
+
+        <div class="row main" style="visibility:hidden;">
           <div class="video-container">
             <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
-            <video id="htmlvideo" class="video" preload>
-                <source src="video/Holiday_Interactive_Loops_v02.mp4">
-                <source src="video/Holiday_Interactive_Loops_v02.webm" type="video/webm">
+            <video id="htmlvideo" class="video" preload="auto">
+                <source src="video/holiday2012-interactive.mp4">
+                <source src="video/holiday2012-interactive.webm" type="video/webm">
                 <p>Please update your browser</p>
             </video>
           </div>
           
-          <div class="plaque firstbox">
-            <div class="firstbox-buttons">
-              <div class="spritebutton donatebutton playmovie"></div>
-              <div class="spritebutton donatebutton skipmovie"></div>
-            </div>
-            <div class="share">
-              <div class="spritebutton sharebutton facebook">
-              </div><div class="spritebutton sharebutton twitter">
-              </div><div class="spritebutton sharebutton mail"></div>   
-            </div>
-          </div>
-          
           <div class="plaque donatebox" style='display: none;'>
             <div class="donatebox-header">
-               <img src="images/donate-script.png"  alt="">
+               <img src="images/donate-script.png"  alt="Donate">
             </div>
             <div class="donatebox-buttons">
-              <div class="spritebutton donatebutton yes"></div>
-              <div class="spritebutton donatebutton no"></div>
-              <div class="spritebutton donatebutton question"></div>
+              <div class="spritebutton standardbutton yes" alt="Yes, please"></div>
+              <div class="spritebutton standardbutton no" alt="No, thank you"></div>
+              <div class="spritebutton standardbutton question" alt="More info"></div>
             </div>
             <div class="donatebox-redcross">
               <img src="images/live/redCrossLogoDonationTray.png"  alt="">
@@ -117,11 +122,22 @@
         </div>
 
         <div class="row footer">
-          <div>
-            <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone"></div>
+          <div class="spritebutton skipbutton skipmovie"></div>
+          <div class="footer-left">
+            <div>
+              <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone"></div>
+            </div>
+            <div class="counter-text t-font t-medium t-bold orange">
+              To date, this amount has been raised to aid those affected by Hurricane Sandy.
+            </div>
+          </div><div class="footer-right">
+            <div id="countdown"></div>
+            <div class="countdown-text t-font t-medium t-bold">
+              <span class="orange">Days to raise</span> $1 billion. <span class="yellow">Ends</span> Jan 1st 2013
+            </div>
           </div>
-          <div class="counterText">
-            <img src="images/nonLive/counterText.png" width="908" height="74" alt="">
+          <div class="footer-bottom t-font t-vsmall orange">
+            &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" alt="Stripe"></a>
           </div>
         </div>
         

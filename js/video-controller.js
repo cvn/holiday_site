@@ -30,6 +30,12 @@ PopController.prototype = {
 	}
 	,clearQueue: function(){
 		console.log('--- clearQueue ---');
+		var events = popcornObj.getTrackEvents();
+		// if (events.length) {
+		// 	for (var e in events) {
+		// 	  popcornObj.removeTrackEvent(events[e]._id);
+		// 	}
+		// }
 	}
 	,clearAndAdd: function(item){
 		console.log('--- clearAndAdd ---');
