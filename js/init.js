@@ -81,14 +81,12 @@ function playDropped(){
 jQuery(document).ready(function($) {
 
   $('.playmovie').on('click',function(){
-    $(this).toggleClass('active');
     $('.splash').fadeOut();
     $('.main').css({visibility:'visible'});
     vimeoController('play');
   });
 
   $('.skipmovie').on('click',function(){
-    $(this).toggleClass('active');
     $('.splash').fadeOut();
     $('.main').css({visibility:'visible'});
     goLive();

@@ -335,7 +335,9 @@ function finalTreat(){
 // pop.cue('treat', 0, function() {
  
  //pop.pause();
+// pop.pause();
 playMoneyDrop();
+
 
 // });
 
@@ -346,16 +348,22 @@ playMoneyDrop();
 }
 
 function playMoneyDrop(){
+/*  pop.pause(14)
+  pop.currentTime(14);
+  pop.play(14);*/
+
+
+
   pop.cue('first', function(){
 
-     setTimeout(function(){
+    // setTimeout(function(){
     
     pop.currentTime(14).play();
 
-  }, 30);
+  //}, 30);
 
    pop.currentTime(14).play();
-  pop.cue(18.7, function(){
+  pop.cue('first', 18.7, function(){
     logger('in the mix! money drop exit');
     pop.play();
     pop.currentTime(0).play();

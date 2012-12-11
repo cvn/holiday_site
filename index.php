@@ -61,9 +61,9 @@
       
         <div class="row header">
           <div class="RoyalePresents">
-            <img src="images/nonLive/RoyalePresents.png" width="231" height="127" alt="Royale Presents">
+            <a href="http://weareroyale.com"><img src="images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
           </div><div class="daBellRinga">
-            <img src="images/nonLive/daBellRinga.png" width="276" height="127" alt="The Bell Ringer" onClick="$('#htmlvideo')[0].play()">
+            <img src="images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer" onClick="$('#htmlvideo')[0].play()">
           </div>        
         </div>
 
@@ -101,13 +101,13 @@
             <div class="donatebox-buttons">
               <div class="spritebutton standardbutton yes" alt="Yes, please"></div>
               <div class="spritebutton standardbutton no" alt="No, thank you"></div>
-              <div class="spritebutton standardbutton question" alt="More info"></div>
+              <div class="spritebutton infobutton" alt="More info"></div>
             </div>
             <div class="donatebox-redcross">
-              <img src="images/live/redCrossLogoDonationTray.png"  alt="">
+              <img src="images/redcross-logo.png">
             </div>
-            <div class="donatebox-proceeds">
-              <img src="images/live/proceedsText.png"  alt="">
+            <div class="donatebox-proceeds t-font t-medium orange">
+              * All proceeds to<br>American Red Cross.
             </div>
             <div class="share">
               <div class="spritebutton sharebutton facebook">
@@ -116,7 +116,7 @@
             </div>
           </div>
 
-          <div class="donateshelf" style='display: none'>
+          <div class="shelf donateshelf" style='display: none'>
             <button class="shelf-submit">Donate now</button>
           </div>
         </div>
