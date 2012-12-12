@@ -3,17 +3,18 @@
 // SQL Stuff
 $username = 'root';
 $password = 'holiday535!';
+$donationsDb = 'donations';
 $donationsTable = 'donatedTest';
 
 
 // This function returns an array of donation objects in descending order
 function getDonations($limit){
-    global $username, $password, $donationsTable;
+    global $username, $password, $donationsDb, $donationsTable;
 
     if ($limit) {
         $limit = (int)$limit;
     } else {
-        $limit = 2;
+        $limit = 3;
     }
 
     // SQL statements
@@ -21,7 +22,7 @@ function getDonations($limit){
 
     try {
         // Establish connection
-        $conn = new PDO('mysql:host=localhost;dbname=donations', $username, $password);
+        $conn = new PDO('mysql:host=localhost;dbname='.$donationsDb.';charset=UTF8', $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Get last donations
@@ -32,6 +33,10 @@ function getDonations($limit){
         $result = array();
         $i = 0;
         while($row = $stmt->fetch()) {
+            // white list of keys to return
+            $allowed = array('amount','total','key','date');
+            $row = array_intersect_key($row, array_flip($allowed));
+            // add to result array
             $result[$i] = $row;
             $i++;
         }
@@ -46,8 +51,8 @@ function getDonations($limit){
 
 
 // This function returns an object of the inserted DB row
-function addDonation($amount,$name,$email){
-    global $username, $password, $donationsTable;
+function addDonation($amount,$name,$email,$subscribe){
+    global $username, $password, $donationsDb, $donationsTable;
 
     if (!$amount) {
         return "Donation not added. No donation amount provided.";
@@ -58,13 +63,13 @@ function addDonation($amount,$name,$email){
     }
 
     // SQL statements
-    $sql = 'INSERT INTO '.$donationsTable.' (name,email,amount,total) VALUES (:name,:email,:amount,:total)';
+    $sql = 'INSERT INTO '.$donationsTable.' (name,email,subscribe,amount,total) VALUES (:name,:email,:subscribe,:amount,:total)';
     $validateSql = 'SELECT * FROM `'.$donationsTable.'` WHERE `key` = :id';
     $sumSql = 'SELECT SUM(amount) AS sumTotal FROM `'.$donationsTable;
 
     try {
         // Establish connection
-        $conn = new PDO('mysql:host=localhost;dbname=donations', $username, $password);
+        $conn = new PDO('mysql:host=localhost;dbname='.$donationsDb.';charset=UTF8', $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Get sum of previous donations
@@ -81,6 +86,7 @@ function addDonation($amount,$name,$email){
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':subscribe', $subscribe);
         $stmt->bindParam(':amount', $amount);
         $stmt->bindParam(':total', $sum);
         $stmt->execute();

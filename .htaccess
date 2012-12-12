@@ -1,7 +1,14 @@
+# Video formats
 AddType video/mp4 .mp4
 AddType video/mp4 .m4v
 AddType video/ogg .ogv
 AddType video/webm .webm
+
+# Font formats
+AddType application/vnd.bw-fontobject .eot
+AddType application/x-font-ttf .ttf
+AddType application/x-font-woff .woff
+
 
 # AuthType Basic
 # AuthName "My Protected Area"

@@ -47,9 +47,24 @@
     <script src="js/jshashtable-2.1.js"></script>
     <script src="js/jquery.numberformatter-1.2.3.min.js"></script>
     <script src="js/cardcheck.js"></script>
+    <script src="js/jquery.html5-placeholder-shim.js"></script>  
+    <script src="https://js.stripe.com/v1/"></script>
 
     <script src="js/video-controller-mack.js"></script>
     <script src="js/init.js"></script>
+    <script type="text/javascript">
+
+      // var _gaq = _gaq || [];
+      // _gaq.push(['_setAccount', 'UA-27888870-1']);
+      // _gaq.push(['_trackPageview']);
+
+      // (function() {
+      //   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      // })();
+
+    </script>
 </head>
 <body>
     <div class="brotherDarkness" style="display: none;"></div>
@@ -115,11 +130,77 @@
               </div><div class="spritebutton sharebutton mail"></div>   
             </div>
           </div>
-
-          <div class="shelf donateshelf" style='display: none'>
-            <button class="shelf-submit">Donate now</button>
+          
+          <div class="shelf donateshelf" style="display: none">
+            <div class="closebutton"></div>
+            <div class="shelf-inner">
+              <form action="add-donation.php" method="post" id="payment-form">
+                <div class="shelf-left">
+                      <div class="amount-header t-font yellow t-vlarge t-bold">Donation Amount</div>
+                      <div class="form-amount">
+                        <input type="radio" name="amount" id="amount-5" value="5">
+                        <label for="amount-5">
+                          <span class="amount-dollar">$</span><span class="amount-sprite zero">0</span><span class="amount-sprite five">5</span>
+                        </label>
+                      </div>
+                      <div class="form-amount">
+                        <input type="radio" name="amount" id="amount-15" value="15" checked>
+                        <label for="amount-15">
+                          <span class="amount-dollar">$</span><span class="amount-sprite one">1</span><span class="amount-sprite five">5</span>
+                        </label>
+                      </div>
+                      <div class="form-amount">
+                        <input type="radio" name="amount" id="amount-50" value="50">
+                        <label for="amount-50">
+                          <span class="amount-dollar">$</span><span class="amount-sprite five">5</span><span class="amount-sprite zero">0</span>
+                        </label>
+                      </div>
+                      <div class="form-amount">
+                        <input type="radio" name="amount" id="amount-custom" value="other">
+                        <label for="amount-custom">
+                          <span class="amount-dollar">$</span><input type="text" class="amount-other t-center" autocomplete="off" name="amount-other" placeholder="Other">
+                        </label>
+                      </div>
+                      <span class="payment-errors t-medium"></span>
+                </div><div class="shelf-right">
+                  <div class="shelf-secured t-small">
+                    <img src="/images/lock.png" class="t-icon"> This transation is secured by <a href="http://stripe.com" target="_blank"><img src="/images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
+                  </div>
+                  <div class="t-medium">
+                    To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!
+                  </div>
+                  <div class="form-row">
+                      <input type="text" class="form-text form-fullwidth" autocomplete="off" name="name" class="card-name" placeholder="Name on card" />
+                  </div>
+                  <div class="form-row">
+                      <input type="text" class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" />
+                  </div>
+                  <div class="form-row">
+                      <input type="text" size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="4242424242424242" /><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="123" />
+                  </div>
+                  <div class="form-row">
+                      <label class="t-medium">Exp date:&nbsp;</label>
+                      <input type="text" size="2" class="card-expiry-month form-text t-center" placeholder="MM" value="12" />
+                      <span> / </span>
+                      <input type="text" size="4" class="card-expiry-year form-text t-center" placeholder="YYYY" value="2013" />
+                    <div id="accepted-cards-images" class="form-cards"></div>
+                  </div>
+                  <div class="form-row">
+                    <input type="submit" class="submit-button spritebutton standardbutton" value="" alt="Submit">
+                    <label class="t-medium yellow form-subscribe"><input type="checkbox" name="subscribe" checked="checked"> Subscribe to our mailing list</label>
+                  </div>
+                  <div class="t-small">Questions / Concerns? Contact us at hello@weareroyale.com</div>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+          
+          <div class="shelf greyshelf infoshelf" style="display:none;">
+            <div class="closebutton"></div>
+            <div class="shelf-inner">Info</div>
+          </div>
+          
+        </div><!-- /main -->
 
         <div class="row footer">
           <div class="spritebutton skipbutton skipmovie"></div>
@@ -137,7 +218,7 @@
             </div>
           </div>
           <div class="footer-bottom t-font t-vsmall orange">
-            &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" alt="Stripe"></a>
+            &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="stripe-a" alt="Stripe"></a>
           </div>
         </div>
         

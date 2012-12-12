@@ -3,15 +3,19 @@
 require_once 'donation-functions.php';
 
 // Get request variables
-$userName = $_REQUEST['name'];
-$userEmail = $_REQUEST['email'];
+$uName = $_REQUEST['name'];
+$uEmail = $_REQUEST['email'];
+$uSubscribe = (isset($_REQUEST['subscribe'])) ? 1 : 0;
 $token = $_REQUEST['stripeToken'];
+
+// Data shaping
 if($_REQUEST['amount']=='other'){
-	$userAmount = $_REQUEST['amount-other'];
+	$uAmount = $_REQUEST['amount-other'];
 } else {
-	$userAmount = $_REQUEST['amount'];
+	$uAmount = $_REQUEST['amount'];
 }
-$amountInCents = intval($userAmount * 100);
+$amountInCents = intval($uAmount * 100);
+$uSubscribe = (isset($uSubscribe)) ? 1 : 0;
 
 if ($token) {
 	// Stripe
@@ -26,11 +30,11 @@ if ($token) {
 	  "amount" => $amountInCents, // amount in cents, again
 	  "currency" => "usd",
 	  "card" => $token,
-	  "description" => $userEmail)
+	  "description" => $uName.' <'.$uEmail.'>')
 	);	
 }
 
-$output = addDonation($userAmount,$userName,$userEmail);
+$output = addDonation($uAmount,$uName,$uEmail,$uSubscribe);
 echo json_encode($output, JSON_NUMERIC_CHECK);
 
 ?>

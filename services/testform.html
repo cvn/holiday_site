@@ -4,18 +4,23 @@
 	<meta charset="UTF-8">
 	<title>Test Form</title>
 	
+	<link rel="stylesheet" href="../css/style.css">
 	<style>
 		.error {
+			border-style: solid;
 			border-color: red;
 		}
 		.success {
+			border-style: solid;
 			border-color: green;
 		}
 	</style>
 
 	<script src="../js/jquery-1.8.2.min.js"></script>	
+	<script src="../js/jquery-ui-1.9.2.min.js"></script>
 	<script src="https://js.stripe.com/v1/"></script>
 	<script src="../js/cardcheck.js"></script>
+	<script src="../js/jquery.html5-placeholder-shim.js"></script>	
 	<script>
 	    // this identifies your website in the createToken call below
 	    Stripe.setPublishableKey('pk_test_Vt3bh8kq7E1FRWhk8Id61GZ8');
@@ -25,7 +30,7 @@
 	            // re-enable the submit button
 	            $('.submit-button').removeAttr("disabled");
 	            // show the errors on the form
-	            $(".payment-errors").html(response.error.message);
+	            $("#payment-form .payment-errors").html(response.error.message).effect('highlight');
 	        } else {
 	            var form$ = $("#payment-form");
 	            // token contains id, last4, and card type
@@ -38,15 +43,21 @@
 	    }
 
 	    $(document).ready(function() {
+	    	$('.amount-other').on('focus',function(){
+	    		$('#amount-custom').prop('checked',true);
+	    	});
+
 	        $("#payment-form").submit(function(event) {
 	            // disable the submit button to prevent repeated clicks
 	            $('.submit-button').attr("disabled", "disabled");
 	            // createToken returns immediately - the supplied callback submits the form if there are no errors
+	            var $form = $(this);
 	            Stripe.createToken({
-	                number: $('.card-number').val(),
-	                cvc: $('.card-cvc').val(),
-	                exp_month: $('.card-expiry-month').val(),
-	                exp_year: $('.card-expiry-year').val()
+	            	name: $form.find('.card-name').val(),
+	                number: $form.find('.card-number').val(),
+	                cvc: $form.find('.card-cvc').val(),
+	                exp_month: $form.find('.card-expiry-month').val(),
+	                exp_year: $form.find('.card-expiry-year').val()
 	            }, stripeResponseHandler);
 	            return false; // submit from callback
 	        });
@@ -57,13 +68,13 @@
 	        	acceptedCards: ['visa','mastercard','amex', 'discover', 'jcb'],
 	        	iconLocation: '#accepted-cards-images',
 	        	onReset: function() {			
-	        		creditCard.removeClass();
+	        		creditCard.removeClass('error success');
 	        	},
 	        	onError: function( type ) {
-	        		creditCard.removeClass().addClass('error');
+	        		creditCard.removeClass('success').addClass('error');
 	        	},
 	        	onValidation: function( type, niceName ) {
-	        		creditCard.removeClass().addClass('success');
+	        		creditCard.removeClass('error').addClass('success');
 	        	},
 	        });
 	    });
@@ -86,12 +97,12 @@
 <br>
 
 <span class="payment-errors"></span>
-<form action="add-donation.php" method="POST" id="payment-form">
+<form action="add-donation.php" method="POST" id="XXXpayment-form">
 	<fieldset>
 		<legend>Process credit card with Stripe</legend>
 	    <div class="form-row">
 	        <label>Name</label>
-	        <input type="text" autocomplete="off" name="name" value="Test User" />
+	        <input type="text" autocomplete="off" name="name" class="card-name" value="Test User" />
 	    </div>
 	    <div class="form-row">
 	        <label>Email</label>
@@ -109,7 +120,7 @@
 	    </div>
 	    <div class="form-row">
 	        <label>Card Number</label>
-	        <input type="text" size="20" autocomplete="off" class="card-number" value="4242424242424242" />
+	        <input type="text" size="20" autocomplete="off" class="XXXcard-number" value="4242424242424242" />
 	    </div>
 	    <div class="form-row">
 	        <label>CVC</label>
@@ -121,8 +132,9 @@
 	        <span> / </span>
 	        <input type="text" size="4" class="card-expiry-year" value="2013" />
 	    </div>
-	    <div id="accepted-cards-images"></div>
+	    <div id="XXXaccepted-cards-images"></div>
 	    <button type="submit" class="submit-button">Submit Payment</button>
+	    <label><input type="checkbox" name="subscribe" checked="checked"> Subscribe to our mailing list</label>
 	</fieldset>
 </form>
 
@@ -149,7 +161,75 @@
 		
 		<input type="submit" value="Submit">
 	</fieldset>
-</form>	
+</form>
+
+<div style="position:relative;">
+	<div class="shelf donateshelf">
+		<div class="closebutton"></div>
+		<div class="shelf-inner">
+			<form action="add-donation.php" method="post" id="payment-form">
+				<div class="shelf-left">
+			        <div class="amount-header t-font yellow t-vlarge t-bold">Donation Amount</div>
+			        <div class="form-amount">
+			        	<input type="radio" name="amount" id="amount-5" value="5">
+				        <label for="amount-5">
+				        	<span class="amount-dollar">$</span><span class="amount-sprite zero">0</span><span class="amount-sprite five">5</span>
+				        </label>
+			        </div>
+			        <div class="form-amount">
+			        	<input type="radio" name="amount" id="amount-15" value="15" checked>
+				        <label for="amount-15">
+				        	<span class="amount-dollar">$</span><span class="amount-sprite one">1</span><span class="amount-sprite five">5</span>
+				        </label>
+			        </div>
+			        <div class="form-amount">
+			        	<input type="radio" name="amount" id="amount-50" value="50">
+				        <label for="amount-50">
+				        	<span class="amount-dollar">$</span><span class="amount-sprite five">5</span><span class="amount-sprite zero">0</span>
+				        </label>
+			        </div>
+			        <div class="form-amount">
+			        	<input type="radio" name="amount" id="amount-custom" value="other">
+				        <label for="amount-custom">
+				        	<span class="amount-dollar">$</span><input type="text" class="amount-other t-center" autocomplete="off" name="amount-other" placeholder="Other">
+				        </label>
+			        </div>
+        			<span class="payment-errors t-medium"></span>
+				</div><div class="shelf-right">
+					<div class="shelf-secured t-small">
+						<img src="/images/lock.png" class="t-icon"> This transation is secured by <a href="http://stripe.com" target="_blank"><img src="/images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
+					</div>
+					<div class="t-medium">
+						To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!
+					</div>
+					<div class="form-row">
+					    <input type="text" class="form-text form-fullwidth" autocomplete="off" name="name" class="card-name" placeholder="Name on card" />
+					</div>
+					<div class="form-row">
+					    <input type="text" class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" />
+					</div>
+					<div class="form-row">
+					    <input type="text" size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="4242424242424242" /><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="123" />
+					</div>
+					<div class="form-row">
+					    <label class="t-medium">Exp date:&nbsp;</label>
+					    <input type="text" size="2" class="card-expiry-month form-text t-center" placeholder="MM" value="12" />
+					    <span> / </span>
+					    <input type="text" size="4" class="card-expiry-year form-text t-center" placeholder="YYYY" value="2013" />
+						<div id="accepted-cards-images" class="form-cards"></div>
+					</div>
+					<div class="form-row">
+						<input type="submit" class="submit-button spritebutton standardbutton" value="" alt="Submit">
+						<label class="t-medium yellow form-subscribe"><input type="checkbox" name="subscribe" checked="checked"> Subscribe to our mailing list</label>
+					</div>
+					<div class="t-small">Questions / Concerns? Contact us at hello@weareroyale.com</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
 
 </body>
 </html>

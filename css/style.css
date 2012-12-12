@@ -25,13 +25,24 @@ body {
 	color: #d5d5d5;
 }
 
+img {
+	border: none;
+}
+
 /*/////////////////////////
 
 		Formatting
 
 /////////////////////////*/
 
-
+.error {
+	border-style: solid;
+	border-color: red;
+}
+.success {
+	border-style: solid;
+	border-color: green;
+}
 .orange {
 	color: #df966d;
 }
@@ -39,11 +50,18 @@ body {
 	color: #dfb76d;
 }
 
+.t-center {
+	text-align: center;
+}
 .t-font {
 	font-family: 'NeuzeitGrotesk';
 }
 .t-bold {
 	font-weight: bold;
+}
+.t-vlarge {
+	font-size: 20px;
+	line-height: 18px;
 }
 .t-large {
 	font-size: 15px;
@@ -51,10 +69,24 @@ body {
 .t-medium {
 	font-size: 13px;
 }
+.t-small {
+	font-size: 10px;
+}
 .t-vsmall {
 	font-size: 8px;
 }
-
+.t-icon {
+	vertical-align: top;
+	margin-top: -3px;
+}
+.stripe-a {
+	vertical-align: bottom;
+	position: relative;
+	top: 2px;
+}
+.stripe-b {
+	margin-top: -2px;
+}
 
 /*/////////////////////////
 
@@ -151,17 +183,132 @@ body {
 }
 
 .RoyalePresents,
-.daBellRinga,
-.header-spacer {
+.daBellRinga {
 	display: inline-block;
-}
-.header-spacer {
-	width: 100px;
 }
 
 .royale-script {
 	text-align: center;
 }
+
+.shelf-submit {
+	margin-top: 150px;
+}
+
+.splash-fg,
+.splash-bg {
+	position: absolute;
+	top: -30px;
+	left: 140px;
+}
+.splash-fg {
+	z-index: 8;
+}
+.splash-bg {
+	z-index: 6;
+}
+
+.amount-header {
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 19px;
+	position: relative;
+	left: 10px;
+}
+.amount-dollar,
+.amount-sprite {
+	text-indent: 99999px;
+	display: inline-block;
+	height: 38px;
+}
+.amount-dollar {
+	background: url('../images/dollar-sign-small.png') no-repeat left top;
+	width: 13px;
+}
+.amount-sprite {
+	background: url('../images/flip-counter-small.png') no-repeat left top;
+	width: 24px;
+}
+.amount-sprite.zero { background-position: 0 0; }
+.amount-sprite.one  { background-position: -24px 0; }
+.amount-sprite.five { background-position: -48px 0; }
+
+.amount-other {
+	height: 32px;
+	width: 40px;
+	vertical-align: bottom;
+	margin: 0 1px;
+	font-size: 14px;
+}
+
+.form-text {
+	height: 28px;
+	font-size: 16px;
+	margin: 12px 0 0;
+}
+
+.shelf-left {
+	text-align: right;
+}
+.shelf-left input[type=radio] {
+	vertical-align: bottom;
+	margin-bottom: 8px;
+}
+.shelf-secured {
+	position: absolute;
+	top: 24px;
+}
+.form-fullwidth {
+	width: 364px;
+}
+.form-cc {
+	width: 270px;
+}
+.form-cvv {
+	margin-left: 12px;
+	width: 76px;
+}
+.form-cards {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 12px;
+	line-height: 0;
+	position: relative;
+	top: -2px;
+}
+.form-subscribe {
+	margin-left: 12px;
+}
+
+.form-amount {
+	margin-bottom: 8px;
+}
+.form-amount label {
+	cursor: pointer;
+}
+.form-amount:not(#ie) label {
+	display: block;
+}
+
+/* Custom radio button trick from: http://css-tricks.com/snippets/css/custom-radio-buttons/ */
+form:not(#ie) input[type="radio"] {
+    position: absolute;
+    display: none;
+}
+input[type="radio"] + label::before {
+    content: url('../images/button-radio-off.png');
+    position: relative;
+    top: 16px;
+    left: -4px;
+}
+input[type="radio"]:checked + label::before {
+    content: url('../images/button-radio-on.png');
+}
+
+.payment-errors {
+	color: red;
+}
+
 
 /*/////////////////////////
 
@@ -176,6 +323,7 @@ body {
 }
 
 .standardbutton {
+	position: relative;
 	width: 161px;
 	height: 30px;
 	margin: auto;
@@ -272,22 +420,42 @@ body {
 	background-image: url('../images/share-mail.png');
 }
 
-.shelf-submit {
-	margin-top: 150px;
+.submit-button {
+	background: url('../images/button-submit.png') no-repeat 0 0;
+	border: none;
+	margin: 12px 0;
+	vertical-align: middle;
+}
+.submit-button:active,
+.submit-button.active {
+	background-position: 0 -30px;
+	top: 1px;
+}
+.submit-button:disabled {
+	opacity: .5;
 }
 
-.splash-fg,
-.splash-bg {
+.closebutton {
 	position: absolute;
-	top: -30px;
-	left: 140px;
+	width: 28px;
+	height: 28px;
+	background: url('../images/button-close-grey.png') no-repeat 0 0;
+	top: 40px;
+	left: -11px;
+	cursor: pointer;
 }
-.splash-fg {
-	z-index: 8;
+.closebutton:hover {
+	background-position: 0 -28px;
 }
-.splash-bg {
-	z-index: 6;
+.closebutton:active,
+.closebutton.active {
+	margin-top: 1px;
 }
+.donateshelf .closebutton {
+		background-image: url('../images/button-close-red.png');
+}
+
+
 /*/////////////////////////
 
 	Panels
@@ -305,8 +473,13 @@ body {
 	z-index: 7;
 	text-align: center;
 }
+.plaque-inner {
+	padding: 30px 90px 0 100px;
+	text-align: left;
+}
 
 .shelf {
+	text-align: left;
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	position: absolute;
@@ -316,11 +489,23 @@ body {
 	height: 366px;
 	z-index: 6;
 }
-
-.plaque-inner {
-	padding: 30px 90px 0 100px;
-	text-align: left;
+.shelf-inner {
+	padding: 50px 30px 0;
 }
+
+.shelf-left,
+.shelf-right {
+	display: inline-block;
+	vertical-align: top;
+}
+.shelf-left {
+	width: 100px;
+}
+.shelf-right {
+	margin-left: 43px;
+	width: 370px;
+}
+
 .firstbox p {
 	margin: 0;
 }
@@ -356,6 +541,9 @@ body {
 
 .donateshelf {
 	background: url('../images/shelf-donate.png');
+}
+.greyshelf {
+	background: url('../images/shelf-grey.png');
 }
 
 
