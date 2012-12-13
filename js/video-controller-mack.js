@@ -122,6 +122,9 @@ function goBlack(){
 function goLive(){
    
     $('#player_1').hide();
+    setTimeout(function(){
+      $('.video-blackout').fadeOut(1000);
+    }, 1000);
     $('.skipbutton').fadeOut(2000);
     //bellThrow();
     //loading - 
@@ -179,8 +182,8 @@ function bellThrow(){
   pPlay(5.4);
    readyToAnimate = 0;
   //idleTime = 0;
-  pop.cue( 8.7, function(){
-     bellHitEffect(20, 2000);
+  pop.cue( 8.67, function(){
+     bellHitEffect(10, 2000);
   });
  
 }
@@ -515,10 +518,13 @@ pop.currentTime(14).play();
 
    function exitFirst(){
     logger('exitFirst');
-    readyToAnimate = 0;
+   // readyToAnimate = 0;
+   plaqueButtonsDisabled = 1;
+
+ 
 
     loopTrigger(2);
-
+  var timeOutx = setTimeout(function(){plaqueButtonsDisabled = 0}, 150) ;
 
    }
 
@@ -553,7 +559,9 @@ pop.currentTime(14).play();
 
                 pop.cue('first', 1.3, function() {
 
-                  readyToAnimate = 1;
+                 // readyToAnimate = 1;
+
+                  deselectButtons(1);
 
                   logger(readyToAnimate);
                  
@@ -617,8 +625,9 @@ pop.currentTime(14).play();
                      eraseAllowed = 0;
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
+                      plaqueButtonsDisabled = 0;
 
-                       
+                       deselectButtons(1);
 
                    //  if (pop.currentTime()>=1) {
                      // killIntervals();
@@ -690,7 +699,7 @@ pop.currentTime(14).play();
 
                 pop.cue('first', 1.3, function(){
                 eraseAllowed = 0;
-                readyToAnimate = 1;
+                deselectButtons(1);
             // pop.cue( 22, function() {
                 logger('on third Case');
                 // pop.play(0);
@@ -833,14 +842,21 @@ function onPause() {
 
 function onFinish() {
  //bellHitEffect(0, 2000);
-    goLive();
+    //goLive();
 }
-
+var liveSwitch = 0;
 function onPlayProgress(data) {
-   // if (data.seconds >= 84.2){
-     //  bellHitEffect(50, 2000);
-     //  goLive();
-   //  };
+   if (data.seconds >= 84.87){
+      //bellHitEffect(50, 2000);
+      liveSwitch = liveSwitch + 1;
+
+      if (liveSwitch == 1){
+        vimeoController('pause');
+           goLive();
+        liveSwitch = 2;
+      }
+     
+    };
 }
 
 

@@ -13,9 +13,12 @@ if ( eregi("MSIE", getenv( "HTTP_USER_AGENT" ) )
 	|| strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
 	) {
 
-	$url = 'test.html';
+	$url = 'mobile.php';
   
    header("Location: $url");
-} else { echo 'not shitty';}
+}
+
+
+// else { echo 'not shitty';}
 
 ?>

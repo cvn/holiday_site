@@ -25,7 +25,8 @@ $vimeoQuery = '';
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    <title>The Bell Ringer Test</title>
+    <meta charset="UTF-8">
+    <title>Royale Presents | The Bell Ringer</title>
     <meta name="description" content="Don't get your bell rung by an old lady during the holiday #saggybells">
     <meta name="author" content="Royale">
     <meta property="og:image" content="http://holiday.weareroyale.com/images/video-thumbnail.jpg"/>
@@ -57,8 +58,13 @@ $vimeoQuery = '';
     <!-- JS
     ================================================== -->
     <script type="text/javascript">
-     var donationInitial = <?php $donationsArray = getDonations(); echo ($donationsArray[1][total]); ?>;
-     var donationTotal = <?php $donationsArray = getDonations(); echo ($donationsArray[0][total]); ?>;
+      <?php
+        $donationsArray = getDonations();
+        $donationsLo = ($donationsArray[1][total]) ? $donationsArray[1][total] : 0;
+        $donationsHi = ($donationsArray[0][total]) ? $donationsArray[0][total] : 0;
+      ?>
+      var donationInitial = <?=$donationsLo?>
+        , donationTotal = <?=$donationsHi?>;
     </script>
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/jquery-ui-1.9.2.min.js"></script>
@@ -147,12 +153,13 @@ $vimeoQuery = '';
 
         <div class="row main">
           <div class="video-container shy">
-            <iframe class="video" style="display:none;" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
             <video id="htmlvideo" class="video" style="display:none;" preload="auto">
                 <source src="video/holiday2012-interactive.mp4">
                 <source src="video/holiday2012-interactive.webm" type="video/webm">
                 <p>Please update your browser</p>
             </video>
+            <div class="video-blackout video"></div>
+            <iframe class="video" style="display:none;" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
           </div>
           
           <div class="plaque donatebox" style='display: none;'>

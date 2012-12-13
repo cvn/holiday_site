@@ -25,11 +25,7 @@
                     $name = $_POST['name'];
                     $visitor_email = $_POST['email'];
                     $message = $_POST['message'];
-                    if(isset($_POST['subscribe'])){
-                   
-                    if ($subscribe){ $message .= "\n Thank you for subscribing. \n";}
-
-                    }
+                    
                     $email_to = $_POST['femail'];
                     $email_subject = "Royale + Redcross Presents: The Bell Ringer";
                     $email_body = '<div style="white-space:pre-wrap;">'.

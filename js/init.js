@@ -35,7 +35,7 @@ function initCounter($counterElement, startTotal, endTotal) {
     {
       number: startTotal, // the number we want to scroll from
       end_number: endTotal, // the number we want the counter to scroll to
-      easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+      // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
       duration: 1000, // number of ms animation should take to complete
       numIntegralDigits:1, // number of places left of the decimal point to maintain
       numFractionalDigits:0, // number of places right of the decimal point to maintain
@@ -44,7 +44,6 @@ function initCounter($counterElement, startTotal, endTotal) {
       digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
       digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
       imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
-      easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
       // duration:20000, // duration of animations
       // onAnimationStarted:false, // call back for animation upon starting
       // onAnimationStopped:false, // call back for animation upon stopping
@@ -125,7 +124,7 @@ function playDropped(){
 
 // Plaque button handling
 
-var plaqueButtonsDisabled = 0;
+var plaqueButtonsDisabled = 1;
 
 function plaqueRouter($button,visibleShelf){
   var targetShelf = $button.data('link');
@@ -136,7 +135,7 @@ function plaqueRouter($button,visibleShelf){
       shelfExtend($button,targetShelf);
       break;
     case 'nodonate':
-      noDonate($button)
+      heckNo();
       break;
     case 'info':
       shelfExtend($button,targetShelf);
@@ -148,13 +147,6 @@ function shelfExtend($button,shelfName){
     $('.'+shelfName+'shelf').show('slide', { direction: 'right' }, 500,function(){
       plaqueButtonsDisabled = 0;
     });
-}
-
-function noDonate($button){
-    setTimeout(function(){
-      deselectButtons(1);
-    },5000);
-    heckNo();
 }
 
 function deselectButtons(reenable) {
