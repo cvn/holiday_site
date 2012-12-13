@@ -1,4 +1,24 @@
 <?php include_once "services/donation-functions.php" ?>
+<?php
+/*$vimz = 'player.vimeo.com';
+$hostHTTP = 'www';
+$vimeo = 0;
+$vimeoQuery = '';
+
+     if (strpos($_SERVER['HTTP_REFERER'], $vimz) !== false){
+        $vimeo = 1;
+        $vimeoQuery = '?vim=1';
+      }
+        if ($_SERVER['SERVER_PORT']!=443 || strpos($_SERVER['HTTP_HOST'], $hostHTTP) !== false)
+        {
+              $url = "https://weareroyale.com/thebellringer".$vimeoQuery;
+              header("Location: $url");
+        } 
+
+
+*/
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -21,6 +41,7 @@
     <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="css/style.css">
+
     
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,8 +86,28 @@
       // })();
 
     </script>
+<?php
+  // Vimeo Referrer detection    
+ /* $vimz = 'player.vimeo.com';
+  $ref=$_SERVER['HTTP_REFERER'];
+  
+  if  (strpos($_SERVER['HTTP_HOST'], $hostHTTP) !== false){
+
+    echo 'This aint yo shit';
+
+  }*/
+
+  $vimStatus = $_GET['vim'];
+  if  ($vimStatus == 1 || $vimeo == 1){
+    echo('<script type="text/javascript">');
+    echo("setTimeout(function(){ if(vimeoHasPlayed) { vimeoController('pause'); }; $('.main').css({visibility:'visible'});goLive();},200);");
+    echo('</script>');
+    echo('<style type="text/css">.splash { display: none; }</style>');
+  }
+?>
 </head>
 <body>
+
     <div class="brotherDarkness" style="display: none;"></div>
     <div class="mattePainting" style='display: none;'></div>
     <!-- <div class="photoshop-overlay"></div> -->
@@ -92,18 +133,22 @@
           <div class="plaque firstbox t-font t-large">
             <div class="plaque-inner">
               <p>This holiday season we would like to help our East Coast friends affected by Hurricane Sandy.</p>
-              <p class="yellow">After enjoying "The Bell Ringer", stay tuned to find out how you can help Edith and Royale raise money for the American Red Cross. Every dollar helps.</p>
+              <p class="yellow">After enjoying "The Bell Ringer", stay tuned to find out how you can help Edith and Royale raise money for the American Red Cross. If we meet our goal of <span class="t-bold white">10k</span> we will release an alt ending.</p>
               <p>Wishing you and yours a lovely holiday season.</p>
             </div>
-            <div class="royale-script"><img src="images/royale-script.png" alt="Royale"></div>
-            <div class="spritebutton playbutton playmovie"></div>
+            <div class="royale-script">
+              <img src="images/royale-script.png" alt="Royale">
+            </div>
+            <div class="playbutton-container">
+              <div class="spritebutton playbutton playmovie"></div>
+            </div>
           </div>
         </div>        
 
         <div class="row main">
-          <div class="video-container">
-            <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
-            <video id="htmlvideo" class="video" preload="auto">
+          <div class="video-container shy">
+            <iframe class="video" style="display:none;" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
+            <video id="htmlvideo" class="video" style="display:none;" preload="auto">
                 <source src="video/holiday2012-interactive.mp4">
                 <source src="video/holiday2012-interactive.webm" type="video/webm">
                 <p>Please update your browser</p>

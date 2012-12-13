@@ -515,6 +515,7 @@ pop.currentTime(14).play();
 
    function exitFirst(){
     logger('exitFirst');
+    readyToAnimate = 0;
 
     loopTrigger(2);
 
@@ -689,6 +690,7 @@ pop.currentTime(14).play();
 
                 pop.cue('first', 1.3, function(){
                 eraseAllowed = 0;
+                readyToAnimate = 1;
             // pop.cue( 22, function() {
                 logger('on third Case');
                 // pop.play(0);
@@ -849,21 +851,6 @@ $(document).ready(function(){
     pop = Popcorn('#htmlvideo', {
       frameAnimation: true
     });
-
-
-   $('.skipmovie').on('click',function(){
-        if(vimeoHasPlayed) {
-
-            vimeoController('pause');
-        };
-           //Vimeo pause- 
-           $('.splash').fadeOut(function(){
-
-           });
-           $('.main').css({visibility:'visible'});
-           goLive();
-     });
-
 
     $('#htmlvideo').hide();
 

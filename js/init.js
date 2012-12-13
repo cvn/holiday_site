@@ -72,7 +72,7 @@ function donateFormSubmit($form){
     var newTotal = responseObj.total;
     updateCounter($("#CounterZone"), newTotal);
     $('.donateshelf').hide('slide', { direction: 'right' }, 500);
-    $('.standardbutton.yes').removeClass('active');
+    $('.plaquebutton.donate').removeClass('active');
     resetForm($form);
     finalTreat();
   });
@@ -94,38 +94,12 @@ function centerFooter(donationValue){
 
 
 function heckNo(){
-
- /* var events = pop.getTrackEvents();
-    if (events.length) {
-      for (var e in events) {
-      pop.removeTrackEvent(events[e]._id);
-      }
-    }*/
-
-    secondFade = 1;
-
-     pop.cue('first', 1.3, function() {
-      bellThrow();
-     });
-
-   logger('Trigger Angry Throw');
- // killIntervals();
-  //idleTime = 0;
-  //pop.pause();
-  playAngryThrow();
-
+  secondFade = 1;
+  pop.cue('first', 1.3, function() {
+    bellThrow();
+  });
+  logger('Trigger Angry Throw');
 }
-
-function playAngryThrow(){
-  logger('playing Angryness');
-  //  bellThrow();
-     // pPlay(5.4);
-    //  pop.cue(13.4, function(){
-
-
-      //  playPop();
-     // });
-  }
 
 function containerFadeOut(outSpeed){
   $('.container').fadeOut(outSpeed);
@@ -149,52 +123,102 @@ function playDropped(){
   pop.currentTime(13.5).play();
 }
 
+// Plaque button handling
+
+var plaqueButtonsDisabled = 0;
+
+function plaqueRouter($button,visibleShelf){
+  var targetShelf = $button.data('link');
+  if (visibleShelf == targetShelf) return plaqueButtonsDisabled = 0;
+
+  switch (targetShelf) {
+    case 'donate':
+      shelfExtend($button,targetShelf);
+      break;
+    case 'nodonate':
+      noDonate($button)
+      break;
+    case 'info':
+      shelfExtend($button,targetShelf);
+      break;
+  }
+}
+
+function shelfExtend($button,shelfName){
+    $('.'+shelfName+'shelf').show('slide', { direction: 'right' }, 500,function(){
+      plaqueButtonsDisabled = 0;
+    });
+}
+
+function noDonate($button){
+    setTimeout(function(){
+      deselectButtons(1);
+    },5000);
+    heckNo();
+}
+
+function deselectButtons(reenable) {
+  $('.plaquebutton').each(function(){
+    console.log(this);
+    $(this).removeClass('active');
+  });
+  if(reenable){
+    plaqueButtonsDisabled = 0;
+  }
+}
+
+
+// Video initialization
+
+function splashOutVidIn(targetSelector) {
+  $('.splash').fadeOut();
+  $(targetSelector).show();
+  $('.video-container').removeClass('shy');
+}
+
+
+// Doc ready
+
 jQuery(document).ready(function($) {
 
   $('.playmovie').on('click',function(){
-    $('.splash').fadeOut(function(){
-      $('.main').css({visibility:'visible'});
-      vimeoController('play');
-    });
+    splashOutVidIn('#player_1');
+    vimeoController('play');
   });
 
-  
-
-  $('.standardbutton.yes').on('click',function(){
-    $this = $(this);
-    if ($this.hasClass('active')){
-      $('.donateshelf').hide('slide', { direction: 'right' }, 500);
-    } else {
-      $('.donateshelf').show('slide', { direction: 'right' }, 500);
+  $('.skipmovie').on('click',function(){
+    if(vimeoHasPlayed) {
+      vimeoController('pause');
     }
+    splashOutVidIn('#htmlvideo');
+    goLive();
+  });
+
+
+  $('.plaquebutton').on('click',function(){
+    if (plaqueButtonsDisabled == 1) return false;
+    plaqueButtonsDisabled = 1;
+    var $button = $(this);
+
     $(this).toggleClass('active');
-  });
 
-  $('.standardbutton.no').on('click',function(){
-    $(this).addClass('active');
-    setTimeout(function(){
-      $('.standardbutton.no').removeClass('active');
-    },5000);
-    //pop.play(5.4);
-    heckNo();
-  });
+    var $visibleShelf = $('.shelf:visible');
+    var visibleShelfName = $visibleShelf.data('link');
 
-  $('.infobutton').on('click',function(){
-    $this = $(this);
-    if ($this.hasClass('active')){
-      $('.infoshelf').hide('slide', { direction: 'right' }, 500);
+    if($visibleShelf.length){
+      var buttonName = $visibleShelf.data('link');
+      $('.plaquebutton.'+buttonName).removeClass('active');
+      $visibleShelf.hide('slide', { direction: 'right' }, 500,function(){
+        plaqueRouter($button,visibleShelfName);
+      });
     } else {
-      $('.infoshelf').show('slide', { direction: 'right' }, 500);
+      plaqueRouter($button,visibleShelfName);
     }
-    $(this).toggleClass('active');
   });
 
   $('.closebutton').on('click',function(){
     $(this).closest('.shelf').hide('slide', { direction: 'right' }, 500);
-    $('.plaque .standardbutton, .plaque .infobutton').each(function(){
-      console.log(this);
-      $(this).removeClass('active');
-    });
+    deselectButtons();
   });
 
   $('.sharebutton.facebook').on('click',function(){

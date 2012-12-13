@@ -18,18 +18,18 @@
                     }
                     $email_to = $_POST['femail'];
                     $email_subject = "Royale + Redcross Presents: The Bell Ringer";
-                    $email_body = '<div style="white-space:pre-wrap;">'.
+                    $email_body =    '<center> <div style="white-space:pre-wrap;">'.
 
-                            ' <center>      <img src="http://holiday.weareroyale.com/images/email/reciept-thankyou.png" />'.
+                            '      <img src="http://holiday.weareroyale.com/images/email/reciept-thankyou.png" />'.
                            '  <p  style="text-align:left;display:inline-block;width:530px;" >'.
                            'Hey There '.$name.', <br /><br />'.
-                            'Thank you so much for your donation.  One step closer toward meeting not only our <br />'. 
+                            'Thank you so much for your donation.  One step closer toward meeting not only our'. 
                             'goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them '.
                             'the best this holiday season, and know that this will go a long way to their relief.'.
-                          ' </p>'.
-                          '    <a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciept-xo.png" /></a>   '. 
-                            '<a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciepit-footer.png" /></a> </center>'.  
-                           '</div>'.
+                          ' </p></center><br />'.
+                          '    <center><a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciept-xo.png" /></a> </center> <br /> '. 
+                            '<center><a href="http://www.weareroyale.com"><img src="http://holiday.weareroyale.com/images/email/reciepit-footer.png" /></a><br /></center> '.  
+                           '</div></center>';
                                  
                     $to = $email_to;
                 
