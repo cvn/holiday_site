@@ -1,0 +1,64 @@
+body {
+	background-image: url('../images/bg-email.jpg');
+	overflow: hidden;
+}
+.plaque-email {
+	background-image: url('../images/plaque-email.png');
+	width: 438px;
+	height: 607px;
+	margin: 45px auto 0;
+}
+.plaque-email-inner {
+	padding: 30px 30px 0;
+}
+.sendbutton {
+	background: url('../images/button-send.png') no-repeat 0 0;
+	border: none;
+}
+.sendbutton:active,
+.sendbutton.active {
+	background-position: 0 -30px;
+	top: 1px;
+}
+.sendbutton:disabled {
+	opacity: .5;
+}
+
+.form-row + .form-row {
+	margin-top: 12px;
+}
+
+.email-logo-container {
+	text-align: center;
+	margin-bottom: 12px;
+}
+.email-logo {
+}
+.email-intro {
+	margin-bottom: 12px;
+	padding-right: 30px;
+}
+.email-title {
+	text-transform: uppercase;
+}
+.email-fieldtitle {
+	margin-top: 8px;
+	margin-left: -10px;
+}
+.email-text {
+	width: 372px;
+	height: 24px;
+	font-size: 14px;
+}
+.email-textarea {
+	width: 372px;
+	height: 120px;
+}
+.email-send {
+	text-align: center;
+	margin-top: 20px;
+}
+.email-fineprint {
+	text-align: center;
+	margin-top: 20px;
+}

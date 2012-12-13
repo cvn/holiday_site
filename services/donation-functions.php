@@ -58,10 +58,6 @@ function addDonation($amount,$name,$email,$subscribe){
         return "Donation not added. No donation amount provided.";
     }
 
-    if (!$name) {
-        $name = "Anonymous Donor";
-    }
-
     // SQL statements
     $sql = 'INSERT INTO '.$donationsTable.' (name,email,subscribe,amount,total) VALUES (:name,:email,:subscribe,:amount,:total)';
     $validateSql = 'SELECT * FROM `'.$donationsTable.'` WHERE `key` = :id';

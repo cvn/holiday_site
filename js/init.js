@@ -1,9 +1,14 @@
-var bgFadeWait = 6000
+var bgFadeWait = 3000
     ,goLiveCatch = 0
     ,contentLock = 0;
 
 // this identifies your website in the createToken call below
 Stripe.setPublishableKey('pk_test_Vt3bh8kq7E1FRWhk8Id61GZ8');
+
+function resetForm($form){
+    $form.find('.submit-button').removeAttr("disabled");
+    $form[0].reset();
+}
 
 function stripeResponseHandler(status, response) {
     if (response.error) {
@@ -23,29 +28,69 @@ function stripeResponseHandler(status, response) {
     }
 }
 
+function initCounter($counterElement, startTotal, endTotal) {
+  centerFooter(donationTotal);
+  $counterElement.flipCounter(
+    "startAnimation", // scroll counter from the current number to the specified number
+    {
+      number: startTotal, // the number we want to scroll from
+      end_number: endTotal, // the number we want the counter to scroll to
+      easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
+      duration: 1000, // number of ms animation should take to complete
+      numIntegralDigits:1, // number of places left of the decimal point to maintain
+      numFractionalDigits:0, // number of places right of the decimal point to maintain
+      //digitClass:"counter-digit", // class of the counter digits
+      formatNumberOptions:{format:"#,##0",locale:"us"},
+      digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
+      digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
+      imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
+      easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
+      // duration:20000, // duration of animations
+      // onAnimationStarted:false, // call back for animation upon starting
+      // onAnimationStopped:false, // call back for animation upon stopping
+      // onAnimationPaused:false, // call back for animation upon pausing
+      // onAnimationResumed:false // call back for animation upon resuming from pause
+    }
+  );
+}
+
+function updateCounter($counterElement, endTotal){
+    var startTotal = $("#CounterZone").flipCounter("getNumber");
+    centerFooter(endTotal);
+    $counterElement.flipCounter(
+      "startAnimation", // scroll counter from the current number to the specified number
+      { 
+        number: startTotal, // the number we want to scroll from
+        end_number: endTotal, // the number we want the counter to scroll to
+      }
+    );
+}
+
 function donateFormSubmit($form){
   $.post('services/add-donation.php', $form.serialize(), function(data){
     var responseObj = $.parseJSON(data);
     var newTotal = responseObj.total;
-    var oldTotal = $("#CounterZone").flipCounter("getNumber");
-    $("#CounterZone").flipCounter(
-      "startAnimation", // scroll counter from the current number to the specified number
-      { 
-        number: oldTotal, // the number we want to scroll from
-        end_number: newTotal, // the number we want the counter to scroll to
-        // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-        // duration: 1500, // number of ms animation should take to complete
-        // counterFieldName:"counter-value", // name of the hidden field
-      }
-    );
+    updateCounter($("#CounterZone"), newTotal);
     $('.donateshelf').hide('slide', { direction: 'right' }, 500);
     $('.standardbutton.yes').removeClass('active');
+    resetForm($form);
     finalTreat();
   });
 }
 
 
-
+function centerFooter(donationValue){
+  // var width = $('#CounterZone').css('width');
+  if ($.formatNumber) {
+    var str_number = $.formatNumber(donationValue, {format:"#,##0",locale:"us"});
+  } else {
+    return(console.log('The numberformatter jQuery plugin is not loaded. This plugin is required to use the formatNumberOptions setting.'));
+  }
+  var numDigits = str_number.length;
+  var counterDigitWidth = 44;
+  var counterWidth = numDigits * counterDigitWidth;
+  $('.footer-left').css({width:counterWidth});
+}
 
 
 function heckNo(){
@@ -56,6 +101,8 @@ function heckNo(){
       pop.removeTrackEvent(events[e]._id);
       }
     }*/
+
+    secondFade = 1;
 
      pop.cue('first', 1.3, function() {
       bellThrow();
@@ -105,16 +152,13 @@ function playDropped(){
 jQuery(document).ready(function($) {
 
   $('.playmovie').on('click',function(){
-    $('.splash').fadeOut();
-    $('.main').css({visibility:'visible'});
-    vimeoController('play');
+    $('.splash').fadeOut(function(){
+      $('.main').css({visibility:'visible'});
+      vimeoController('play');
+    });
   });
 
-  $('.skipmovie').on('click',function(){
-    $('.splash').fadeOut();
-    $('.main').css({visibility:'visible'});
-    goLive();
-  });
+  
 
   $('.standardbutton.yes').on('click',function(){
     $this = $(this);
@@ -160,31 +204,12 @@ jQuery(document).ready(function($) {
     window.open("http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
   });
   $('.sharebutton.mail').on('click',function(){
-    window.open("emailShare.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+    window.open("emailShare.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=100, top=100, width=550, height=700");
   });
 
-  $("#CounterZone").flipCounter(
-    "startAnimation", // scroll counter from the current number to the specified number
-    {
-      number: donationInitial, // the number we want to scroll from
-      end_number: donationTotal, // the number we want the counter to scroll to
-      easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-      duration: 1000, // number of ms animation should take to complete
-      numIntegralDigits:10, // number of places left of the decimal point to maintain
-      numFractionalDigits:0, // number of places right of the decimal point to maintain
-      //digitClass:"counter-digit", // class of the counter digits
-      formatNumberOptions:{format:"0,000,000,000",locale:"us"},
-      digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
-      digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
-      imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
-      easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
-      // duration:20000, // duration of animations
-      onAnimationStarted:false, // call back for animation upon starting
-      onAnimationStopped:false, // call back for animation upon stopping
-      onAnimationPaused:false, // call back for animation upon pausing
-      onAnimationResumed:false // call back for animation upon resuming from pause
-    }
-  );
+  // Set up the counter
+  // donationInitial and donationTotal are set by PHP
+  initCounter($("#CounterZone"), donationInitial, donationTotal);
 
   var currentDate = (new Date).getTime()
       ,endDate = 1357027200000  // Jan 1, 2013 12:00AM PST in miliseconds
@@ -197,7 +222,7 @@ jQuery(document).ready(function($) {
       numFractionalDigits:0, // number of places right of the decimal point to maintain
       digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
       digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
-      imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
+      imagePath:"images/flip-counter-red.png", // the path to the sprite image relative to your html document
     }
   );
 
@@ -211,7 +236,7 @@ jQuery(document).ready(function($) {
       // createToken returns immediately - the supplied callback submits the form if there are no errors
       var $form = $(this);
       Stripe.createToken({
-        name: $form.find('.card-name').val(),
+          name: $form.find('.card-name').val(),
           number: $form.find('.card-number').val(),
           cvc: $form.find('.card-cvc').val(),
           exp_month: $form.find('.card-expiry-month').val(),

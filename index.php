@@ -91,15 +91,16 @@
           </div>
           <div class="plaque firstbox t-font t-large">
             <div class="plaque-inner">
-              <p>This holiday season we wanted to help our east coast friends who may not be having such a nice holiday season due to Hurricane Sandy.</p>
-              <p class="yellow">After watching "The Bell Ringer" feel free to help by donating to the American Red Cross.  With your contribution we can meet our goal of raising a billion dollars by January 1st!</p>
+              <p>This holiday season we would like to help our East Coast friends affected by Hurricane Sandy.</p>
+              <p class="yellow">After enjoying "The Bell Ringer", stay tuned to find out how you can help Edith and Royale raise money for the American Red Cross. Every dollar helps.</p>
+              <p>Wishing you and yours a lovely holiday season.</p>
             </div>
             <div class="royale-script"><img src="images/royale-script.png" alt="Royale"></div>
+            <div class="spritebutton playbutton playmovie"></div>
           </div>
-          <div class="spritebutton playbutton playmovie"></div>
         </div>        
 
-        <div class="row main" style="visibility:hidden;">
+        <div class="row main">
           <div class="video-container">
             <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
             <video id="htmlvideo" class="video" preload="auto">
@@ -110,58 +111,60 @@
           </div>
           
           <div class="plaque donatebox" style='display: none;'>
-            <div class="donatebox-header">
-               <img src="images/donate-script.png"  alt="Donate">
-            </div>
-            <div class="donatebox-buttons">
-              <div class="spritebutton standardbutton yes" alt="Yes, please"></div>
-              <div class="spritebutton standardbutton no" alt="No, thank you"></div>
-              <div class="spritebutton infobutton" alt="More info"></div>
-            </div>
-            <div class="donatebox-redcross">
-              <img src="images/redcross-logo.png">
-            </div>
-            <div class="donatebox-proceeds t-font t-medium orange">
-              * All proceeds to<br>American Red Cross.
-            </div>
-            <div class="share">
-              <div class="spritebutton sharebutton facebook">
-              </div><div class="spritebutton sharebutton twitter">
-              </div><div class="spritebutton sharebutton mail"></div>   
+            <div class="plaque-shadowless">
+              <div class="donatebox-header">
+                 <img src="images/donate-script.png"  alt="Donate">
+              </div>
+              <div class="donatebox-buttons">
+                <div class="spritebutton plaquebutton standardbutton donate" data-link="donate" alt="Yes, please"></div>
+                <div class="spritebutton plaquebutton standardbutton nodonate" data-link="nodonate" alt="No, thank you"></div>
+                <div class="spritebutton plaquebutton infobutton info" data-link="info" alt="More info"></div>
+              </div>
+              <div class="donatebox-redcross">
+                <img src="images/redcross-logo.png">
+              </div>
+              <div class="donatebox-proceeds t-font t-medium orange">
+                * All proceeds to<br>American Red Cross.
+              </div>
+              <div class="share">
+                <div class="spritebutton sharebutton facebook">
+                </div><div class="spritebutton sharebutton twitter">
+                </div><div class="spritebutton sharebutton mail"></div>
+              </div>
             </div>
           </div>
           
-          <div class="shelf donateshelf" style="display: none">
+          <div class="shelf donateshelf" data-link="donate" style="display: none">
             <div class="closebutton"></div>
             <div class="shelf-inner">
-              <form action="add-donation.php" method="post" id="payment-form">
+              <form action="services/add-donation.php" method="post" id="payment-form">
                 <div class="shelf-left">
-                      <div class="amount-header t-font yellow t-vlarge t-bold">Donation Amount</div>
-                      <div class="form-amount">
-                        <input type="radio" name="amount" id="amount-5" value="5">
-                        <label for="amount-5">
-                          <span class="amount-dollar">$</span><span class="amount-sprite zero">0</span><span class="amount-sprite five">5</span>
-                        </label>
-                      </div>
-                      <div class="form-amount">
-                        <input type="radio" name="amount" id="amount-15" value="15" checked>
-                        <label for="amount-15">
-                          <span class="amount-dollar">$</span><span class="amount-sprite one">1</span><span class="amount-sprite five">5</span>
-                        </label>
-                      </div>
-                      <div class="form-amount">
-                        <input type="radio" name="amount" id="amount-50" value="50">
-                        <label for="amount-50">
-                          <span class="amount-dollar">$</span><span class="amount-sprite five">5</span><span class="amount-sprite zero">0</span>
-                        </label>
-                      </div>
-                      <div class="form-amount">
-                        <input type="radio" name="amount" id="amount-custom" value="other">
-                        <label for="amount-custom">
-                          <span class="amount-dollar">$</span><input type="text" class="amount-other t-center" autocomplete="off" name="amount-other" placeholder="Other">
-                        </label>
-                      </div>
-                      <span class="payment-errors t-medium"></span>
+                  <div class="amount-header t-font yellow t-vlarge t-bold">Donation Amount</div>
+                  <div class="form-amount">
+                    <input type="radio" name="amount" id="amount-5" value="5">
+                    <label for="amount-5">
+                      <span class="amount-dollar">$</span><span class="amount-sprite zero">0</span><span class="amount-sprite five">5</span>
+                    </label>
+                  </div>
+                  <div class="form-amount">
+                    <input type="radio" name="amount" id="amount-15" value="15" checked>
+                    <label for="amount-15">
+                      <span class="amount-dollar">$</span><span class="amount-sprite one">1</span><span class="amount-sprite five">5</span>
+                    </label>
+                  </div>
+                  <div class="form-amount">
+                    <input type="radio" name="amount" id="amount-50" value="50">
+                    <label for="amount-50">
+                      <span class="amount-dollar">$</span><span class="amount-sprite five">5</span><span class="amount-sprite zero">0</span>
+                    </label>
+                  </div>
+                  <div class="form-amount">
+                    <input type="radio" name="amount" id="amount-custom" value="other">
+                    <label for="amount-custom">
+                      <span class="amount-dollar">$</span><input type="text" class="amount-other t-center" autocomplete="off" name="amount-other" placeholder="Other">
+                    </label>
+                  </div>
+                  <span class="payment-errors t-medium"></span>
                 </div><div class="shelf-right">
                   <div class="shelf-secured t-small">
                     <img src="/images/lock.png" class="t-icon"> This transation is secured by <a href="http://stripe.com" target="_blank"><img src="/images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
@@ -170,7 +173,7 @@
                     To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!
                   </div>
                   <div class="form-row">
-                      <input type="text" class="form-text form-fullwidth" autocomplete="off" name="name" class="card-name" placeholder="Name on card" />
+                      <input type="text" class="card-name form-text form-fullwidth" autocomplete="off" name="name" placeholder="Name on card" />
                   </div>
                   <div class="form-row">
                       <input type="text" class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" />
@@ -194,10 +197,24 @@
               </form>
             </div>
           </div>
-          
-          <div class="shelf greyshelf infoshelf" style="display:none;">
+
+          <div class="shelf greyshelf thanksshelf" data-link="thanks" style="display:none;">
+            <img src="images/thanks.png" alt="Happy Holidays. Love, Royale">
+          </div>
+                    
+          <div class="shelf greyshelf infoshelf" data-link="info" style="display:none;">
             <div class="closebutton"></div>
-            <div class="shelf-inner">Info</div>
+            <div class="shelf-inner t-font t-medium yellow">
+              <div class="info-logo-container"><img class="info-logo" src="images/royale-redcross.png" alt="Royale &amp; American Red Cross"></div>
+              <p><span class="white">What is it that we are doing you ask?</span> It's simple. Royale is a design and production studio in Los Angeles who believes in giving back.</p>
+              <p>Every year we like to create an animated piece for the holidays. This year we thought we would help our east coast friends who might not be having a nice holiday due to Hurricane Sandy.</p>
+              <p>Our company has donated to the American Red Cross this year and also created an animated short to help inspire you to do the same.</p>
+              <p class="t-bold white">Royale wishes you and yours a wonderful holiday!</p>
+              <p class="info-fineprint">
+                <span class="info-secured">This site is fully secured by</span>
+                <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="info-stripe" alt="Stripe"></a>
+              </p>
+            </div>
           </div>
           
         </div><!-- /main -->
@@ -209,16 +226,24 @@
               <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone"></div>
             </div>
             <div class="counter-text t-font t-medium t-bold orange">
-              To date, this amount has been raised to aid those affected by Hurricane Sandy.
+              To date, this amount has been raised to aid those affected by Hurricane Sandy. If we reach our goal of <span class="white">10k</span> there will be an alt ending to our story. Spread the word!
             </div>
           </div><div class="footer-right">
             <div id="countdown"></div>
             <div class="countdown-text t-font t-medium t-bold">
-              <span class="orange">Days to raise</span> $1 billion. <span class="yellow">Ends</span> Jan 1st 2013
+              <span class="orange">Days to raise</span> 10k. <span class="yellow">Ends</span> Jan 1st 2013
             </div>
           </div>
           <div class="footer-bottom t-font t-vsmall orange">
-            &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="stripe-a" alt="Stripe"></a>
+            <div class="footer-text">
+              &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by 
+            </div>
+            <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="footer-stripe" alt="Stripe"></a>
+            <div class="footer-share">
+              <div class="spritebutton sharebutton facebook">
+              </div><div class="spritebutton sharebutton twitter">
+              </div><div class="spritebutton sharebutton mail"></div>
+            </div>
           </div>
         </div>
         

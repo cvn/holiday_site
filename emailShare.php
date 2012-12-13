@@ -1,44 +1,55 @@
-<?php
-//ini_set("include_path", ".:/services/phpMailer");
-           // phpinfo();
-            //include the main validation script
-           // require_once "services/formvalidator.php";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send an email</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/emailform.css">
 
-
-             require_once 'services/mailProcessor.php';
-
-
-
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <script src="js/jquery.html5-placeholder-shim.js"></script>
+</head>
+<body>
+  <div class="plaque-email">
+    <div class="plaque-email-inner">
+      <?php
+            require_once 'services/mailProcessor.php';
 
             $show_form=true;
 
             if(isset($_POST['name']))
             {// The form is submitted
 
-                //Setup Validations
-             /*   $validator = new FormValidator();
-                $validator->addValidation("name","req","Please fill in Name");
-                $validator->addValidation("email","email","The input for Email should be a valid email value");
-                $validator->addValidation("fname","req","Please fill in Name");
-                $validator->addValidation("email","email","The input for Email should be a valid email value");
-                 $validator->addValidation("femail","req","Please fill in Email");*/
+           
 
                     $name = $_POST['name'];
                     $visitor_email = $_POST['email'];
                     $message = $_POST['message'];
+                    if(isset($_POST['subscribe'])){
+                   
+                    if ($subscribe){ $message .= "\n Thank you for subscribing. \n";}
+
+                    }
                     $email_to = $_POST['femail'];
                     $email_subject = "Royale + Redcross Presents: The Bell Ringer";
-                    $email_body = " $message .\n".
-                                 " weareroyale.com/thebellringer \n \n ".
-                                              "Best Wishes! $name, \n ".
+                    $email_body = '<div style="white-space:pre-wrap;">'.
 
+                            ' <center>      <a href="holiday.weareroyale.com">  <img src="http://holiday.weareroyale.com/images/email/eshare-bellringer.png" /></a></center>'.
+                           '<center>   <p  style="text-align:left;display:inline-block;width:530px;" >'.
+                            'Hey There '.$name.', <br /><br />'.
+                            $message.
+                          ' </p></center>'.
+                          ' <center>    <a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/eshare-logo.png" /></a> </center>  '. 
+                            '<center>    <a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/eshare-footer.png" /></a> </center>'.  
+                           '</div>'.
+                             
+                                 
+                                 
                     $to = $email_to;
-                    $headers = "From: $visitor_email \r\n";
-                    $headers .= "Reply-To: $email_to \r\n";
-                    $html = false;
-
-                  //   mail($to, $email_subject, $email_body, null, 
-                  //     '-saggybells@weareroyale.com'); 
+                
+                    $html = true;
+ 
+            
 
 
                     $show_form=false;
@@ -49,63 +60,64 @@
 
                      echo $mailSend;
 
-                //Now, validate the form
-              /*  if($validator->ValidateForm())
-                {
-                    //Validation success. 
-                    //Here we can proceed with processing the form 
-                    //(like sending email, saving to Database etc)
-                    // In this example, we just display a message
-                    echo "<h2>Validation Success!</h2>";
-                    
-                    $name = $_POST['name'];
-                    $visitor_email = $_POST['email'];
-                    $message = $_POST['message'];
-                    $email_to = $_POST['femail'];
-                    $email_subject = "Royale + Redcross Presents: The Bell Ringer";
-                    $email_body = " $message .\n".
-                                 " weareroyale.com/thebellringer \n \n ".
-                                              "Best Wishes! $name, \n ".
+                    // echo (PATH);
 
-                    $to = $email_to;
-                    $headers = "From: $visitor_email \r\n";
-                    $headers .= "Reply-To: $email_to \r\n";
-                  //  mail($to,$email_subject,$email_body,$headers);
-
-                    mail($to, $email_subject, $email_body, null, 
-                       '-saggybells@weareroyale.com'); 
-
-
-                    $show_form=false;
-                }
-                else
-                {
-                    echo "<B>Validation Errors:</B>";
-
-                    $error_hash = $validator->GetErrors();
-                    foreach($error_hash as $inpname => $inp_err)
-                    {
-                        echo "<p>$inpname : $inp_err</p>\n";
-                    }        
-                }//else*/
+            
             }//if(isset($_POST['Submit']))
 
             if(true == $show_form)
             {
-            ?>
-
-             <form method="post" id="mailPost" name="myemailform" action='#'>
-                          Your Name: <input type="text" name="name" placeholder="First + Last" required><br />
-                          Your Email Address:    <input type="text" name="email" required><br />
-                          Recipient's Name: <input type="text" name="fname" required><br />
-                          Recipient's Email Address:    <input type="text" name="femail" required><br />
-                          Message:  <textarea name="message">Don't get your bell rung by an old lady during the holiday #saggybells</textarea><br />
-                          <input type="submit" value="Send Form">
-                          
-                        </form>
-            <?PHP
+      ?>
+      <div class="email-logo-container">
+        <img class="email-logo" src="images/royale-redcross.png">
+      </div>
+      <div class="t-font t-bold t-larger yellow email-title">
+        Do you know someone who may be itching to be entertained for a few minutes?
+      </div>
+      <div class="email-intro t-medium">
+        Send them an email to spread the word.  If Royale raises 10k for The American Red Cross, they'll animate a continuation of Edith's story.
+      </div>
+      <form method="post" id="mailPost" name="myemailform" action="">
+        <div class="t-font t-bold t-larger yellow email-title email-fieldtitle">
+          From:
+        </div>
+        <div class="form-row">
+          <input type="text" class="email-text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-row">
+          <input type="text" class="email-text" name="email" placeholder="Your email address" required>
+        </div>
+        <div class="t-font t-bold t-larger yellow email-title email-fieldtitle">
+          To:
+        </div>
+        <div class="form-row">
+          <input type="text" class="email-text" name="fname" placeholder="Recipient's name" required>
+        </div>
+        <div class="form-row">
+          <input type="text" class="email-text" name="femail" placeholder="Recipient's address" required>
+        </div>
+        <div class="t-font t-bold t-larger yellow email-title email-fieldtitle">
+          Message:
+        </div>
+        <div class="form-row">
+          <textarea class="email-textarea" name="message">Help Royale and the Red Cross raise 10k for our friends on the east coast... Check out their short film "The Bell Ringer" and following contribute to the fund.  If Royale makes their goal they'll animate a continuation of the story.
+          
+http://weareroyale.com/thebellringer</textarea>
+        </div>
+        <div class="email-send">
+          <input type="submit" class="spritebutton standardbutton sendbutton" value="">
+        </div>
+      </form>
+      <?php
             }//true == $show_form <input type="submit" value="Send Form">
 
             /*<a href="mailto:<?php echo $email_to; ?>?subject=Big%20News&body=Don\'t-get-your-bell-rung-by-an-old-lady-during-the-holiday-\#saggybells">Email Us</a>*/
-            ?>
-
+      ?>
+    </div> <!-- /plaque-email-inner -->
+  </div> <!-- /plaque-email -->
+  <div class="email-fineprint t-small">
+    Questions / Concerns?  Contact us at hello@weareroyale.com 
+  </div>
+  
+</body>
+</html>

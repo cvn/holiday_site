@@ -5,7 +5,7 @@ require_once 'donation-functions.php';
 // Get request variables
 $uName = $_REQUEST['name'];
 $uEmail = $_REQUEST['email'];
-$uSubscribe = (isset($_REQUEST['subscribe'])) ? 1 : 0;
+$uSubscribe = $_REQUEST['subscribe'];
 $token = $_REQUEST['stripeToken'];
 
 // Data shaping
@@ -16,6 +16,14 @@ if($_REQUEST['amount']=='other'){
 }
 $amountInCents = intval($uAmount * 100);
 $uSubscribe = (isset($uSubscribe)) ? 1 : 0;
+if(!$uName){
+	$uName = 'Anonymous Donor';
+}
+if(!$uEmail) {
+	$uEmail = 'no email provided';
+}
+$uDescription = $uName.' <'.$uEmail.'>';
+
 
 if ($token) {
 	// Stripe
@@ -30,7 +38,7 @@ if ($token) {
 	  "amount" => $amountInCents, // amount in cents, again
 	  "currency" => "usd",
 	  "card" => $token,
-	  "description" => $uName.' <'.$uEmail.'>')
+	  "description" => $uDescription)
 	);	
 }
 

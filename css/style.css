@@ -23,6 +23,8 @@ body {
 	font-family: sans-serif;
 	background-color:#2f282d;
 	color: #d5d5d5;
+	background-repeat: no-repeat;
+	background-position: center top;
 }
 
 img {
@@ -42,6 +44,9 @@ img {
 .success {
 	border-style: solid;
 	border-color: green;
+}
+.white {
+	color: #d5d5d5;
 }
 .orange {
 	color: #df966d;
@@ -63,8 +68,12 @@ img {
 	font-size: 20px;
 	line-height: 18px;
 }
+.t-larger {
+	font-size: 17px;
+}
 .t-large {
-	font-size: 15px;
+	font-size: 16px;
+	line-height: 1;
 }
 .t-medium {
 	font-size: 13px;
@@ -78,11 +87,6 @@ img {
 .t-icon {
 	vertical-align: top;
 	margin-top: -3px;
-}
-.stripe-a {
-	vertical-align: bottom;
-	position: relative;
-	top: 2px;
 }
 .stripe-b {
 	margin-top: -2px;
@@ -98,7 +102,7 @@ img {
 	min-width: 960px;
 	background-image:url('../images/bg-texture.jpg');
 	background-repeat: no-repeat;
-	background-position: center top;
+	background-position: center -13px;
 }
 
 .container {
@@ -129,19 +133,20 @@ img {
 .footer-left,
 .footer-right {
 	display: inline-block;
-	text-align: right;	
 	vertical-align: top;
 }
 .footer-left {
-	width: 673px;
+	min-width: 132px;
+	text-align: right;
 }
 .footer-right {
+	text-align: left;
 	width: 90px;
 	margin-left: 41px;
 }
 
 .footer-bottom {
-	margin: 10px 0;
+	margin: 20px 0;
 }
 
 .main,
@@ -151,6 +156,7 @@ img {
 
 .video-container {
 	z-index: 2;
+	background: black;
 }
 
 .video-container,
@@ -198,8 +204,8 @@ img {
 .splash-fg,
 .splash-bg {
 	position: absolute;
-	top: -30px;
-	left: 140px;
+	top: -47px;
+	left: 41px;
 }
 .splash-fg {
 	z-index: 8;
@@ -218,6 +224,7 @@ img {
 .amount-dollar,
 .amount-sprite {
 	text-indent: 99999px;
+	overflow: hidden;
 	display: inline-block;
 	height: 38px;
 }
@@ -309,6 +316,23 @@ input[type="radio"]:checked + label::before {
 	color: red;
 }
 
+.info-logo-container {
+	text-align: center;
+	margin-bottom: 25px;
+}
+.info-logo {
+	margin-left: 20px;
+}
+.info-fineprint {
+	margin-top: 25px;
+}
+.info-secured {
+	display: inline-block;
+	vertical-align: middle;
+}
+.info-stripe {
+	vertical-align: middle;
+}
 
 /*/////////////////////////
 
@@ -336,10 +360,10 @@ input[type="radio"]:checked + label::before {
 .standardbutton.active {
 	background-position: 0 -60px;
 }
-.standardbutton.yes {
+.standardbutton.donate {
 	background-image: url('../images/button-yes.png');
 }
-.standardbutton.no {
+.standardbutton.nodonate {
 	background-image: url('../images/button-no.png');
 }
 .standardbutton.playmovie {
@@ -381,20 +405,19 @@ input[type="radio"]:checked + label::before {
 }
 
 .playbutton {
+	position: relative;
+	display: inline-block;
 	background-image: url('../images/button-play.png');
 	width: 122px;
 	height: 122px;
-	position: absolute;
-	right: 130px;
-	top: 400px;
-	z-index: 10;
+	margin-top: 2px;
 }
 .playbutton:hover {
 	background-position: 0 -122px;
 }
 .playbutton:active,
 .playbutton.active {
-	margin-top:1px;
+	top:1px;
 }
 
 .sharebutton {
@@ -465,17 +488,29 @@ input[type="radio"]:checked + label::before {
 .plaque {
 	background-image: url('../images/plaque.png');
 	position:absolute;
-	left:50%;
-	top: 59px;
-	margin-left: 104px;
 	width:367px;
 	height:434px;
 	z-index: 7;
 	text-align: center;
 }
+.plaque.firstbox {
+	left: 493px;
+	top: 42px;
+}
 .plaque-inner {
-	padding: 30px 90px 0 100px;
+	padding: 30px 87px 0 97px;
 	text-align: left;
+}
+.plaque.donatebox {
+	left:50%;
+	top: 59px;
+	margin-left: 104px;
+	pointer-events: none;
+}
+.plaque-shadowless {
+	pointer-events: auto;
+	display: inline-block;
+	width: 237px;
 }
 
 .shelf {
@@ -489,8 +524,12 @@ input[type="radio"]:checked + label::before {
 	height: 366px;
 	z-index: 6;
 }
-.shelf-inner {
+
+.donateshelf .shelf-inner {
 	padding: 50px 30px 0;
+}
+.infoshelf .shelf-inner {
+	padding: 35px 170px 0 65px;
 }
 
 .shelf-left,
@@ -508,9 +547,7 @@ input[type="radio"]:checked + label::before {
 
 .firstbox p {
 	margin: 0;
-}
-.firstbox p + p {
-	margin-top: .5em;
+	margin-bottom: .7em;
 }
 
 .firstbox-buttons {
@@ -525,6 +562,21 @@ input[type="radio"]:checked + label::before {
 	height:60px;
 	text-align: center;
 }
+.footer-text {
+	display: inline-block;
+	vertical-align: middle;
+}
+.footer-stripe {
+	vertical-align: middle;
+	margin-left: 4px;
+}
+.footer-share {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+
 
 .donatebox-header {
 	margin-top: 18px;

@@ -29,7 +29,7 @@ function pPause(){
      pop.pause();
 }
 
-function pClear(){
+/*function pClear(){
   var events = pop.getTrackEvents();
     if (events.length) {
       for (var e in events) {
@@ -48,63 +48,12 @@ function pClear(){
    // setTimeout(function(){loopTrigger(0)}, 200);
 
 }
+*/
 
-function safetyStopz(){
-
-  if(safetyStop >= 100){
-    stopExit = 0;
-    safetyStop = 0;
-      // pop.pause();
-                  logger('safety Stopped!')
-                  killIntervals();
-                  idleTime = 0;
-               
-                //  pop.pause();
-                  var events = pop.getTrackEvents();
-                    if (events.length) {
-                      for (var e in events) {
-                      pop.removeTrackEvent(events[e]._id);
-                      }
-                    }
-                    //  pop.pause();
-
-                 
-
-                  $('body').mousemove(function (e) {
-                       if (stopExit == 0){
-                    stopExit = 1;
-                    safetyCont = 1;
-                            idleTime = 0;
-                            trigger = 0;
-                           trigga(0);
-
-                         }
-                         
-                          //  logger('party continues');
-                        });
-                        $(this).keypress(function (e) {
-                             if (stopExit == 0){
-                              idleTime = 0;
-                          stopExit = 1;
-                         // safetyStop = 0;
-                            //playPop;
-                             trigga(0);
-                          }
-
-                         //   logger('party continues from keys');
-                        });
-
-                      
-
-                         setTimeout(function(){pop.pause();}, 100); 
-
-                }
-
-}
 
 var secondFade = 1;
 var stopExit = 0;
-
+var readyToAnimate = 0;
 
      var intervalArr = new Array();
         function intervalOne () { console.log ('foo');};
@@ -115,122 +64,8 @@ var stopExit = 0;
             clearInterval(intervalArr.pop());
         };
  
- 
-   function timeOutz(numzz, timez, loopOut){  logger(timez);
-            switch(numzz){
 
 
-
-                case 0:
-
-                        idleTime = 0;
-                        trigger = 1;
-
-                        
-                       // idleTime = 0;
-
-                        setTimeOutFunction1(timez, loopOut, 3000);
-
-                            
-                            
-                        
-
-
-                break;
-
-                case 1:
-
-
-                     intervalArr.push(setTimeout(function(){
-
-                            
-                            logger('Waiting');
-                                //updateLooper(5);
-                            
-
-                        },5000));
-
-                          //Zero the idle timer on mouse movement.
-                        $(this).mousemove(function (e) {
-                            idleTime = 0;
-                        });
-                        $(this).keypress(function (e) {
-                            idleTime = 0;
-                        });
-
-
-                            logger(idleTime);
-                            
-                        
-
-                        if( idleTime == timez){
-
-                                clearTimeout(t2);
-                                loopFrom = 3;
-                                   idleTime = 0;
-
-                                logger('Timeout '+ numzz +' Reached');
-
-                                
-                            }
-
-                break;
-
-
-                    }
-            }
-
-
-
-
-    function setTimeOutFunction1(timez, loopOut, intervalz){
-
-        logger('timoutFunc1 vals Count: ' + timez + 'loopOut ' + loopOut + ' and interval ' + intervalz );
-        
-
-
-        intervalArr.push(setInterval(function(){
-
-                             idleTime = idleTime + 1;
-                                logger('Waiting');
-                                //updateLooper(5);
-                                 logger(idleTime);
-
-
-                                 if( idleTime == timez){
-
-                                //clearInterval(t2);
-                                killIntervals();
-                                loopFrom = loopOut;
-
-
-                                logger(loopOut);
-                               
-                                idleTime = 0;
-
-                                trigger = 0;
-                                
-                                loopTrigger(loopOut);
-                                
-                            }
-
-                        }, intervalz));
-
-                          //Zero the idle timer on mouse movement.
-                        $(this).mousemove(function (e) {
-                            idleTime = 0;
-                        });
-                        $(this).keypress(function (e) {
-                            idleTime = 0;
-                        });
-
-                        logger(idleTime);
-
-                        
-
-
-    }
-    
      
 
 
@@ -251,6 +86,16 @@ var stopExit = 0;
 
 
 
+var isOpera = !!(window.opera && window.opera.version);  // Opera 8.0+
+var isFirefox = testCSS('MozBoxSizing');                 // FF 0.8+
+var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    // At least Safari 3+: "[object HTMLElementConstructor]"
+var isChrome = !isSafari && testCSS('WebkitTransform');  // Chrome 1+
+var isIE = /*@cc_on!@*/false || testCSS('msTransform');  // At least IE6
+
+function testCSS(prop) {
+    return prop in document.documentElement.style;
+}
 
 
 
@@ -258,34 +103,86 @@ var stopExit = 0;
 
 
 /////////////////////////////////////////////////////////////////////
+var readyPlay = 0;
+
+function goBlack(){
+
+   $('.brotherDarkness').fadeIn(inz, function() {
+      logger('second BG Fade');
+      $('.brotherDarkness').fadeOut(outz, function() {
+
+
+    
+      });
+    });
+
+}
+
 
 function goLive(){
-    $('#htmlvideo').show();
+   
     $('#player_1').hide();
+    $('.skipbutton').fadeOut(2000);
     //bellThrow();
+    //loading - 
+
+    //show and play hide loading 
 
    // bellHitEffect(50, 2000);
+  
+   // readyPlay = pop.readyState();
+
+
+
+readyState();
+   
+   
+
+
+   
+}
+
+
+function readyState(){
+  readyPlay = pop.readyState();
+  if (readyPlay >= 2){
+    logger('ready to play');
+
     
-    pPlay(8.8);
 
-     $('.donatebox').fadeIn(2000);
+   pPlay(8.8);
+    $('#htmlvideo').fadeIn(3000);
 
-    pop.cue(13, function(){
+  $('.donatebox').fadeIn(1250);
+
+
+     pop.cue('first', 13);
+    pop.cue('first', function(){
           playPop();
         });
 
+     bgMatte(1000);
 
-    bgMatte(1000);
+
+}else{
+  setTimeout( function(){
+    logger('not ready yet'); 
+    readyState();
+      }, 200);
+
+}
+
 }
 
 function bellThrow(){
+
   pPlay(5.4);
-  idleTime = 0;
-  pop.cue(8.7, function(){
+   readyToAnimate = 0;
+  //idleTime = 0;
+  pop.cue( 8.7, function(){
      bellHitEffect(20, 2000);
   });
-  pop.cue(9, function(){
-  });
+ 
 }
 
 function bellHitEffect(inz, outz){
@@ -309,6 +206,7 @@ function bellHitEffect(inz, outz){
       $('.brotherDarkness').fadeOut(outz, function() {
         pop.cue(13, function(){
           secondFade = 0;
+
           playPop();
         });
       });
@@ -328,7 +226,8 @@ function finalTreat(){
 
   logger('Trigger Final Animation finalTreat');
  // killIntervals();
-  idleTime = 0;
+ // idleTime = 0;
+  readyToAnimate = 0;
  // pop.pause();
 //  playMoneyDrop();
   logger('im playing treat maybe?');
@@ -353,28 +252,81 @@ function playMoneyDrop(){
   pop.play(14);*/
 
 
-
+/*
   pop.cue('first', function(){
 
     // setTimeout(function(){
-    
+    logger('first drop play');
     pop.currentTime(14).play();
 
   //}, 30);
+  });
+*/
+
+
+ if(isSafari){safariCue();} else {
+
+
 
    pop.currentTime(14).play();
-  pop.cue('first', 18.7, function(){
+    pop.cue('first', 18.7);
+  pop.cue('first', function(){
+     logger('last drop play');
     logger('in the mix! money drop exit');
     pop.play();
     pop.currentTime(0).play();
     loopTrigger(0);
     playPop();
   });
-});
+
+
+}
 
 }
 
 
+
+function safariCue(){
+
+  var events = pop.getTrackEvents();
+    if (events.length) {
+      for (var e in events) {
+
+       // logger(events[e]._id);    
+
+
+      pop.removeTrackEvent(events[e]._id);
+
+      }
+
+    }
+
+     
+ // pop.removeTrackEvent('first');
+
+logger('beep bepp');
+      
+pop.currentTime(14).play();
+    
+
+/*pop.cue('first', 17);
+ pop.cue('first', function(){*/
+   // pop.cue('first', 18.79);
+    pop.exec(18.7, function(){
+      
+
+    logger('in the mix! money drop exit');
+    //pop.play();
+    pop.currentTime(0);
+    pop.play();
+    loopTrigger(0);
+    playPop();
+  });
+
+
+
+
+}
 
 
 /////////// POPCORN JS STUFF STARTS HERE /////////////////////////////
@@ -408,7 +360,7 @@ function playMoneyDrop(){
             })
       var eventId = pop.getLastTrackEventId();
 
-      pop
+     
      // pop.cue(eventId, 5.4);
      // pop.cue(eventId, function(){
 
@@ -560,6 +512,15 @@ function playMoneyDrop(){
      } else{ loopTrigger(1); }
    }
 
+
+   function exitFirst(){
+    logger('exitFirst');
+
+    loopTrigger(2);
+
+
+   }
+
     function loopTrigger(cuez){
         switch(cuez){
 
@@ -591,6 +552,9 @@ function playMoneyDrop(){
 
                 pop.cue('first', 1.3, function() {
 
+                  readyToAnimate = 1;
+
+                  logger(readyToAnimate);
                  
               pop.play(0);
 
@@ -611,13 +575,13 @@ function playMoneyDrop(){
 
                   firstPlayCount = 0;
 
-                  loopTrigger(2);
+                exitFirst();
+
+                  
 
                  
 
-                }
-
-                else {
+                } else {
 
                 case1Extend();
                 
@@ -648,7 +612,7 @@ function playMoneyDrop(){
                      //clearInterval(t2);
                      // clearTimeout();
                      //trigga(0);
-                      pop.cue('first', 5.25, function() {
+                      pop.cue('first', 5.29, function() {
                      eraseAllowed = 0;
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
@@ -661,7 +625,9 @@ function playMoneyDrop(){
                  //   };
                       logger('im in twwwzey');
 
-                      pop.play(1.35);
+                       pPlay(0);
+
+                     // pop.play(1.31);
 
                      
 /*    
@@ -721,6 +687,7 @@ function playMoneyDrop(){
 
             case 3:
 
+                pop.cue('first', 1.3, function(){
                 eraseAllowed = 0;
             // pop.cue( 22, function() {
                 logger('on third Case');
@@ -734,7 +701,9 @@ function playMoneyDrop(){
                  // loopExit(0);
                  loopTrigger(4);
 
-          //  });
+              //   });
+
+            });
 
             break;
 
@@ -880,6 +849,21 @@ $(document).ready(function(){
     pop = Popcorn('#htmlvideo', {
       frameAnimation: true
     });
+
+
+   $('.skipmovie').on('click',function(){
+        if(vimeoHasPlayed) {
+
+            vimeoController('pause');
+        };
+           //Vimeo pause- 
+           $('.splash').fadeOut(function(){
+
+           });
+           $('.main').css({visibility:'visible'});
+           goLive();
+     });
+
 
     $('#htmlvideo').hide();
 
