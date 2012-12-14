@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/includes/variables.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/services/donation-functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/donation-functions.php';
 
 // Get request variables
 $uName = $_REQUEST['name'];

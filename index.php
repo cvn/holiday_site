@@ -1,5 +1,5 @@
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/includes/variables.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
 
   //Mobile site redirection
   if ( eregi("MSIE", getenv( "HTTP_USER_AGENT" ) ) 
@@ -33,7 +33,7 @@
   }
 
 ?>
-<?php include_once $_SERVER['DOCUMENT_ROOT']."/services/donation-functions.php" ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/donation-functions.php' ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -223,7 +223,7 @@
                   <span class="payment-errors t-medium"></span>
                 </div><div class="shelf-right">
                   <div class="shelf-secured t-small">
-                    <img src="/images/lock.png" class="t-icon"> This transation is secured by <a href="http://stripe.com" target="_blank"><img src="/images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
+                    <img src="images/lock.png" class="t-icon"> This transation is secured by <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
                   </div>
                   <div class="t-medium">
                     To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!

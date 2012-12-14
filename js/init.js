@@ -284,7 +284,7 @@ jQuery(document).ready(function($) {
 
   var creditCard = $('.card-number')
   creditCard.cardcheck({
-    iconDir: '/images/cc-icons/',
+    iconDir: 'images/cc-icons/',
     acceptedCards: ['visa','mastercard','amex', 'discover', 'jcb'],
     iconLocation: '#accepted-cards-images',
     onReset: function() {     

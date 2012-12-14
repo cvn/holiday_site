@@ -558,7 +558,7 @@ pop.currentTime(14).play();
                     shelfExtend('thanks');
                     setTimeout(function(){
                       shelfRetract('thanks');
-                    },4000);
+                    },6000);
 
                     happyHol = 0;
                   };
