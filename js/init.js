@@ -95,9 +95,9 @@ function heckNo(){
 
   if(readyHeck== 1){
 
-  pop.cue('first', 1.3, function() {
+  //pop.cue('first', 1.3, function() {
     bellThrow();
-  });
+ // });
 
 
   logger('Trigger Angry Throw');
@@ -105,7 +105,7 @@ function heckNo(){
 } else {
           setTimeout(function(){
             heckNo();
-          }, 200);
+          }, 50);
       }
 }
 

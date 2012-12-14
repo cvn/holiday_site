@@ -1,3 +1,7 @@
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/mailProcessor.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,20 +12,22 @@
 
   <script src="js/jquery-1.8.2.min.js"></script>
   <script src="js/jquery.html5-placeholder-shim.js"></script>
+<?php
+  // Google Analytics
+  if ($portable['live']){
+    include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/analytics.php';
+  }
+?>
 </head>
 <body>
   <div class="plaque-email">
     <div class="plaque-email-inner">
       <?php
-            require_once 'services/mailProcessor.php';
-
             $show_form=true;
 
             if(isset($_POST['name']))
             {// The form is submitted
-
-           
-
+             
                     $name = $_POST['name'];
                     $visitor_email = $_POST['email'];
                     $message = $_POST['message'];
@@ -30,13 +36,13 @@
                     $email_subject = "Royale + Redcross Presents: The Bell Ringer";
                     $email_body = '<div style="white-space:pre-wrap;">'.
 
-                            ' <center>      <a href="holiday.weareroyale.com">  <img src="http://holiday.weareroyale.com/images/email/eshare-bellringer.png" /></a></center>'.
+                            ' <center>      <a href="'. $portable['bellSite'].'">  <img src="'. $portable['imagePath'] .'email/eshare-bellringer.png" /></a></center>'.
                            '<center>   <p  style="text-align:left;display:inline-block;width:530px;" >'.
                             'Hey There '.$name.', <br /><br />'.
                             $message.
                           ' </p></center>'.
-                          ' <center> <a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/eshare-logo.png" /></a> </center>  '. 
-                            '<center>    <a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/eshare-footer.png" /></a> </center>'.  
+                          ' <center> <a href="'.$portable['royaleSite'].'"> <img src="'.$portable['imagePath']. 'email/eshare-logo.png" /></a> </center>  '. 
+                            '<center>    <a href="'.$portable['royaleSite'].'"> <img src="'. $portable['imagePath'] .'email/eshare-footer.png" /></a> </center>'.  
                            '</div>';
 
                         /*   '<center> <div style="white-space:pre-wrap;">'.

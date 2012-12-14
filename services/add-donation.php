@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/donation-functions.php';
 
+
 // Get request variables
 $uName = $_REQUEST['name'];
 $uEmail = $_REQUEST['email'];
@@ -60,14 +61,14 @@ if ($token) {
         if ($uSubscribe == 1){ $subscript = '<br />Thank you for subscribing! <br />'; }
         
 		$email_body =  '<center> <div style="white-space:pre-wrap;">'.
-		'<img src="http://holiday.weareroyale.com/images/email/reciept-thankyou.png" />'.
+		'<img src="'. $portable['imagePath'] .'email/reciept-thankyou.png" />'.
 		'<p style="text-align:left;display:inline-block;width:530px;" ><br /><br />'.
 		'Hey there '.$uName.', <br /><br />'.
 		'Thank you so much for your $<b>'. $uAmount .'</b> donation.  One step closer toward meeting not only our goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them the best this holiday season, and know that this will go a long way to their relief.'.
 		'<br />'.$subscript.'</p></center><br />'.
 
-		'<center><a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciept-xo.png" /></a> </center> <br /> '. 
-		'<center><a href="http://www.weareroyale.com"><img src="http://holiday.weareroyale.com/images/email/reciepit-footer.png" /></a><br /></center> '.  
+		'<center><a href="'.$portable['royaleSite'].'"> <img src="'. $portable['imagePath'] .'email/reciept-xo.png" /></a> </center> <br /> '. 
+		'<center><a href="'.$portable['royaleSite'].'"><img src="'. $portable['imagePath'] .'email/reciepit-footer.png" /></a><br /></center> '.  
 		'</div></center>';
                     
         $html = true;

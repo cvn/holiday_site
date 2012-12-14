@@ -651,7 +651,7 @@ pop.currentTime(14).play();
                      //trigga(0);
                       pop.cue('first', 5.29, function() {
 
-
+                            readyHeck = 1;
                    //  eraseAllowed = 0;
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
@@ -762,8 +762,9 @@ pop.currentTime(14).play();
 
 
                 pop.cue('first', 1.3, function() {
+                   
                        pPlay(0);
-                        
+                         readyHeck = 1;
                        eraseAllowed = 0;
                      loopTrigger(0);
 

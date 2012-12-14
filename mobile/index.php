@@ -1,3 +1,6 @@
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,8 +14,13 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="../css/style.css">
+<?php
+  // Google Analytics
+  if ($portable['live']){
+    include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/analytics.php';
+  }
+?>
 </head>
 <body>
     <div class="bgwrapper">
@@ -20,15 +28,15 @@
 
         <div class="row header">
           <div class="RoyalePresents">
-            <a href="http://weareroyale.com"><img src="images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
+            <a href="http://weareroyale.com/"><img src="../images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
           </div><div class="daBellRinga">
-            <img src="images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer" onClick="$('#htmlvideo')[0].play()">
+            <img src="../images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer">
           </div>        
         </div>
         
         <div class="row main">
 	        <div class="video-container">
-	          <iframe class="video" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
+	          <iframe class="video" id="player_1" src="<?=$portable['vimeoEmbed']?>" frameborder="0" webkitallowfullscreen></iframe>
 	        </div>
         </div>
         <div class="row footer">

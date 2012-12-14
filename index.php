@@ -8,7 +8,7 @@
     || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
     ) {
 
-    $url = 'mobile';
+    $url = 'mobile/';
     header("Location: $url");
   }
 
@@ -87,14 +87,12 @@
     <script src="js/jshashtable-2.1.js"></script>
     <script src="js/jquery.numberformatter-1.2.3.min.js"></script>
     <script src="js/cardcheck.js"></script>
-    <script src="js/jquery.html5-placeholder-shim.js"></script>  
+    <script src="js/jquery.html5form.js"></script>  
     <script src="https://js.stripe.com/v1/"></script>
     <script type="text/javascript">
       // this identifies your website in the createToken call below
       Stripe.setPublishableKey('<?=$portable["stripePublicKey"]?>');
     </script>
-
-
 
     <script src="js/video-controller-mack.js"></script>
     <script src="js/init.js"></script>
@@ -116,7 +114,7 @@
 <?php
   // Google Analytics
   if ($portable['live']){
-    include_once('includes/analytics.php');
+    include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/analytics.php';
   }
 ?>
 </head>
@@ -131,9 +129,9 @@
       
         <div class="row header">
           <div class="RoyalePresents">
-            <a href="http://weareroyale.com"><img src="images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
+            <a href="http://weareroyale.com/"><img src="images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
           </div><div class="daBellRinga">
-            <img src="images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer" onClick="$('#htmlvideo')[0].play()">
+            <img src="images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer">
           </div>        
         </div>
 
@@ -223,7 +221,7 @@
                   <span class="payment-errors t-medium"></span>
                 </div><div class="shelf-right">
                   <div class="shelf-secured t-small">
-                    <img src="images/lock.png" class="t-icon"> This transation is secured by <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
+                    <img src="images/lock.png" class="t-icon"> This transation is secured by <a href="https://stripe.com" target="_blank"><img src="images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
                   </div>
                   <div class="t-medium">
                     To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!
@@ -268,7 +266,7 @@
               <p class="t-bold white">Royale wishes you and yours a wonderful holiday!</p>
               <p class="info-fineprint">
                 <span class="info-secured">This site is fully secured by</span>
-                <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="info-stripe" alt="Stripe"></a>
+                <a href="https://stripe.com" target="_blank"><img src="images/stripe-small.png" class="info-stripe" alt="Stripe"></a>
               </p>
             </div>
           </div>
@@ -294,7 +292,7 @@
             <div class="footer-text">
               &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by 
             </div>
-            <a href="http://stripe.com" target="_blank"><img src="images/stripe-small.png" class="footer-stripe" alt="Stripe"></a>
+            <a href="https://stripe.com" target="_blank"><img src="images/stripe-small.png" class="footer-stripe" alt="Stripe"></a>
             <div class="footer-share">
               <div class="spritebutton sharebutton facebook">
               </div><div class="spritebutton sharebutton twitter">
