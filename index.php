@@ -74,7 +74,7 @@
       <?php
         $donationsArray = getDonations();
         $donationsLo = ($donationsArray[1][total]) ? $donationsArray[1][total] : 0;
-        $donationsHi = ($donationsArray[0][total]) ? $donationsArray[0][total] : 0;
+        $donationsHi = ($donationsArray[0][total]) ? $donationsArray[0][total] : 0.1;
       ?>
       var donationInitial = <?=$donationsLo?>
         , donationTotal = <?=$donationsHi?>;
@@ -167,7 +167,7 @@
                 <p>Please update your browser</p>
             </video>
             <div class="video-blackout blackout-interactive video"></div>
-            <iframe class="video" style="display:none;" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
+            <iframe class="video" style="display:none;" id="player_1" src="<?=$portable['vimeoEmbed']?>" frameborder="0" webkitallowfullscreen></iframe>
             <div class="video-blackout blackout-vimeo video"></div>
           </div>
           

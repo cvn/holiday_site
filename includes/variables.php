@@ -20,6 +20,7 @@ if (strpos($_SERVER[HTTP_HOST], $devIdentifier) !== false){
 		,'payCvv'=>'123'
 		,'payMonth'=>'12'
 		,'payYear'=>'2013'
+		,'vimeoEmbed'=>'http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1'
 
 	);
 
@@ -32,14 +33,15 @@ if (strpos($_SERVER[HTTP_HOST], $devIdentifier) !== false){
 		,'live'=>1
 		,'dbUsername'=>'holiday'
 		,'dbPassword'=>'thebellringer'
-		,'dbdonationsDb'=>'holiday'
-		,'dbdonationsTable'=>'donations'
+		,'dbDonationsDb'=>'holiday'
+		,'dbDonationsTable'=>'donations'
 		,'stripePrivateKey'=>'sk_live_S1j17FOV6hBjEhbhySDpA3Bn'
 		,'stripePublicKey'=>'pk_live_5QC3eMUhNnNnfbM5UNFatjz1'
 		,'payCard'=>''
 		,'payCvv'=>''
 		,'payMonth'=>''
 		,'payYear'=>''
+		,'vimeoEmbed'=>'https://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1'
 	);
 
 }
