@@ -109,7 +109,7 @@
           Message:
         </div>
         <div class="form-row">
-          <textarea class="email-textarea" name="message">Help Royale and the Red Cross raise 10k for our friends on the east coast... Check out their short film "The Bell Ringer" and following contribute to the fund.  If Royale makes their goal they'll animate a continuation of the story.
+          <textarea class="email-textarea" name="message">Help Royale and the Red Cross raise $10,000 for our friends on the East Coast... Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
           
 http://weareroyale.com/thebellringer</textarea>
         </div>

@@ -1,24 +1,39 @@
-<?php include_once "services/donation-functions.php" ?>
 <?php
-/*$vimz = 'player.vimeo.com';
-$hostHTTP = 'www';
-$vimeo = 0;
-$vimeoQuery = '';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/includes/variables.php';
 
-     if (strpos($_SERVER['HTTP_REFERER'], $vimz) !== false){
-        $vimeo = 1;
-        $vimeoQuery = '?vim=1';
-      }
-        if ($_SERVER['SERVER_PORT']!=443 || strpos($_SERVER['HTTP_HOST'], $hostHTTP) !== false)
-        {
-              $url = "https://weareroyale.com/thebellringer".$vimeoQuery;
-              header("Location: $url");
-        } 
+  //Mobile site redirection
+  if ( eregi("MSIE", getenv( "HTTP_USER_AGENT" ) ) 
+    || eregi("Internet Explorer", getenv("HTTP_USER_AGENT" ) ) 
+    || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') 
+    || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
+    ) {
 
+    $url = 'mobile';
+    header("Location: $url");
+  }
 
-*/
+  // Vimeo prep
+  $vimeoMatcher = 'player.vimeo.com';
+  $wwwMatcher = 'www';
+  $vimeoRef = 0;
+  $vimeoQuery = '';
+  $vimStatus = isset($_REQUEST['fromvimeo']);
+
+  if (strpos(strtolower($_SERVER['HTTP_REFERER']), $vimeoMatcher) !== false){
+    $vimeoRef = 1;
+    $vimeoQuery = '?fromvimeo';
+  }
+
+  // HTTPS redirection
+  if ($portable['live']){
+    if ($_SERVER['SERVER_PORT']!=443 || strpos($_SERVER['HTTP_HOST'], $wwwMatcher) !== false){
+      $url = "https://weareroyale.com/thebellringer".$vimeoQuery;
+      header("Location: $url");
+    }
+  }
 
 ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT']."/services/donation-functions.php" ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -27,11 +42,11 @@ $vimeoQuery = '';
 <head>
     <meta charset="UTF-8">
     <title>Royale Presents | The Bell Ringer</title>
-    <meta name="description" content="Don't get your bell rung by an old lady during the holiday #saggybells">
+    <meta name="description" content="Don't get your bell rung by Edith during the holiday #saggybells">
     <meta name="author" content="Royale">
-    <meta property="og:image" content="http://holiday.weareroyale.com/images/video-thumbnail.jpg"/>
+    <meta property="og:image" content="http://weareroyale.com/thebellringer/images/video-thumbnail.jpg"/>
     <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
-    <meta property="og:description" content="Don't get your bell rung by an old lady during the holiday #saggybells"/>
+    <meta property="og:description" content="Don't get your bell rung by Edith during the holiday #saggybells"/>
     
     <base target="_parent" />
     
@@ -51,9 +66,7 @@ $vimeoQuery = '';
     <!-- Favicons
     ================================================== -->
     <!-- <link rel="shortcut icon" href="favicon.ico"> -->
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    
 
     <!-- JS
     ================================================== -->
@@ -76,39 +89,34 @@ $vimeoQuery = '';
     <script src="js/cardcheck.js"></script>
     <script src="js/jquery.html5-placeholder-shim.js"></script>  
     <script src="https://js.stripe.com/v1/"></script>
+    <script type="text/javascript">
+      // this identifies your website in the createToken call below
+      Stripe.setPublishableKey('<?=$portable["stripePublicKey"]?>');
+    </script>
+
+
 
     <script src="js/video-controller-mack.js"></script>
     <script src="js/init.js"></script>
-    <script type="text/javascript">
-
-      // var _gaq = _gaq || [];
-      // _gaq.push(['_setAccount', 'UA-27888870-1']);
-      // _gaq.push(['_trackPageview']);
-
-      // (function() {
-      //   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      // })();
-
-    </script>
 <?php
-  // Vimeo Referrer detection    
- /* $vimz = 'player.vimeo.com';
-  $ref=$_SERVER['HTTP_REFERER'];
-  
-  if  (strpos($_SERVER['HTTP_HOST'], $hostHTTP) !== false){
-
-    echo 'This aint yo shit';
-
-  }*/
-
-  $vimStatus = $_GET['vim'];
-  if  ($vimStatus == 1 || $vimeo == 1){
-    echo('<script type="text/javascript">');
-    echo("setTimeout(function(){ if(vimeoHasPlayed) { vimeoController('pause'); }; $('.main').css({visibility:'visible'});goLive();},200);");
-    echo('</script>');
-    echo('<style type="text/css">.splash { display: none; }</style>');
+  // Vimeo referrals skip straight to interactive
+  if ($vimStatus || $vimeoRef):
+?>
+    <script type="text/javascript">
+    setTimeout(function(){
+      if(vimeoHasPlayed) { vimeoController('pause'); }
+      splashOutVidIn('#htmlvideo');
+      goLive();}
+    ,200);
+    </script>
+    <style type="text/css">.splash { display: none; }</style>
+<?php
+  endif;
+?>
+<?php
+  // Google Analytics
+  if ($portable['live']){
+    include_once('includes/analytics.php');
   }
 ?>
 </head>
@@ -139,7 +147,7 @@ $vimeoQuery = '';
           <div class="plaque firstbox t-font t-large">
             <div class="plaque-inner">
               <p>This holiday season we would like to help our East Coast friends affected by Hurricane Sandy.</p>
-              <p class="yellow">After enjoying "The Bell Ringer", stay tuned to find out how you can help Edith and Royale raise money for the American Red Cross. If we meet our goal of <span class="t-bold white">10k</span> we will release an alt ending.</p>
+              <p class="yellow">After enjoying "The Bell Ringer", stay tuned to find out how you can help Edith and Royale raise money for the American Red Cross. If we meet our goal of <span class="t-bold white">$10,000</span> we will release an alternate ending.</p>
               <p>Wishing you and yours a lovely holiday season.</p>
             </div>
             <div class="royale-script">
@@ -158,8 +166,9 @@ $vimeoQuery = '';
                 <source src="video/holiday2012-interactive.webm" type="video/webm">
                 <p>Please update your browser</p>
             </video>
-            <div class="video-blackout video"></div>
+            <div class="video-blackout blackout-interactive video"></div>
             <iframe class="video" style="display:none;" id="player_1" src="http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1" frameborder="0" webkitallowfullscreen></iframe>
+            <div class="video-blackout blackout-vimeo video"></div>
           </div>
           
           <div class="plaque donatebox" style='display: none;'>
@@ -177,11 +186,6 @@ $vimeoQuery = '';
               </div>
               <div class="donatebox-proceeds t-font t-medium orange">
                 * All proceeds to<br>American Red Cross.
-              </div>
-              <div class="share">
-                <div class="spritebutton sharebutton facebook">
-                </div><div class="spritebutton sharebutton twitter">
-                </div><div class="spritebutton sharebutton mail"></div>
               </div>
             </div>
           </div>
@@ -225,24 +229,24 @@ $vimeoQuery = '';
                     To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!
                   </div>
                   <div class="form-row">
-                      <input type="text" class="card-name form-text form-fullwidth" autocomplete="off" name="name" placeholder="Name on card" />
+                      <input type="text" required class="card-name form-text form-fullwidth" autocomplete="off" name="name" placeholder="Name on card" />
                   </div>
                   <div class="form-row">
-                      <input type="text" class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" />
+                      <input type="email" required class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" />
                   </div>
                   <div class="form-row">
-                      <input type="text" size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="4242424242424242" /><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="123" />
+                      <input type="text" required size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="<?=$portable['payCard']?>" /><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="<?=$portable['payCvv']?>" />
                   </div>
                   <div class="form-row">
                       <label class="t-medium">Exp date:&nbsp;</label>
-                      <input type="text" size="2" class="card-expiry-month form-text t-center" placeholder="MM" value="12" />
+                      <input type="text" required size="2" class="card-expiry-month form-text t-center" placeholder="MM" value="<?=$portable['payMonth']?>" />
                       <span> / </span>
-                      <input type="text" size="4" class="card-expiry-year form-text t-center" placeholder="YYYY" value="2013" />
+                      <input type="text" required size="4" class="card-expiry-year form-text t-center" placeholder="YYYY" value="<?=$portable['payYear']?>" />
                     <div id="accepted-cards-images" class="form-cards"></div>
                   </div>
                   <div class="form-row">
                     <input type="submit" class="submit-button spritebutton standardbutton" value="" alt="Submit">
-                    <label class="t-medium yellow form-subscribe"><input type="checkbox" name="subscribe" checked="checked"> Subscribe to our mailing list</label>
+                    <input id="subscribebox" type="checkbox" name="subscribe" checked="checked"><label for="subscribebox" class="t-medium yellow form-subscribe"> Subscribe to our mailing list</label>
                   </div>
                   <div class="t-small">Questions / Concerns? Contact us at hello@weareroyale.com</div>
                 </div>
@@ -251,6 +255,7 @@ $vimeoQuery = '';
           </div>
 
           <div class="shelf greyshelf thanksshelf" data-link="thanks" style="display:none;">
+            <div class="closebutton"></div>
             <img src="images/thanks.png" alt="Happy Holidays. Love, Royale">
           </div>
                     
@@ -258,9 +263,8 @@ $vimeoQuery = '';
             <div class="closebutton"></div>
             <div class="shelf-inner t-font t-medium yellow">
               <div class="info-logo-container"><img class="info-logo" src="images/royale-redcross.png" alt="Royale &amp; American Red Cross"></div>
-              <p><span class="white">What is it that we are doing you ask?</span> It's simple. Royale is a design and production studio in Los Angeles who believes in giving back.</p>
-              <p>Every year we like to create an animated piece for the holidays. This year we thought we would help our east coast friends who might not be having a nice holiday due to Hurricane Sandy.</p>
-              <p>Our company has donated to the American Red Cross this year and also created an animated short to help inspire you to do the same.</p>
+              <p class="t-bold"><span class="white">What is it that we are doing you ask?</span> It's simple. Royale is a design and production studio in Los Angeles who believes in giving back.</p>
+              <p class="t-bold">Every year we like to create an animated piece for the holidays. This year we thought we would help our East Coast friends who might not be having a nice holiday due to Hurricane Sandy. Help us raise $10,000 for the red cross to help benefit our friends and If we make our goal we’ll animate a continuation of the story.</p>
               <p class="t-bold white">Royale wishes you and yours a wonderful holiday!</p>
               <p class="info-fineprint">
                 <span class="info-secured">This site is fully secured by</span>
@@ -278,12 +282,12 @@ $vimeoQuery = '';
               <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone"></div>
             </div>
             <div class="counter-text t-font t-medium t-bold orange">
-              To date, this amount has been raised to aid those affected by Hurricane Sandy. If we reach our goal of <span class="white">10k</span> there will be an alt ending to our story. Spread the word!
+              To date, this amount has been raised to aid those affected by Hurricane Sandy. If we reach our goal of <span class="white">$10,000</span> there will be an alt ending to our story. Spread the word!
             </div>
           </div><div class="footer-right">
             <div id="countdown"></div>
             <div class="countdown-text t-font t-medium t-bold">
-              <span class="orange">Days to raise</span> 10k. <span class="yellow">Ends</span> Jan 1st 2013
+              <span class="orange">Days to raise</span> $10,000. <span class="yellow">Ends</span> Jan 11th 2013
             </div>
           </div>
           <div class="footer-bottom t-font t-vsmall orange">

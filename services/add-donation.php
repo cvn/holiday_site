@@ -1,6 +1,6 @@
 <?php
-
-require_once 'donation-functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/variables.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/services/donation-functions.php';
 
 // Get request variables
 $uName = $_REQUEST['name'];
@@ -37,11 +37,10 @@ if ($token) {
 
 	// set your secret key: remember to change this to your live secret key in production
 	// see your keys here https://manage.stripe.com/account
-	Stripe::setApiKey("sk_test_FmA5Buf0OMtDhHdzNyqG1tz7");
+	Stripe::setApiKey($portable['stripePrivateKey']);
 
 
-	 try
-	   {
+	try {
 		// create the charge on Stripe's servers - this will charge the user's card
 		$charge = Stripe_Charge::create(array(
 		  "amount" => $amountInCents, // amount in cents, again
@@ -52,68 +51,39 @@ if ($token) {
 
 		require_once 'mailProcessor.php';
 
-           
+        $visitor_email = $uEmail;
+       // $message = $_POST['message'];
+      
+        $email_to = $uEmail;
+        $email_subject = "Royale + Redcross: Donation Receipt. ";
+        $subscript = '';
+        if ($uSubscribe == 1){ $subscript = '<br />Thank you for subscribing! <br />'; }
+        
+		$email_body =  '<center> <div style="white-space:pre-wrap;">'.
+		'<img src="http://holiday.weareroyale.com/images/email/reciept-thankyou.png" />'.
+		'<p style="text-align:left;display:inline-block;width:530px;" ><br /><br />'.
+		'Hey there '.$uName.', <br /><br />'.
+		'Thank you so much for your $<b>'. $uAmount .'</b> donation.  One step closer toward meeting not only our goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them the best this holiday season, and know that this will go a long way to their relief.'.
+		'<br />'.$subscript.'</p></center><br />'.
 
-                     
-
-                    $name = 'Royale';
-                    $visitor_email = $_POST['email'];
-                   // $message = $_POST['message'];
-                  
-                    $email_to = $_POST['email'];
-                    $email_subject = "Royale + Redcross: Donation Receipt. ";
-                    $subscript = ''; 
-
-                     
-                   
-                  	  if ($uSubscribe == 1){ $subscript = '<br />Thank you for subscribing! <br />'; }
-
+		'<center><a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciept-xo.png" /></a> </center> <br /> '. 
+		'<center><a href="http://www.weareroyale.com"><img src="http://holiday.weareroyale.com/images/email/reciepit-footer.png" /></a><br /></center> '.  
+		'</div></center>';
                     
-                    	$email_body =  '<center> <div style="white-space:pre-wrap;">'.
+        $html = true;
+        $show_form=false;
 
-                            '      <img src="http://holiday.weareroyale.com/images/email/reciept-thankyou.png" />'.
-                           '  <p style="text-align:left;display:inline-block;width:530px;" >'.
-                           'Hey There '.$name.', <br /><br />'.
-                            'Thank you so much for your <b>'. $uAmount .'</b> donation.  One step closer toward meeting not only our'. 
-                            'goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them '.
-                            'the best this holiday season, and know that this will go a long way to their relief.'.
-                          ' <br />'.$subscript.'</p></center><br />'.
-                          
-                          '    <center><a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciept-xo.png" /></a> </center> <br /> '. 
-                            '<center><a href="http://www.weareroyale.com"><img src="http://holiday.weareroyale.com/images/email/reciepit-footer.png" /></a><br /></center> '.  
-                           '</div></center>';
-
-                    
-                                 
-                    $to = $email_to;
-                
-                    $html = true;
- 
-            
-
-
-                    $show_form=false;
-
-                   
-
-                     $mailSend = sendMessagez($name, $visitor_email, $email_to, $email_subject, $email_body, $html);
-
-                  //   echo $mailSend;
-
+        $mailSend = sendMessagez($uName, $visitor_email, $email_to, $email_subject, $email_body, $html);
+        //   echo $mailSend;
 
 		$output = addDonation($uAmount,$uName,$uEmail,$uSubscribe);
 		echo json_encode($output, JSON_NUMERIC_CHECK);
 
-
-
-
-		}
-	catch (Stripe_Error $e)
-	   {
-	      // The charge failed for some reason. Stripe's message will explain why.
-	      $message = $e->getMessage();
-	      returnErrorWithMessage($message);
-	   }
+	} catch (Stripe_Error $e) {
+		// The charge failed for some reason. Stripe's message will explain why.
+		$message = $e->getMessage();
+		returnErrorWithMessage($message);
+	}
 
 
 

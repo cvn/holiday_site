@@ -2,9 +2,6 @@ var bgFadeWait = 3000
     ,goLiveCatch = 0
     ,contentLock = 0;
 
-// this identifies your website in the createToken call below
-Stripe.setPublishableKey('pk_test_Vt3bh8kq7E1FRWhk8Id61GZ8');
-
 function resetForm($form){
     $form.find('.submit-button').removeAttr("disabled");
     $form[0].reset();
@@ -70,7 +67,7 @@ function donateFormSubmit($form){
     var responseObj = $.parseJSON(data);
     var newTotal = responseObj.total;
     updateCounter($("#CounterZone"), newTotal);
-    $('.donateshelf').hide('slide', { direction: 'right' }, 500);
+    shelfRetract('donate');
     $('.plaquebutton.donate').removeClass('active');
     resetForm($form);
     finalTreat();
@@ -91,13 +88,25 @@ function centerFooter(donationValue){
   $('.footer-left').css({width:counterWidth});
 }
 
+var readyHeck = 0;
 
 function heckNo(){
   secondFade = 1;
+
+  if(readyHeck== 1){
+
   pop.cue('first', 1.3, function() {
     bellThrow();
   });
+
+
   logger('Trigger Angry Throw');
+
+} else {
+          setTimeout(function(){
+            heckNo();
+          }, 200);
+      }
 }
 
 function containerFadeOut(outSpeed){
@@ -124,7 +133,7 @@ function playDropped(){
 
 // Plaque button handling
 
-var plaqueButtonsDisabled = 1;
+var plaqueButtonsDisabled = 0;
 
 function plaqueRouter($button,visibleShelf){
   var targetShelf = $button.data('link');
@@ -132,21 +141,33 @@ function plaqueRouter($button,visibleShelf){
 
   switch (targetShelf) {
     case 'donate':
-      shelfExtend($button,targetShelf);
+      shelfExtend(targetShelf);
       break;
     case 'nodonate':
       heckNo();
       break;
     case 'info':
-      shelfExtend($button,targetShelf);
+      shelfExtend(targetShelf);
       break;
   }
 }
 
-function shelfExtend($button,shelfName){
-    $('.'+shelfName+'shelf').show('slide', { direction: 'right' }, 500,function(){
-      plaqueButtonsDisabled = 0;
-    });
+function shelfRetract(shelf,callback){
+  //accepts names as strings or jQuery objects
+  if (!(shelf instanceof jQuery)){
+    shelf = $('.'+shelf+'shelf');
+  }
+  shelf.hide('slide', { direction: 'right' }, 500, callback);
+}
+
+function shelfExtend(shelf){
+  //accepts names as strings or jQuery objects
+  if (!(shelf instanceof jQuery)){
+    shelf = $('.'+shelf+'shelf');
+  }
+  shelf.show('slide', { direction: 'right' }, 500,function(){
+    plaqueButtonsDisabled = 0;
+  });
 }
 
 function deselectButtons(reenable) {
@@ -163,7 +184,7 @@ function deselectButtons(reenable) {
 // Video initialization
 
 function splashOutVidIn(targetSelector) {
-  $('.splash').fadeOut();
+  $('.splash').hide();
   $(targetSelector).show();
   $('.video-container').removeClass('shy');
 }
@@ -200,7 +221,7 @@ jQuery(document).ready(function($) {
     if($visibleShelf.length){
       var buttonName = $visibleShelf.data('link');
       $('.plaquebutton.'+buttonName).removeClass('active');
-      $visibleShelf.hide('slide', { direction: 'right' }, 500,function(){
+      shelfRetract($visibleShelf,function(){
         plaqueRouter($button,visibleShelfName);
       });
     } else {
@@ -209,7 +230,7 @@ jQuery(document).ready(function($) {
   });
 
   $('.closebutton').on('click',function(){
-    $(this).closest('.shelf').hide('slide', { direction: 'right' }, 500);
+    shelfRetract($(this).closest('.shelf'));
     deselectButtons();
   });
 
@@ -228,7 +249,7 @@ jQuery(document).ready(function($) {
   initCounter($("#CounterZone"), donationInitial, donationTotal);
 
   var currentDate = (new Date).getTime()
-      ,endDate = 1357027200000  // Jan 1, 2013 12:00AM PST in miliseconds
+      ,endDate = 1357981200000  // Jan 12, 2013 1:00AM PST in miliseconds - epochconverter.com
       ,daysLeft = Math.floor((endDate - currentDate) / 1000 / 60 / 60 / 24);
 
   $("#countdown").flipCounter(

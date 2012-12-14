@@ -1,10 +1,11 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/variables.php';
 
 // SQL Stuff
-$username = 'root';
-$password = 'holiday535!';
-$donationsDb = 'donations';
-$donationsTable = 'donatedTest';
+$username = $portable['dbUsername'];
+$password = $portable['dbPassword'];
+$donationsDb = $portable['dbDonationsDb'];
+$donationsTable = $portable['dbDonationsTable'];;
 
 
 // This function returns an array of donation objects in descending order

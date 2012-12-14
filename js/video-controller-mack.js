@@ -19,6 +19,13 @@ function pPlay(playPoint){
 
    pop.currentTime(playPoint);
 
+   if(exitCatch == 0){
+
+      pop.cue(13.9, function(){ logger('Exit Catch');});
+      exitCatch = 1;
+
+   }
+
    pop.play();
 
   
@@ -104,6 +111,8 @@ function testCSS(prop) {
 
 /////////////////////////////////////////////////////////////////////
 var readyPlay = 0;
+var happyHol = 0;
+var exitCatch = 0;
 
 function goBlack(){
 
@@ -122,12 +131,15 @@ function goBlack(){
 function goLive(){
    
     $('#player_1').hide();
+    $('.blackout-vimeo').hide();
     setTimeout(function(){
-      $('.video-blackout').fadeOut(1000);
+      $('.blackout-interactive').fadeOut(1000);
     }, 1000);
     $('.skipbutton').fadeOut(2000);
     //bellThrow();
     //loading - 
+
+
 
     //show and play hide loading 
 
@@ -154,6 +166,8 @@ function readyState(){
     
 
    pPlay(8.8);
+
+
     $('#htmlvideo').fadeIn(3000);
 
   $('.donatebox').fadeIn(1250);
@@ -161,6 +175,7 @@ function readyState(){
 
      pop.cue('first', 13);
     pop.cue('first', function(){
+    //  plaqueButtonsDisabled = 0;
           playPop();
         });
 
@@ -178,7 +193,7 @@ function readyState(){
 }
 
 function bellThrow(){
-
+  readyHeck = 0;
   pPlay(5.4);
    readyToAnimate = 0;
   //idleTime = 0;
@@ -209,7 +224,7 @@ function bellHitEffect(inz, outz){
       $('.brotherDarkness').fadeOut(outz, function() {
         pop.cue(13, function(){
           secondFade = 0;
-
+          deselectButtons(1);
           playPop();
         });
       });
@@ -272,10 +287,11 @@ function playMoneyDrop(){
 
 
    pop.currentTime(14).play();
-    pop.cue('first', 18.7);
-  pop.cue('first', function(){
+   // pop.cue('first', 18.7);
+  pop.cue(18.7, function(){
      logger('last drop play');
     logger('in the mix! money drop exit');
+    happyHol = 1;
     pop.play();
     pop.currentTime(0).play();
     loopTrigger(0);
@@ -319,6 +335,7 @@ pop.currentTime(14).play();
       
 
     logger('in the mix! money drop exit');
+    happyHol = 1;
     //pop.play();
     pop.currentTime(0);
     pop.play();
@@ -517,14 +534,15 @@ pop.currentTime(14).play();
 
 
    function exitFirst(){
+      readyHeck = 0;
     logger('exitFirst');
    // readyToAnimate = 0;
-   plaqueButtonsDisabled = 1;
+  // plaqueButtonsDisabled = 1;
 
  
 
     loopTrigger(2);
-  var timeOutx = setTimeout(function(){plaqueButtonsDisabled = 0}, 150) ;
+  var timeOutx = setTimeout(function(){}, 200) ;
 
    }
 
@@ -532,10 +550,18 @@ pop.currentTime(14).play();
         switch(cuez){
 
             case 0:
-
+           // plaqueButtonsDisabled = 1;
                 idleTime = 0;
 
+                  if(happyHol==1){
 
+                    shelfExtend('thanks');
+                    setTimeout(function(){
+                      shelfRetract('thanks');
+                    },4000);
+
+                    happyHol = 0;
+                  };
                  //pop.pause();
                
                 pPlay(0);
@@ -559,9 +585,11 @@ pop.currentTime(14).play();
 
                 pop.cue('first', 1.3, function() {
 
+                  readyHeck = 1;
+
                  // readyToAnimate = 1;
 
-                  deselectButtons(1);
+                //  deselectButtons(1);
 
                   logger(readyToAnimate);
                  
@@ -622,12 +650,15 @@ pop.currentTime(14).play();
                      // clearTimeout();
                      //trigga(0);
                       pop.cue('first', 5.29, function() {
-                     eraseAllowed = 0;
+
+
+                   //  eraseAllowed = 0;
                      //trigger=1;
                       safetyEscape = safetyEscape+1;
-                      plaqueButtonsDisabled = 0;
+                       // readyHeck = 1;
+                  //    plaqueButtonsDisabled = 0;
 
-                       deselectButtons(1);
+                    //   deselectButtons(1);
 
                    //  if (pop.currentTime()>=1) {
                      // killIntervals();
@@ -698,8 +729,9 @@ pop.currentTime(14).play();
             case 3:
 
                 pop.cue('first', 1.3, function(){
+                  readyHeck = 1;
                 eraseAllowed = 0;
-                deselectButtons(1);
+               // deselectButtons(1);
             // pop.cue( 22, function() {
                 logger('on third Case');
                 // pop.play(0);
@@ -832,7 +864,7 @@ function onReady() {
 
 function onPlay() {
   if(!vimeoHasPlayed) {
-    $('.firstbox').fadeOut();
+    $('.blackout-vimeo').fadeOut(1000);
     vimeoHasPlayed = 1;
   }
 }
@@ -851,7 +883,9 @@ function onPlayProgress(data) {
       liveSwitch = liveSwitch + 1;
 
       if (liveSwitch == 1){
+        logger(data.seconds);
         vimeoController('pause');
+
            goLive();
         liveSwitch = 2;
       }
