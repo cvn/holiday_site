@@ -198,14 +198,17 @@ function splashOutVidIn(targetSelector) {
 jQuery(document).ready(function($) {
 
   $('.playmovie').on('click',function(){
+    $('.vimeo-container').html(vimeoIframe);
     splashOutVidIn('#player_1');
-    vimeoController('play');
+    vimeoPlayer = $('#player_1');
+    vimeoUrl = vimeoPlayer.attr('src').split('?')[0];
   });
 
   $('.skipmovie').on('click',function(){
     if(vimeoHasPlayed) {
       vimeoController('pause');
     }
+    $('.blackout-interactive').addClass('loading');
     splashOutVidIn('#htmlvideo');
     goLive();
   });

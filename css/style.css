@@ -335,6 +335,7 @@ input[type="radio"] + label::before {
     position: relative;
     top: 16px;
     left: -4px;
+    vertical-align: top;
 }
 input[type="radio"]:checked + label::before {
     content: url('../images/button-radio-on.png');
@@ -543,6 +544,20 @@ input[type="checkbox"]:checked + label::after {
 	background-position: 0 -34px;
 }
 
+.mutebutton {
+	background-image: url('../images/button-mute.png');
+	width: 29px;
+	height: 29px;
+	position: absolute;
+	right: 50px;
+	top: -37px;
+}
+.mutebutton:hover {
+	background-position: 0 -29px;
+}
+.mutebutton.muted {
+	left: -29px;
+}
 
 /*/////////////////////////
 

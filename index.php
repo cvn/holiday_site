@@ -77,7 +77,8 @@
         $donationsHi = ($donationsArray[0][total]) ? $donationsArray[0][total] : 0.1;
       ?>
       var donationInitial = <?=$donationsLo?>
-        , donationTotal = <?=$donationsHi?>;
+        , donationTotal = <?=$donationsHi?>
+        , vimeoIframe = '<iframe class="video" id="player_1" src="<?=$portable["vimeoEmbed"]?>" frameborder="0" webkitallowfullscreen></iframe>';
     </script>
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/jquery-ui-1.9.2.min.js"></script>
@@ -160,13 +161,13 @@
         <div class="row main">
           <div class="video-container shy">
             <video id="htmlvideo" class="video" style="display:none;" preload="auto">
-                <source src="video/holiday2012-interactive.mp4">
+                <source src="video/holiday2012-interactive.mp4" type="video/mp4">
                 <source src="video/holiday2012-interactive.webm" type="video/webm">
-                <p>Please update your browser</p>
+                <p>This website requires HTML5 video capability, please update your browser.</p>
             </video>
             <div class="video-blackout blackout-interactive video"></div>
-            <iframe class="video" style="display:none;" id="player_1" src="<?=$portable['vimeoEmbed']?>" frameborder="0" webkitallowfullscreen></iframe>
-            <div class="video-blackout blackout-vimeo video"></div>
+            <div class="video vimeo-container"></div>
+            <div class="video-blackout blackout-vimeo loading video"></div>
           </div>
           
           <div class="plaque donatebox" style='display: none;'>
@@ -274,6 +275,7 @@
         </div><!-- /main -->
 
         <div class="row footer">
+          <div class="spritebutton mutebutton muteaudio"></div>
           <div class="spritebutton skipbutton skipmovie"></div>
           <div class="footer-left">
             <div>
