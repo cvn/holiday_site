@@ -91,9 +91,12 @@ function centerFooter(donationValue){
 var readyHeck = 0;
 
 function heckNo(){
+
+    pop.removeTrackEvent('first');
+
   secondFade = 1;
 
-  if(readyHeck== 1){
+  //if(readyHeck== 1){
 
   //pop.cue('first', 1.3, function() {
     bellThrow();
@@ -102,11 +105,11 @@ function heckNo(){
 
   logger('Trigger Angry Throw');
 
-} else {
+/*} else {
           setTimeout(function(){
             heckNo();
-          }, 50);
-      }
+          }, 10);
+      }*/
 }
 
 function containerFadeOut(outSpeed){
@@ -235,10 +238,11 @@ jQuery(document).ready(function($) {
   });
 
   $('.sharebutton.facebook').on('click',function(){
-    window.open("http://www.facebook.com/sharer/sharer.php?u=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
+    window.open("http://www.facebook.com/sharer/sharer.php?u=https://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
   });
   $('.sharebutton.twitter').on('click',function(){
-    window.open("http://twitter.com/share?text=Royale%20Presents%20The%20Bell%20Ringer%20Happy%20Holidays%20&url=http://holiday.weareroyale.com","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+
+    window.open("http://twitter.com/share?text=Don't%20get%20your%20bell%20rung%20by%20Edith%20during%20the%20holiday!%20%23saggybells%20&url=https://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
   });
   $('.sharebutton.mail').on('click',function(){
     window.open("emailShare.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=100, top=100, width=550, height=700");
@@ -270,6 +274,7 @@ jQuery(document).ready(function($) {
   $("#payment-form").submit(function(event) {
       // disable the submit button to prevent repeated clicks
       $('.submit-button').attr("disabled", "disabled");
+      $('.submit-button').html('<img class="submit-loader" src="images/loader-red.gif">');
       // createToken returns immediately - the supplied callback submits the form if there are no errors
       var $form = $(this);
       Stripe.createToken({

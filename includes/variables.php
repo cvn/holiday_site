@@ -22,8 +22,9 @@ if (strpos($_SERVER[HTTP_HOST], $devIdentifier) !== false){
 		,'payYear'=>'2013'
 		,'vimeoEmbed'=>'http://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1'
 		, 'imagePath' => 'http://holiday.weareroyale.com/thebellringer/images/'
-		, 'royalSite' => 'http://weareroyale.com/'
+		, 'royaleSite' => 'http://weareroyale.com/'
 		, 'bellSite' => 'http://holiday.weareroyale.com/thebellringer/'
+		, 'fromName' => 'Bryan Shrednick'
 	);
 
 } else {
@@ -45,8 +46,9 @@ if (strpos($_SERVER[HTTP_HOST], $devIdentifier) !== false){
 		,'payYear'=>''
 		,'vimeoEmbed'=>'https://player.vimeo.com/video/53978551?api=1&amp;player_id=player_1'
 		, 'imagePath' => 'http://weareroyale.com/thebellringer/images/'
-		, 'royalSite' => 'http://weareroyale.com/'
+		, 'royaleSite' => 'http://weareroyale.com/'
 		, 'bellSite' => 'https://weareroyale.com/thebellringer/'
+		, 'fromName' => 'Bryan Shrednick'
 	);
 
 }

@@ -29,16 +29,17 @@
             {// The form is submitted
              
                     $name = $_POST['name'];
+                    $fname = $_POST['fname'];
                     $visitor_email = $_POST['email'];
-                    $message = $_POST['message'];
+                    $message = 'Help '.$name .', Royale, and the Red Cross raise $10,000 for our friends on the East Coast... '.$_POST['message'];
                     
                     $email_to = $_POST['femail'];
-                    $email_subject = "Royale + Redcross Presents: The Bell Ringer";
+                    $email_subject = "Royale Presents: The Bell Ringer";
                     $email_body = '<div style="white-space:pre-wrap;">'.
 
                             ' <center>      <a href="'. $portable['bellSite'].'">  <img src="'. $portable['imagePath'] .'email/eshare-bellringer.png" /></a></center>'.
                            '<center>   <p  style="text-align:left;display:inline-block;width:530px;" >'.
-                            'Hey There '.$name.', <br /><br />'.
+                            'Hey There '.$fname.', <br /><br />'.
                             $message.
                           ' </p></center>'.
                           ' <center> <a href="'.$portable['royaleSite'].'"> <img src="'.$portable['imagePath']. 'email/eshare-logo.png" /></a> </center>  '. 
@@ -71,9 +72,9 @@
 
                    
 
-                     $mailSend = sendMessagez($name, $visitor_email, $email_to, $email_subject, $email_body, $html);
+                     $mailSend = sendMessagez($name, $visitor_email, $fname, $email_to, $email_subject, $email_body, $html);
 
-                     echo $mailSend;
+                     echo ('<div align="center" style="margin:auto;font-size: 35px;margin-top:240px;"><b>'.$mailSend.'</b></div>');
 
                     // echo (PATH);
 
@@ -115,9 +116,9 @@
           Message:
         </div>
         <div class="form-row">
-          <textarea class="email-textarea" name="message">Help Royale and the Red Cross raise $10,000 for our friends on the East Coast... Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
+          <textarea class="email-textarea" name="message">Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
           
-http://weareroyale.com/thebellringer</textarea>
+https://weareroyale.com/thebellringer</textarea>
         </div>
         <div class="email-send">
           <input type="submit" class="spritebutton standardbutton sendbutton" value="">

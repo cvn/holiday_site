@@ -58,10 +58,10 @@ if ($token) {
         $email_to = $uEmail;
         $email_subject = "Royale + Redcross: Donation Receipt. ";
         $subscript = '';
-        if ($uSubscribe == 1){ $subscript = '<br />Thank you for subscribing! <br />'; }
+        if ($uSubscribe == 1){ $subscript = '<br />And thank you for subscribing to our mailing list! <br />'; }
         
 		$email_body =  '<center> <div style="white-space:pre-wrap;">'.
-		'<img src="'. $portable['imagePath'] .'email/reciept-thankyou.png" />'.
+		'<a href="'. $portable['bellSite'].'"><img src="'. $portable['imagePath'] .'email/reciept-thankyou.png" /></a>'.
 		'<p style="text-align:left;display:inline-block;width:530px;" ><br /><br />'.
 		'Hey there '.$uName.', <br /><br />'.
 		'Thank you so much for your $<b>'. $uAmount .'</b> donation.  One step closer toward meeting not only our goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them the best this holiday season, and know that this will go a long way to their relief.'.
@@ -74,7 +74,7 @@ if ($token) {
         $html = true;
         $show_form=false;
 
-        $mailSend = sendMessagez($uName, $visitor_email, $email_to, $email_subject, $email_body, $html);
+        $mailSend = sendMessagez($uName, $visitor_email, $uName, $email_to, $email_subject, $email_body, $html);
         //   echo $mailSend;
 
 		$output = addDonation($uAmount,$uName,$uEmail,$uSubscribe);

@@ -6,6 +6,7 @@
 // }
 
 var debug = 1;
+var autoPause = 0;
 
 function logger(stuff){
   if(debug){
@@ -167,7 +168,7 @@ function readyState(){
 
    pPlay(8.8);
 
-
+   autoPause = 1;
     $('#htmlvideo').fadeIn(3000);
 
   $('.donatebox').fadeIn(1250);
@@ -193,9 +194,10 @@ function readyState(){
 }
 
 function bellThrow(){
-  readyHeck = 0;
+ 
   pPlay(5.4);
-   readyToAnimate = 0;
+   readyHeck = 0;
+   //readyToAnimate = 0;
   //idleTime = 0;
   pop.cue( 8.67, function(){
      bellHitEffect(10, 2000);
@@ -558,7 +560,7 @@ pop.currentTime(14).play();
                     shelfExtend('thanks');
                     setTimeout(function(){
                       shelfRetract('thanks');
-                    },6000);
+                    },4000);
 
                     happyHol = 0;
                   };
@@ -762,7 +764,7 @@ pop.currentTime(14).play();
 
 
                 pop.cue('first', 1.3, function() {
-                   
+
                        pPlay(0);
                          readyHeck = 1;
                        eraseAllowed = 0;
@@ -896,6 +898,70 @@ function onPlayProgress(data) {
 
 
 
+// Set the name of the hidden property and the change event for visibility
+var hidden, visibilityChange; 
+if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+} else if (typeof document.mozHidden !== "undefined") {
+    hidden = "mozHidden";
+    visibilityChange = "mozvisibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+}
+  
+var videoElement = document.getElementById("videoElement");
+ 
+// If the page is hidden, pause the video;
+// if the page is shown, play the video
+function handleVisibilityChange() {
+
+  if(autoPause==1){
+
+        if (document[hidden]) {
+            pop.pause();
+        } else {
+            pop.play();
+        }
+
+  }
+}
+ 
+// Warn if the browser doesn't support addEventListener or the Page Visibility API
+if (typeof document.addEventListener === "undefined" || 
+    typeof hidden === "undefined") {
+
+    var has_blurred = 0;
+    function meep()
+    {
+        has_blurred = 1;
+        pop.pause();
+    }
+    window.onblur=meep;
+
+    function handleFocus()
+    {
+        if( has_blurred )
+            pop.play();              
+        has_blurred = 0; // reset has_blurred state
+    }
+    window.onfocus=handleFocus;
+   // alert("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+} else {
+ 
+    // Handle page visibility change   
+    document.addEventListener(visibilityChange, handleVisibilityChange, false);
+     
+   
+   }
+
+
+
+
 
 $(document).ready(function(){
 
@@ -903,8 +969,8 @@ $(document).ready(function(){
       frameAnimation: true
     });
 
-    $('#htmlvideo').hide();
 
+  
     vimeoPlayer = $('#player_1');
     vimeoUrl = vimeoPlayer.attr('src').split('?')[0];
 

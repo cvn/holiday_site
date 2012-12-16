@@ -27,6 +27,90 @@ $("button").live("click", function() {
 
 })
 
+
+ 
+
+// Set the name of the hidden property and the change event for visibility
+var hidden, visibilityChange; 
+if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+} else if (typeof document.mozHidden !== "undefined") {
+    hidden = "mozHidden";
+    visibilityChange = "mozvisibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+}
+  
+var videoElement = document.getElementById("videoElement");
+ 
+// If the page is hidden, pause the video;
+// if the page is shown, play the video
+function handleVisibilityChange() {
+
+  if(autoPause==1){
+
+        if (document[hidden]) {
+            pop.pause();
+        } else {
+            pop.play();
+        }
+
+  }
+}
+ 
+// Warn if the browser doesn't support addEventListener or the Page Visibility API
+if (typeof document.addEventListener === "undefined" || 
+    typeof hidden === "undefined") {
+
+    var has_blurred = 0;
+    function meep()
+    {
+        has_blurred = 1;
+        pop.pause();
+    }
+    window.onblur=meep;
+
+    function handleFocus()
+    {
+        if( has_blurred )
+            pop.play();              
+        has_blurred = 0; // reset has_blurred state
+    }
+    window.onfocus=handleFocus;
+   // alert("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+} else {
+ 
+    // Handle page visibility change   
+    document.addEventListener(visibilityChange, handleVisibilityChange, false);
+     
+   
+   }
+
+
+ 
+ 
+/*usage**/
+visibly.onVisible(function () {
+    document.title = 'visible'
+});
+ 
+visibly.onVisible(function () {
+    console.log('visible');
+});
+ 
+visibly.onHidden(function () {
+    document.title = 'hidden';
+});
+ 
+visibly.onHidden(function () {
+    console.log('hidden');
+});
+
     </script>
 </head>
 

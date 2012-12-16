@@ -2,10 +2,10 @@
   require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
 
   //Mobile site redirection
-  if ( eregi("MSIE", getenv( "HTTP_USER_AGENT" ) ) 
-    || eregi("Internet Explorer", getenv("HTTP_USER_AGENT" ) ) 
-    || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') 
+  if ( strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') 
     || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
+    // || eregi("MSIE", getenv( "HTTP_USER_AGENT" ) ) 
+    // || eregi("Internet Explorer", getenv("HTTP_USER_AGENT" ) ) 
     ) {
 
     $url = 'mobile/';
@@ -42,13 +42,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Royale Presents | The Bell Ringer</title>
-    <meta name="description" content="Don't get your bell rung by Edith during the holiday #saggybells">
-    <meta name="author" content="Royale">
-    <meta property="og:image" content="http://weareroyale.com/thebellringer/images/video-thumbnail.jpg"/>
+    <meta property="og:image" content="http://weareroyale.com/thebellringer/images/Facebook_icon.jpg"/>
     <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
     <meta property="og:description" content="Don't get your bell rung by Edith during the holiday #saggybells"/>
+    <meta name="description" content="Don't get your bell rung by Edith during the holiday #saggybells">
+    <meta name="author" content="Royale">
     
-    <base target="_parent" />
+    <base target="_parent" onpagehide="pagehide();"/>
     
     <!-- Mobile Specific Metas
     ================================================== -->

@@ -186,6 +186,11 @@ img {
 .video-blackout {
 	background-color: black;
 }
+.video-blackout.loading {
+	background-image: url('../images/loader-black.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
 
 .counter-dollar {
 	vertical-align: top;
@@ -504,6 +509,7 @@ input[type="checkbox"]:checked + label::after {
 	top: 1px;
 }
 .submit-button:disabled {
+	background-position: 0 -30px;
 	opacity: .5;
 }
 
