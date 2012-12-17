@@ -2,92 +2,6 @@ var bgFadeWait = 3000
     ,goLiveCatch = 0
     ,contentLock = 0;
 
-function resetForm($form){
-    $form.find('.submit-button').removeAttr("disabled");
-    $form[0].reset();
-}
-
-function stripeResponseHandler(status, response) {
-    if (response.error) {
-        // re-enable the submit button
-        $('.submit-button').removeAttr("disabled");
-        // show the errors on the form
-        $("#payment-form .payment-errors").html(response.error.message).effect('highlight');
-    } else {
-        var form$ = $("#payment-form");
-        // token contains id, last4, and card type
-        var token = response['id'];
-        // insert the token into the form so it gets submitted to the server
-        form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-        // and submit
-        // form$.get(0).submit();
-        donateFormSubmit(form$);
-    }
-}
-
-function initCounter($counterElement, startTotal, endTotal) {
-  centerFooter(donationTotal);
-  $counterElement.flipCounter(
-    "startAnimation", // scroll counter from the current number to the specified number
-    {
-      number: startTotal, // the number we want to scroll from
-      end_number: endTotal, // the number we want the counter to scroll to
-      // easing: jQuery.easing.easeOutCubic, // this easing function to apply to the scroll.
-      duration: 1000, // number of ms animation should take to complete
-      numIntegralDigits:1, // number of places left of the decimal point to maintain
-      numFractionalDigits:0, // number of places right of the decimal point to maintain
-      //digitClass:"counter-digit", // class of the counter digits
-      formatNumberOptions:{format:"#,##0",locale:"us"},
-      digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
-      digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
-      imagePath:"images/flip-counter.png", // the path to the sprite image relative to your html document
-      // duration:20000, // duration of animations
-      // onAnimationStarted:false, // call back for animation upon starting
-      // onAnimationStopped:false, // call back for animation upon stopping
-      // onAnimationPaused:false, // call back for animation upon pausing
-      // onAnimationResumed:false // call back for animation upon resuming from pause
-    }
-  );
-}
-
-function updateCounter($counterElement, endTotal){
-    var startTotal = $("#CounterZone").flipCounter("getNumber");
-    centerFooter(endTotal);
-    $counterElement.flipCounter(
-      "startAnimation", // scroll counter from the current number to the specified number
-      { 
-        number: startTotal, // the number we want to scroll from
-        end_number: endTotal, // the number we want the counter to scroll to
-      }
-    );
-}
-
-function donateFormSubmit($form){
-  $.post('services/add-donation.php', $form.serialize(), function(data){
-    var responseObj = $.parseJSON(data);
-    var newTotal = responseObj.total;
-    updateCounter($("#CounterZone"), newTotal);
-    shelfRetract('donate');
-    $('.plaquebutton.donate').removeClass('active');
-    resetForm($form);
-    finalTreat();
-  });
-}
-
-
-function centerFooter(donationValue){
-  // var width = $('#CounterZone').css('width');
-  if ($.formatNumber) {
-    var str_number = $.formatNumber(donationValue, {format:"#,##0",locale:"us"});
-  } else {
-    return(console.log('The numberformatter jQuery plugin is not loaded. This plugin is required to use the formatNumberOptions setting.'));
-  }
-  var numDigits = str_number.length;
-  var counterDigitWidth = 44;
-  var counterWidth = numDigits * counterDigitWidth;
-  $('.footer-left').css({width:counterWidth});
-}
-
 var readyHeck = 0;
 
 function heckNo(){
@@ -126,6 +40,14 @@ function bgMatte(inSpeed){
   //containerFadeIn(inSpeed);
   setTimeout(function() {
      $('.mattePainting').fadeIn(inSpeed+3000);
+  }, bgFadeWait);
+}
+
+function bgMatteOut(inSpeed){
+ // $('#htmlvideo').css({ opacity: 1, visibility: "visible"}).animate({opacity: 0}, inSpeed-500).fadeIn(inSpeed-500);
+  //containerFadeIn(inSpeed);
+  setTimeout(function() {
+     $('.mattePainting').fadeOut(inSpeed+3000);
   }, bgFadeWait);
 }
 
@@ -192,7 +114,126 @@ function splashOutVidIn(targetSelector) {
   $('.video-container').removeClass('shy');
 }
 
+// Audio
 
+var soundbedVolume = 1;
+var popVol = 0;
+
+function animVol(fadeSpeed){
+   // if(vertz == true){
+if(autoPause==1){
+        if($('.mutebutton').hasClass('muted')){
+          pop.volume(0);
+        } else {
+          if (popVol <= 1){ 
+                setTimeout(function(){popVol = popVol + .1; animVol();}, fadeSpeed);
+            } else {  popVol = 1;}
+             logger(popVol);
+        pop.volume(popVol);
+        // return popVol;
+      }
+  }
+
+        }
+
+  function fadeDown(fadeSpeed){
+
+     if (popVol >= 0){ 
+           setTimeout(function(){popVol = popVol - .1; fadeDown();}, fadeSpeed);
+       } else{  popVol = 0;}
+
+      // audioFadeOut();
+
+      pop.volume(popVol);
+
+  }
+
+
+var DualFadeIn = function(){
+  $obj = $('#soundbed');
+  $obj[0].volume = 0;
+ if($('.mutebutton').hasClass('muted')){
+   
+    } else {
+       if(autoPause==1){
+          $obj.trigger('play');
+          animVol(500, true);
+          $obj.animate({volume: soundbedVolume}, 1000);
+        }
+    }
+}
+
+function audioReset(){
+  fadeDown(500);
+  $obj = $('#soundbed');
+ // $obj[0].volume = 0;
+   $obj.animate({volume: 0}, 1000, function(){
+    $obj.trigger('pause');
+     pop.pause();
+  });   
+
+}
+
+var audioFadeIn = function($obj){
+  $obj[0].volume = 0;
+  $obj.trigger('play');
+  $obj.animate({volume: soundbedVolume}, 1000);
+}
+var audioFadeOut = function($obj){
+  $obj.animate({volume: 0}, 1000, function(){
+    $obj.trigger('pause');
+  });     
+}
+
+$(document).ready(function(){
+  $('.play').on('click',function(event){
+    event.preventDefault();
+    var $audioObj = $($(this).attr('rel')).eq(0);
+    audioFadeIn($audioObj);
+  });
+  $('.stop').on('click',function(event){
+    event.preventDefault();
+    var $audioObj = $($(this).attr('rel')).eq(0);
+    audioFadeOut($audioObj);
+  });
+
+  $('.mutebutton').on('click',function(event){
+    event.preventDefault();
+    $('.mutebutton').toggleClass('muted');
+    if($('.mutebutton').hasClass('muted')){
+       popVol = 1;
+    $obj = $('#soundbed');
+    fadeDown(500);
+      $obj = $('#soundbed');
+       audioFadeOut($obj);  
+    }else{
+       popVol = 0;
+       animVol(1000);
+        DualFadeIn();
+    }
+  });
+});
+
+
+function replayVim(){
+logger('im in vim');
+
+  $('#player_1').show();
+  vimeoController('seekTo', 0);
+  vimeoController('play');
+  $('.blackout-interactive').show();
+ bgMatteOut(500);
+
+ $('.donatebox').fadeOut();
+
+  $('#htmlvideo').hide();
+  $('.skipbutton').show();
+  $('.replay').fadeOut();
+  $('.mutebutton').animate({opacity: 0});
+  audioReset();
+
+
+}
 // Doc ready
 
 jQuery(document).ready(function($) {
@@ -202,6 +243,9 @@ jQuery(document).ready(function($) {
     splashOutVidIn('#player_1');
     vimeoPlayer = $('#player_1');
     vimeoUrl = vimeoPlayer.attr('src').split('?')[0];
+    setTimeout(function(){
+      $('.header-share').fadeIn();
+    }, 2000);
   });
 
   $('.skipmovie').on('click',function(){
@@ -245,65 +289,19 @@ jQuery(document).ready(function($) {
   });
   $('.sharebutton.twitter').on('click',function(){
 
-    window.open("http://twitter.com/share?text=Don't%20get%20your%20bell%20rung%20by%20Edith%20during%20the%20holiday!%20%23saggybells%20&url=https://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+    window.open("http://twitter.com/share?text=Watch%20Royale's%20latest%20animated%20short%20%22The%20Bell%20Ringer%22%20and%20help%20those%20affected%20by%20Hurricane%20Sandy.%20%23weareroyale.%20&url=https://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
   });
   $('.sharebutton.mail').on('click',function(){
     window.open("emailShare.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=100, top=100, width=550, height=700");
   });
 
-  // Set up the counter
-  // donationInitial and donationTotal are set by PHP
-  initCounter($("#CounterZone"), donationInitial, donationTotal);
-
-  var currentDate = (new Date).getTime()
-      ,endDate = 1357981200000  // Jan 12, 2013 1:00AM PST in miliseconds - epochconverter.com
-      ,daysLeft = Math.floor((endDate - currentDate) / 1000 / 60 / 60 / 24);
-
-  $("#countdown").flipCounter(
-    {
-      number: daysLeft,
-      numIntegralDigits:2, // number of places left of the decimal point to maintain
-      numFractionalDigits:0, // number of places right of the decimal point to maintain
-      digitHeight:68, // the height of each digit in the flipCounter-medium.png sprite image
-      digitWidth:44, // the width of each digit in the flipCounter-medium.png sprite image
-      imagePath:"images/flip-counter-red.png", // the path to the sprite image relative to your html document
-    }
-  );
-
-  $('.amount-other').on('focus',function(){
-    $('#amount-custom').prop('checked',true);
+  $('.sharebutton.embed').on('click',function(){
+    window.open("embed.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=100, top=100, width=550, height=700");
   });
 
-  $("#payment-form").submit(function(event) {
-      // disable the submit button to prevent repeated clicks
-      $('.submit-button').attr("disabled", "disabled");
-      $('.submit-button').html('<img class="submit-loader" src="images/loader-red.gif">');
-      // createToken returns immediately - the supplied callback submits the form if there are no errors
-      var $form = $(this);
-      Stripe.createToken({
-          name: $form.find('.card-name').val(),
-          number: $form.find('.card-number').val(),
-          cvc: $form.find('.card-cvc').val(),
-          exp_month: $form.find('.card-expiry-month').val(),
-          exp_year: $form.find('.card-expiry-year').val()
-      }, stripeResponseHandler);
-      return false; // submit from callback
+  $('.replay').on('click',function(){
+        replayVim();
   });
 
-  var creditCard = $('.card-number')
-  creditCard.cardcheck({
-    iconDir: 'images/cc-icons/',
-    acceptedCards: ['visa','mastercard','amex', 'discover', 'jcb'],
-    iconLocation: '#accepted-cards-images',
-    onReset: function() {     
-      creditCard.removeClass('error success');
-    },
-    onError: function( type ) {
-      creditCard.removeClass('success').addClass('error');
-    },
-    onValidation: function( type, niceName ) {
-      creditCard.removeClass('error').addClass('success');
-    },
-  });
 
 }); /* end document ready */

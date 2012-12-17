@@ -23,14 +23,42 @@ img {
 
 /////////////////////////*/
 
-.error {
+input.error {
 	border-style: solid;
 	border-color: red;
 }
-.success {
+label.error {
+	position: absolute;
+	background: black;
+	border-radius: 3px;
+	padding: 6px;
+	top: -15px;
+	left: -20px;
+	text-align: center;
+	font-size: 11px;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.5);
+	box-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+label.error:after {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(0, 0, 0, 0);
+	border-top-color: #000000;
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+}
+
+/* input.success {
 	border-style: solid;
 	border-color: green;
-}
+} */
 .white {
 	color: #d5d5d5;
 }
@@ -276,6 +304,19 @@ img {
 	font-size: 14px;
 }
 
+.form-area {
+	display: inline-block;
+	position: relative;
+}
+.form-amount .form-area {
+	vertical-align: bottom;
+}
+.form-amount label.error {
+	top: -30px;
+	left: -52px;
+	width: 140px;
+	z-index: 10;
+}
 .form-text {
 	height: 28px;
 	font-size: 16px;
@@ -302,6 +343,12 @@ img {
 .form-cvv {
 	margin-left: 12px;
 	width: 76px;
+}
+.form-month {
+	width: 35px;
+}
+.form-year {
+	width: 60px;
 }
 .form-cards {
 	display: inline-block;
@@ -369,6 +416,10 @@ input[type="checkbox"]:checked + label::after {
 
 .payment-errors {
 	color: red;
+	display: block;
+	margin-left: -50px;
+	line-height: 1;
+	font-size: 11px;
 }
 
 .info-logo-container {
@@ -387,6 +438,36 @@ input[type="checkbox"]:checked + label::after {
 }
 .info-stripe {
 	vertical-align: middle;
+}
+
+.audio-container {
+	position: absolute;
+}
+
+.submit-loader {
+	margin-top: 7px;
+}
+
+.plaque-share {
+	position: absolute;
+	left: 496px;
+	top: 10px;
+	width: 367px;
+	text-align: center;
+	z-index: 9;
+}
+
+.header-share {
+	position: absolute;
+	bottom: 2px;
+	right: 0;
+}
+
+.footer-trouble {
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	margin-left: -167px;
 }
 
 /*/////////////////////////
@@ -444,7 +525,6 @@ input[type="checkbox"]:checked + label::after {
 }
 
 .skipbutton {
-	background-image: url('../images/button-skip.png');
 	width: 36px;
 	height: 14px;
 	position: absolute;
@@ -457,6 +537,13 @@ input[type="checkbox"]:checked + label::after {
 .skipbutton:active,
 .skipbutton.active {
 	margin-top:1px;
+}
+.skipmovie {
+	background-image: url('../images/button-skip.png');
+}
+.replay {
+	width: 68px;
+	background-image: url('../images/button-replay.png');
 }
 
 .playbutton {
@@ -496,6 +583,10 @@ input[type="checkbox"]:checked + label::after {
 }
 .sharebutton.mail {
 	background-image: url('../images/share-mail.png');
+}
+.sharebutton.embed {
+	width: 56px;
+	background-image: url('../images/share-embed.png');
 }
 
 .submit-button {
@@ -538,9 +629,12 @@ input[type="checkbox"]:checked + label::after {
 	background-image: url('../images/button-clickhere.png');
 	width: 179px;
 	height: 34px;
+	display: inline-block;
 }
 .clickherebutton:active,
-.clickherebutton.active {
+.clickherebutton.active,
+a:active .clickherebutton,
+a.active .clickherebutton {
 	background-position: 0 -34px;
 }
 
@@ -549,14 +643,17 @@ input[type="checkbox"]:checked + label::after {
 	width: 29px;
 	height: 29px;
 	position: absolute;
-	right: 50px;
+	right: 80px;
 	top: -37px;
 }
 .mutebutton:hover {
 	background-position: 0 -29px;
 }
 .mutebutton.muted {
-	left: -29px;
+	background-position: -29px 0;
+}
+.mutebutton.muted:hover {
+	background-position: -29px -29px;
 }
 
 /*/////////////////////////
@@ -625,6 +722,22 @@ input[type="checkbox"]:checked + label::after {
 	width: 370px;
 }
 
+.shelf-full {
+	text-align: left;
+	background-image: url('../images/shelf-donate-full.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	width: 657px;
+	height: 366px;
+	margin: auto;
+	position: relative;
+}
+
+.shelf-full .shelf-inner {
+	padding: 50px 61px 0;
+}
+
+
 .firstbox p {
 	margin: 0;
 	margin-bottom: .5em;
@@ -655,7 +768,13 @@ input[type="checkbox"]:checked + label::after {
 	vertical-align: middle;
 	margin-left: 10px;
 }
-
+.footer-mobile {
+	text-decoration: none;
+	line-height: 1.5;
+}
+.mobile-thanks {
+	margin-left: 45px;
+}
 
 
 .donatebox-header {
@@ -703,7 +822,7 @@ input[type="checkbox"]:checked + label::after {
 	left: 0;
 	width: 100%;
 	min-width: 960px;
-	height: 1217px;
+	height: 1072px;
 	z-index: 0;
 	background-image: url('../images/bg-street.jpg');
 	background-repeat: no-repeat;

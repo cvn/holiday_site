@@ -1,9 +1,21 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
 
+
+ function iedetect() {
+      $match = preg_match('/MSIE ([0-9].[0-9])/',$_SERVER['HTTP_USER_AGENT'],$reg);
+      if($match == 0){
+        return false;}
+      else{
+        return true;}
+    }
+    $iedetect = iedetect();
   //Mobile site redirection
   if ( strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') 
     || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
+    || $iedetect !== false 
+
+    
     // || eregi("MSIE", getenv( "HTTP_USER_AGENT" ) ) 
     // || eregi("Internet Explorer", getenv("HTTP_USER_AGENT" ) ) 
     ) {
@@ -44,8 +56,8 @@
     <title>Royale Presents | The Bell Ringer</title>
     <meta property="og:image" content="http://weareroyale.com/thebellringer/images/Facebook_icon.jpg"/>
     <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
-    <meta property="og:description" content="Don't get your bell rung by Edith during the holiday #saggybells"/>
-    <meta name="description" content="Don't get your bell rung by Edith during the holiday #saggybells">
+    <meta property="og:description" content="Watch Royale's latest animated short 'The Bell Ringer'. Find out how to help Edith and Royale raise $10,000 for the American Red Cross to help benefit those affected by Hurricane Sandy this holiday season or you might get your bell rung. #weareroyale"/>
+    <meta name="description" content="Watch Royale's latest animated short 'The Bell Ringer'. Find out how to help Edith and Royale raise $10,000 for the American Red Cross to help benefit those affected by Hurricane Sandy this holiday season or you might get your bell rung. #weareroyale">
     <meta name="author" content="Royale">
     
     <base target="_parent" onpagehide="pagehide();"/>
@@ -88,7 +100,8 @@
     <script src="js/jshashtable-2.1.js"></script>
     <script src="js/jquery.numberformatter-1.2.3.min.js"></script>
     <script src="js/cardcheck.js"></script>
-    <script src="js/jquery.html5form.js"></script>  
+    <script src="js/jquery.html5-placeholder-shim.js"></script>
+    <script src="js/jquery.validate.min.js"></script>  
     <script src="https://js.stripe.com/v1/"></script>
     <script type="text/javascript">
       // this identifies your website in the createToken call below
@@ -96,6 +109,7 @@
     </script>
 
     <script src="js/video-controller-mack.js"></script>
+    <script src="js/donation-functions.js"></script>
     <script src="js/init.js"></script>
 <?php
   // Vimeo referrals skip straight to interactive
@@ -123,17 +137,26 @@
 
     <div class="brotherDarkness" style="display: none;"></div>
     <div class="mattePainting" style='display: none;'></div>
-    <!-- <div class="photoshop-overlay"></div> -->
+
+    <div class="audio-container">
+        <audio id="soundbed" loop preload="auto">
+            <source src="<?php echo($portable['cdn']); ?>video/TBR_LoopLong_OptionB.mp3" type="audio/mpeg">
+              <source src="<?php echo($portable['cdn']); ?>video/TBR_LoopLong_OptionB.ogg" type="audio/ogg">
+            <source src="<?php echo($portable['cdn']); ?>video/TBR_LoopLong_OptionB.wav" type="audio/wav">
+        </audio>
+    </div>
 
     <div class="bgwrapper">
       <div class="container">
       
         <div class="row header">
-          <div class="RoyalePresents">
-            <a href="http://weareroyale.com/"><img src="images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
-          </div><div class="daBellRinga">
-            <img src="images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer">
-          </div>        
+<?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/header.php' ?>
+          <div class="header-share" style="display: none;">
+            <div class="spritebutton sharebutton embed">
+            </div><div class="spritebutton sharebutton facebook">
+            </div><div class="spritebutton sharebutton twitter">
+            </div><div class="spritebutton sharebutton mail"></div>
+          </div>
         </div>
 
         <div class="splash">
@@ -142,6 +165,12 @@
           </div>
           <div class="splash-bg">
             <img src="images/splash-bg.png" alt="">
+          </div>
+          <div class="plaque-share">
+            <div class="spritebutton sharebutton embed">
+            </div><div class="spritebutton sharebutton facebook">
+            </div><div class="spritebutton sharebutton twitter">
+            </div><div class="spritebutton sharebutton mail"></div>
           </div>
           <div class="plaque firstbox t-font t-large">
             <div class="plaque-inner">
@@ -161,8 +190,8 @@
         <div class="row main">
           <div class="video-container shy">
             <video id="htmlvideo" class="video" style="display:none;" preload="auto">
-                <source src="video/holiday2012-interactive.mp4" type="video/mp4">
-                <source src="video/holiday2012-interactive.webm" type="video/webm">
+                <source src="http://d2so4q6qccqxl.cloudfront.net/thebellringer/video/holiday2012-interactive.mp4" type="video/mp4">
+                <source src="http://d2so4q6qccqxl.cloudfront.net/thebellringer/video/holiday2012-interactive.webm" type="video/webm">
                 <p>This website requires HTML5 video capability, please update your browser.</p>
             </video>
             <div class="video-blackout blackout-interactive video"></div>
@@ -191,66 +220,7 @@
           
           <div class="shelf donateshelf" data-link="donate" style="display: none">
             <div class="closebutton"></div>
-            <div class="shelf-inner">
-              <form action="services/add-donation.php" method="post" id="payment-form">
-                <div class="shelf-left">
-                  <div class="amount-header t-font yellow t-vlarge t-bold">Donation Amount</div>
-                  <div class="form-amount">
-                    <input type="radio" name="amount" id="amount-5" value="5">
-                    <label for="amount-5">
-                      <span class="amount-dollar">$</span><span class="amount-sprite zero">0</span><span class="amount-sprite five">5</span>
-                    </label>
-                  </div>
-                  <div class="form-amount">
-                    <input type="radio" name="amount" id="amount-15" value="15" checked>
-                    <label for="amount-15">
-                      <span class="amount-dollar">$</span><span class="amount-sprite one">1</span><span class="amount-sprite five">5</span>
-                    </label>
-                  </div>
-                  <div class="form-amount">
-                    <input type="radio" name="amount" id="amount-50" value="50">
-                    <label for="amount-50">
-                      <span class="amount-dollar">$</span><span class="amount-sprite five">5</span><span class="amount-sprite zero">0</span>
-                    </label>
-                  </div>
-                  <div class="form-amount">
-                    <input type="radio" name="amount" id="amount-custom" value="other">
-                    <label for="amount-custom">
-                      <span class="amount-dollar">$</span><input type="text" class="amount-other t-center" autocomplete="off" name="amount-other" placeholder="Other">
-                    </label>
-                  </div>
-                  <span class="payment-errors t-medium"></span>
-                </div><div class="shelf-right">
-                  <div class="shelf-secured t-small">
-                    <img src="images/lock.png" class="t-icon"> This transation is secured by <a href="https://stripe.com" target="_blank"><img src="images/stripe-small.png" class="t-icon stripe-b" alt="Stripe"></a>
-                  </div>
-                  <div class="t-medium">
-                    To donate please enter your information, click or enter the amount then press submit. You will get an email reciept. Royale &amp; The Red Cross thank you. Happy Holidays!
-                  </div>
-                  <div class="form-row">
-                      <input type="text" required class="card-name form-text form-fullwidth" autocomplete="off" name="name" placeholder="Name on card" />
-                  </div>
-                  <div class="form-row">
-                      <input type="email" required class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" />
-                  </div>
-                  <div class="form-row">
-                      <input type="text" required size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="<?=$portable['payCard']?>" /><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="<?=$portable['payCvv']?>" />
-                  </div>
-                  <div class="form-row">
-                      <label class="t-medium">Exp date:&nbsp;</label>
-                      <input type="text" required size="2" class="card-expiry-month form-text t-center" placeholder="MM" value="<?=$portable['payMonth']?>" />
-                      <span> / </span>
-                      <input type="text" required size="4" class="card-expiry-year form-text t-center" placeholder="YYYY" value="<?=$portable['payYear']?>" />
-                    <div id="accepted-cards-images" class="form-cards"></div>
-                  </div>
-                  <div class="form-row">
-                    <input type="submit" class="submit-button spritebutton standardbutton" value="" alt="Submit">
-                    <input id="subscribebox" type="checkbox" name="subscribe" checked="checked"><label for="subscribebox" class="t-medium yellow form-subscribe"> Subscribe to our mailing list</label>
-                  </div>
-                  <div class="t-small">Questions / Concerns? Contact us at hello@weareroyale.com</div>
-                </div>
-              </form>
-            </div>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/donation-form.php' ?>
           </div>
 
           <div class="shelf greyshelf thanksshelf" data-link="thanks" style="display:none;">
@@ -275,31 +245,18 @@
         </div><!-- /main -->
 
         <div class="row footer">
-          <div class="spritebutton mutebutton muteaudio"></div>
-          <div class="spritebutton skipbutton skipmovie"></div>
-          <div class="footer-left">
-            <div>
-              <img class="counter-dollar" src="images/dollar-sign.png" width="44" height="68"><div id="CounterZone"></div>
-            </div>
-            <div class="counter-text t-font t-medium t-bold orange">
-              To date, this amount has been raised to aid those affected by Hurricane Sandy. If we reach our goal of <span class="white">$10,000</span> there will be an alt ending to our story. Spread the word!
-            </div>
-          </div><div class="footer-right">
-            <div id="countdown"></div>
-            <div class="countdown-text t-font t-medium t-bold">
-              <span class="orange">Days to raise</span> $10,000. <span class="yellow">Ends</span> Jan 11th 2013
-            </div>
-          </div>
+          <a href="fallback/" class="footer-trouble" style="display:none;">
+              <img src="images/trouble-viewing.png">
+          </a>
+          <div class="spritebutton mutebutton muteaudio" style="opacity:0.0;"></div>
+          <div class="spritebutton skipbutton skipmovie" style="opacity:0.0;"></div>
+          <div class="spritebutton skipbutton replay" style="display:none;"></div>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/donation-footer.php' ?>
           <div class="footer-bottom t-font t-vsmall orange">
             <div class="footer-text">
               &copy; We Are Royale LLC. All proceeds will be donated to the American Red Cross. Securely powered by 
             </div>
             <a href="https://stripe.com" target="_blank"><img src="images/stripe-small.png" class="footer-stripe" alt="Stripe"></a>
-            <div class="footer-share">
-              <div class="spritebutton sharebutton facebook">
-              </div><div class="spritebutton sharebutton twitter">
-              </div><div class="spritebutton sharebutton mail"></div>
-            </div>
           </div>
         </div>
         

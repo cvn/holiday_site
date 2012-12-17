@@ -27,9 +27,9 @@ $mail->Username   = "holiday@weareroyale.com";  // GMAIL username
 
 $mail->Password   = "h3llo123!!";            // GMAIL password
 
-$mail->SetFrom($visitor_email, $fromName);
+$mail->SetFrom($fromMail, $fromName);
 
-$mail->AddReplyTo($visitor_email, $fromName);
+$mail->AddReplyTo($fromMail, $fromName);
 
 	//$mail->From     = 'hello@weareroyale.com';
 	//$mail->FromName = $name;

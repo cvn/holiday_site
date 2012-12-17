@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Royale Presents | The Bell Ringer</title>
+    <meta property="og:url" content="https://weareroyale.com/thebellringer/">
 
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -15,10 +16,117 @@
     <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="../css/style.css">
+       <script src="../js/froogaloop2.min.js"></script>
+
+       <script type="text/javascript">
+
+       var playCheck;
+       playCheck = setTimeout(function(){
+
+        $('.troubleViewing').toggle();
+
+       }, 7000);
+
+
+
+
+       var vimeoPlayer, 
+           vimeoUrl,
+           vimeoHasPlayed = 0;
+
+       // Handle messages received from the player
+       function onMessageReceived(e) {
+           var data = JSON.parse(e.data);
+           
+           switch (data.event) {
+               case 'ready':
+                   onReady();
+                   break;
+                  
+               case 'playProgress':
+                   onPlayProgress(data.data);
+                   break;
+                   
+               case 'play':
+                   onPlay();
+                   break;
+                  
+               case 'pause':
+                   onPause();
+                   break;
+                  
+               case 'finish':
+                   onFinish();
+                   break;
+           }
+       }
+
+       // Helper function for sending a message to the player
+       function vimeoController(action, value) {
+           var data = { method: action };
+           
+           if (value) {
+               data.value = value;
+           }
+           
+           vimeoPlayer[0].contentWindow.postMessage(JSON.stringify(data), vimeoUrl);
+       }
+
+       function onReady() {
+           vimeoController('play');
+           vimeoController('addEventListener', 'play');
+           vimeoController('addEventListener', 'pause');
+           vimeoController('addEventListener', 'finish');
+           vimeoController('addEventListener', 'playProgress');
+           clearTimeout(playCheck);
+       }
+
+       function onPlay() {
+      
+
+       }
+
+       function onPause() {
+       }
+
+       function onFinish() {
+
+      
+       }
+       var liveSwitch = 0;
+       function onPlayProgress(data) {
+
+       }
+
+
+
+        $(document).ready(function(){
+
+           /* pop = Popcorn('#htmlvideo', {
+              frameAnimation: true
+            });*/
+
+            // Listen for messages from the player
+            if (window.addEventListener){
+                window.addEventListener('message', onMessageReceived, false);
+            }
+            else {
+                window.attachEvent('onmessage', onMessageReceived, false);
+            }
+
+            // Call the API when a button is pressed
+            $('vimeoButton').on('click', function() {
+                vimeoController($(this).text().toLowerCase());
+            });
+
+        }); /* end document ready */
+
+
+       </script>
 <?php
   // Google Analytics
   if ($portable['live']){
-    include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/analytics.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/analytics.php';
   }
 ?>
 </head>
@@ -27,11 +135,7 @@
       <div class="container">
 
         <div class="row header">
-          <div class="RoyalePresents">
-            <a href="http://weareroyale.com/"><img src="../images/royale-presents.png" width="231" height="127" alt="Royale Presents"></a>
-          </div><div class="daBellRinga">
-            <img src="../images/the-bell-ringer.png" width="276" height="127" alt="The Bell Ringer">
-          </div>        
+<?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/header.php' ?>
         </div>
         
         <div class="row main">
@@ -39,9 +143,14 @@
 	          <iframe class="video" id="player_1" src="<?=$portable['vimeoEmbed']?>" frameborder="0" webkitallowfullscreen></iframe>
 	        </div>
         </div>
+
+
         <div class="row footer">
-        	<a href="http://rdcrss.org/10OsFID" class="spritebutton clickherebutton footer-text"></a>
-        	<span class="t-font t-vlarge orange footer-share">To find out how you can HELP Edith.</span>
+        	<a href="/thebellringer/donate/" class="footer-mobile">
+            <span alt="Click Here" class="spritebutton clickherebutton"></span><br>
+            <span class="t-font t-larger orange">To find out how you can HELP Edith.</span> 
+            <div class="troubleViewing" style="margin-top:10px;"><a href="../fallback/"><img src="../images/trouble-viewing.png" /></a></div>           
+          </a>
         </div>
 
       </div><!-- /container -->

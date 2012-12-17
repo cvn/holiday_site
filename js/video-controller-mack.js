@@ -5,7 +5,7 @@
 //   }
 // }
 
-var debug = 1;
+var debug = 0;
 var autoPause = 0;
 
 function logger(stuff){
@@ -36,6 +36,8 @@ function pPlay(playPoint){
 function pPause(){
      pop.pause();
 }
+
+
 
 /*function pClear(){
   var events = pop.getTrackEvents();
@@ -127,6 +129,9 @@ function goLive(){
   $('.blackout-vimeo').hide();
   $('#htmlvideo').show();
   $('.skipbutton').fadeOut();
+  $('.replay').fadeIn();
+  $('.mutebutton').animate({opacity: 1});
+  $('.footer-trouble').fadeOut();
   preloadShelves();
   readyState();
 }
@@ -138,12 +143,12 @@ function preloadShelves(){
 
 function readyState(){
   var vBuffered = pop.buffered().end(0);
-  console.log(vBuffered);
   var vDuration = pop.duration();
-  if (vBuffered >= vDuration){
+  if (vBuffered >= (vDuration/2)){
     logger('ready to play');
     pPlay(8.8);
     autoPause = 1;
+    DualFadeIn(); 
     pop.cue('first', 13);
     pop.cue('first', function(){
       playPop();
@@ -530,7 +535,7 @@ pop.currentTime(14).play();
                     shelfExtend('thanks');
                     setTimeout(function(){
                       shelfRetract('thanks');
-                    },4000);
+                    },2000);
 
                     happyHol = 0;
                   };
@@ -836,24 +841,41 @@ function onReady() {
 }
 
 function onPlay() {
+
+  $('.skipbutton').animate({opacity: 1});
+  
+   $('.footer-trouble').fadeIn();
   if(!vimeoHasPlayed) {
     $('.blackout-vimeo').removeClass('loading').fadeOut();
     vimeoHasPlayed = 1;
   }
+
+  
 }
 
 function onPause() {
 }
 
 function onFinish() {
+
+ /// logger('im Finishedd');
  //bellHitEffect(0, 2000);
     //goLive();
+        liveSwitch = 1;
+
+      if (liveSwitch == 1){
+       // logger(data.seconds);
+        vimeoController('pause');
+
+           goLive();
+        liveSwitch = 2;
+      }
 }
 var liveSwitch = 0;
 function onPlayProgress(data) {
-   if (data.seconds >= 84.87){
+ //  if (data.seconds >= 84.87){
       //bellHitEffect(50, 2000);
-      liveSwitch = liveSwitch + 1;
+  /*    liveSwitch = 1;
 
       if (liveSwitch == 1){
         logger(data.seconds);
@@ -861,9 +883,9 @@ function onPlayProgress(data) {
 
            goLive();
         liveSwitch = 2;
-      }
+      }*/
      
-    };
+   // };
 }
 
 
@@ -894,8 +916,13 @@ function handleVisibilityChange() {
 
         if (document[hidden]) {
             pop.pause();
+              fadeDown(500);
+               $obj = $('#soundbed');
+              audioFadeOut($obj);
         } else {
             pop.play();
+             animVol(500);
+            DualFadeIn();
         }
 
   }
@@ -904,29 +931,33 @@ function handleVisibilityChange() {
 // Warn if the browser doesn't support addEventListener or the Page Visibility API
 if (typeof document.addEventListener === "undefined" || 
     typeof hidden === "undefined") {
-
     var has_blurred = 0;
     function meep()
-    {
-        has_blurred = 1;
+    {    has_blurred = 1;
+     if(autoPause==1){
         pop.pause();
+        fadeDown(500);
+        $obj = $('#soundbed');
+         audioFadeOut($obj);
+      }
     }
     window.onblur=meep;
 
     function handleFocus()
     {
-        if( has_blurred )
-            pop.play();              
+        if( has_blurred ){
+           if(autoPause==1){
+            pop.play();  
+            animVol(500);
+            DualFadeIn();
+            }            
         has_blurred = 0; // reset has_blurred state
+      }
     }
-    window.onfocus=handleFocus;
-   // alert("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
-} else {
- 
+    window.onfocus=handleFocus; 
+} else { 
     // Handle page visibility change   
-    document.addEventListener(visibilityChange, handleVisibilityChange, false);
-     
-   
+    document.addEventListener(visibilityChange, handleVisibilityChange, false);   
    }
 
 
