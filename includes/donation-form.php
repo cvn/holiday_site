@@ -41,7 +41,7 @@
                       <div class="form-area"><input type="email" required class="form-text form-fullwidth" autocomplete="off" name="email" placeholder="Email address" /></div>
                   </div>
                   <div class="form-row">
-                      <div class="form-area"><input type="text" required size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="<?=$portable['payCard']?>" /></div><div class="form-area"><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="<?=$portable['payCvv']?>" /></div>
+                      <div class="form-area"><input type="text" required size="20" autocomplete="off" class="card-number form-text form-cc" placeholder="Card number" value="<?=$portable['payCard']?>" /></div><div class="form-area cvv"><input type="text" size="4" autocomplete="off" class="card-cvc form-text form-cvv t-center" placeholder="CVV" value="<?=$portable['payCvv']?>" /></div>
                   </div>
                   <div class="form-row">
                       <label class="t-medium">Exp date:&nbsp;</label>

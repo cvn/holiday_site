@@ -37,29 +37,14 @@
                     $email_subject = "Royale Presents: The Bell Ringer";
                     $email_body = '<div style="white-space:pre-wrap;">'.
 
-                            ' <center>      <a href="'. $portable['bellSite'].'">  <img src="'. $portable['imagePath'] .'email/eshare-bellringer.png" /></a></center>'.
-                           '<center>   <p  style="text-align:left;display:inline-block;width:530px;" >'.
-                            'Greetings '.$fname.', <br /><br />'.
-                            $message.
-                          ' </p></center>'.
-                          ' <center> <a href="'.$portable['royaleSite'].'"> <img src="'.$portable['imagePath']. 'email/eshare-logo.png" /></a> </center>  '. 
-                            '<center>    <a href="'.$portable['royaleSite'].'"> <img src="'. $portable['imagePath'] .'email/eshare-footer.png" /></a> </center>'.  
-                           '</div>';
-
-                        /*   '<center> <div style="white-space:pre-wrap;">'.
-
-                            '      <img src="http://holiday.weareroyale.com/images/email/reciept-thankyou.png" />'.
-                           '  <p  style="text-align:left;display:inline-block;width:530px;" >'.
-                           'Hey There '.$name.', <br /><br />'.
-                            'Thank you so much for your donation.  One step closer toward meeting not only our'. 
-                            'goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them '.
-                            'the best this holiday season, and know that this will go a long way to their relief.'.
-                          ' </p></center><br />'.
-                          '    <center><a href="www.weareroyale.com"> <img src="http://holiday.weareroyale.com/images/email/reciept-xo.png" /></a> </center> <br /> '. 
-                            '<center><a href="http://www.weareroyale.com"><img src="http://holiday.weareroyale.com/images/email/reciepit-footer.png" /></a><br /></center> '.  
-                           '</div></center>'.*/
-                             
-                                 
+                          '<center><a href="'. $portable['bellSite'].'"><img src="'. $portable['imagePath'] .'email/eshare-bellringer.png" /></a></center>'.
+                          '<center><p  style="text-align:left;display:inline-block;width:530px;" >'.
+                          'Greetings '.$fname.', <br /><br />'.
+                          $message.
+                          '</p></center>'.
+                          '<center><a href="'.$portable['royaleSite'].'"><img src="'.$portable['imagePath']. 'email/eshare-logo.png" /></a> </center>  '. 
+                          '<center><a href="'.$portable['royaleSite'].'"><img src="'. $portable['imagePath'] .'email/eshare-footer.png" /></a> </center>'.  
+                          '</div>';
                                  
                     $to = $email_to;
                 

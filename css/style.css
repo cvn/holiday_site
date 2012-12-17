@@ -33,12 +33,13 @@ label.error {
 	border-radius: 3px;
 	padding: 6px;
 	top: -15px;
-	left: -20px;
+	left: -5px;
 	text-align: center;
 	font-size: 11px;
 	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.5);
 	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.5);
 	box-shadow: 0 1px 4px rgba(0,0,0,.5);
+	white-space: nowrap;
 }
 label.error:after {
 	top: 100%;
@@ -51,8 +52,8 @@ label.error:after {
 	border-color: rgba(0, 0, 0, 0);
 	border-top-color: #000000;
 	border-width: 10px;
-	left: 50%;
-	margin-left: -10px;
+	left: 0;
+	margin-left: 10px;
 }
 
 /* input.success {
@@ -313,8 +314,6 @@ label.error:after {
 }
 .form-amount label.error {
 	top: -30px;
-	left: -52px;
-	width: 140px;
 	z-index: 10;
 }
 .form-text {
@@ -341,8 +340,10 @@ label.error:after {
 	width: 270px;
 }
 .form-cvv {
-	margin-left: 12px;
 	width: 76px;
+}
+.form-area.cvv {
+	margin-left: 12px;
 }
 .form-month {
 	width: 35px;

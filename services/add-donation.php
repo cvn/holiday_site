@@ -61,9 +61,9 @@ if ($token) {
         if ($uSubscribe == 1){ $subscript = '<br />And thank you for subscribing to our mailing list! <br />'; }
         
 		$email_body =  '<center> <div style="white-space:pre-wrap;">'.
-		'<a href="'. $portable['bellSite'].'"><img src="'. $portable['imagePath'] .'email/reciept-thankyou.png" /></a>'.
+		'<a href="'. $portable['bellSite'].'"><img src="'. $portable['imagePath'] .'email/reciept-thankyou.png" /></a><br>'.
 		'<p style="text-align:left;display:inline-block;width:530px;" ><br /><br />'.
-		'Hey there '.$uName.', <br /><br />'.
+		'Greetings '.$uName.', <br /><br />'.
 		'Thank you so much for your $<b>'. $uAmount .'</b> donation.  One step closer toward meeting not only our goal, but also meeting the demands of the victims of Hurricane Sandy.  We hope them the best this holiday season, and know that this will go a long way to their relief.'.
 		'<br />'.$subscript.'</p></center><br />'.
 

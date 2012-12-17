@@ -5,7 +5,7 @@
   // HTTPS redirection
   if ($portable['live']){
     if ($_SERVER['SERVER_PORT']!=443 || strpos($_SERVER['HTTP_HOST'], $wwwMatcher) !== false){
-      $url = "https://weareroyale.com/donate";
+      $url = "https://weareroyale.com/thebellringer/donate/";
       header("Location: $url");
     }
   }

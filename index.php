@@ -161,8 +161,8 @@
         <div class="row main">
           <div class="video-container shy">
             <video id="htmlvideo" class="video" style="display:none;" preload="auto">
-                <source src="http://d2so4q6qccqxl.cloudfront.net/thebellringer/video/holiday2012-interactive.mp4" type="video/mp4">
-                <source src="http://d2so4q6qccqxl.cloudfront.net/thebellringer/video/holiday2012-interactive.webm" type="video/webm">
+                <source src="<?=$portable['cdn']?>video/holiday2012-interactive.mp4" type="video/mp4">
+                <source src="<?=$portable['cdn']?>video/holiday2012-interactive.webm" type="video/webm">
                 <p>This website requires HTML5 video capability, please update your browser.</p>
             </video>
             <div class="video-blackout blackout-interactive video"></div>
