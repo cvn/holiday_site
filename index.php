@@ -14,8 +14,6 @@
   if ( strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') 
     || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
     || $iedetect !== false 
-
-    
     // || eregi("MSIE", getenv( "HTTP_USER_AGENT" ) ) 
     // || eregi("Internet Explorer", getenv("HTTP_USER_AGENT" ) ) 
     ) {
@@ -24,22 +22,10 @@
     header("Location: $url");
   }
 
-  // Vimeo prep
-  $vimeoMatcher = 'player.vimeo.com';
-  $wwwMatcher = 'www';
-  $vimeoRef = 0;
-  $vimeoQuery = '';
-  $vimStatus = isset($_REQUEST['fromvimeo']);
-
-  if (strpos(strtolower($_SERVER['HTTP_REFERER']), $vimeoMatcher) !== false){
-    $vimeoRef = 1;
-    $vimeoQuery = '?fromvimeo';
-  }
-
   // HTTPS redirection
   if ($portable['live']){
     if ($_SERVER['SERVER_PORT']!=443 || strpos($_SERVER['HTTP_HOST'], $wwwMatcher) !== false){
-      $url = "https://weareroyale.com/thebellringer".$vimeoQuery;
+      $url = "https://weareroyale.com/thebellringer";
       header("Location: $url");
     }
   }
@@ -111,21 +97,6 @@
     <script src="js/video-controller-mack.js"></script>
     <script src="js/donation-functions.js"></script>
     <script src="js/init.js"></script>
-<?php
-  // Vimeo referrals skip straight to interactive
-  if ($vimStatus || $vimeoRef):
-?>
-    <script type="text/javascript">
-    setTimeout(function(){
-      if(vimeoHasPlayed) { vimeoController('pause'); }
-      splashOutVidIn('#htmlvideo');
-      goLive();}
-    ,200);
-    </script>
-    <style type="text/css">.splash { display: none; }</style>
-<?php
-  endif;
-?>
 <?php
   // Google Analytics
   if ($portable['live']){
