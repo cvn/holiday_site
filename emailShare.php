@@ -39,7 +39,7 @@
 
                             ' <center>      <a href="'. $portable['bellSite'].'">  <img src="'. $portable['imagePath'] .'email/eshare-bellringer.png" /></a></center>'.
                            '<center>   <p  style="text-align:left;display:inline-block;width:530px;" >'.
-                            'Hey There '.$fname.', <br /><br />'.
+                            'Greetings '.$fname.', <br /><br />'.
                             $message.
                           ' </p></center>'.
                           ' <center> <a href="'.$portable['royaleSite'].'"> <img src="'.$portable['imagePath']. 'email/eshare-logo.png" /></a> </center>  '. 

@@ -50,7 +50,7 @@ if (strpos($_SERVER[HTTP_HOST], $devIdentifier) !== false){
 		,'royaleSite' => 'http://weareroyale.com/'
 		,'bellSite' => 'https://weareroyale.com/thebellringer/'
 		,'fromName' => 'Bryan Shrednick'
-		,'cdn' => 'http://d2so4q6qccqxl.cloudfront.net/thebellringer/'
+		,'cdn' => 'https://d2so4q6qccqxl.cloudfront.net/thebellringer/'
 	);
 
 }
