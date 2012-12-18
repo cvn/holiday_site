@@ -66,7 +66,12 @@ function plaqueRouter($button,visibleShelf){
 
   switch (targetShelf) {
     case 'donate':
+      if(donated == 0){
       shelfExtend(targetShelf);
+      }else{
+        deselectButtons(1);
+        finalTreat();
+      }
       break;
     case 'nodonate':
       heckNo();

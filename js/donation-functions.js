@@ -23,6 +23,7 @@
 
       // disable the submit button to prevent repeated clicks
       $('.submit-button').attr("disabled", "disabled");
+      plaqueButtonsDisabled = 1;
       $('#payment-form .payment-errors').html('<img class="submit-loader" src="/thebellringer/images/loader-red.gif">');
       // createToken returns immediately - the supplied callback submits the form if there are no errors
       var $form = $(form);
@@ -45,6 +46,7 @@ function stripeResponseHandler(status, response) {
     if (response.error) {
         // re-enable the submit button
         $('.submit-button').removeAttr("disabled");
+        plaqueButtonsDisabled = 0;
         // show the errors on the form
         $("#payment-form .payment-errors").html(response.error.message).effect('highlight');
         // we add these names back in so we can revalidate properly
@@ -111,14 +113,15 @@ function donateFormSubmit($form){
       updateCounter($("#CounterZone"), newTotal);
       if ($('.donateshelf').length){
         shelfRetract('donate');
-        $('.plaquebutton.donate').removeClass('active');
         resetForm($form);
+        $('#payment-form .payment-errors').html('');
         finalTreat();
       } else {
         $('.shelf-full').html('<img class="mobile-thanks" src="/thebellringer/images/thanks.png">');
       }
     } else {
       $form.find('.submit-button').removeAttr("disabled");
+      plaqueButtonsDisabled = 0;
       var errorDescription = responseObj.errorMessage || data;
       $('#payment-form .payment-errors').html("Sorry, there was an error.<br>"+errorDescription);
     }

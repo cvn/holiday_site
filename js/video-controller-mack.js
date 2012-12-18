@@ -129,8 +129,6 @@ function goLive(){
   $('.blackout-vimeo').hide();
   $('#htmlvideo').show();
   $('.skipmovie').fadeOut();
-  $('.replay').fadeIn(1000);
-  $('.mutebutton').fadeIn(1000);
   $('.footer-trouble').fadeOut();
   preloadShelves();
   readyState();
@@ -156,6 +154,8 @@ function readyState(){
     setTimeout(function(){
       $('.header-share').fadeOut();
       $('.final-share').fadeIn();
+      $('.replay').fadeIn(1000);
+      $('.mutebutton').fadeIn(1000);
       $('.blackout-interactive').removeClass('loading').fadeOut();      
       $('.donatebox').fadeIn();
     },500);
@@ -270,6 +270,7 @@ function playMoneyDrop(){
   pop.cue(18.7, function(){
      logger('last drop play');
     logger('in the mix! money drop exit');
+    deselectButtons(1);
     happyHol = 1;
     pop.play();
     pop.currentTime(0).play();
@@ -314,6 +315,7 @@ pop.currentTime(14).play();
       
 
     logger('in the mix! money drop exit');
+    deselectButtons(1);
     happyHol = 1;
     //pop.play();
     pop.currentTime(0);

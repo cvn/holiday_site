@@ -30,6 +30,7 @@
     }
   }
 
+
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/donation-functions.php' ?>
 <!DOCTYPE html>
@@ -73,8 +74,12 @@
         $donationsArray = getDonations();
         $donationsLo = ($donationsArray[1][total]) ? $donationsArray[1][total] : 0;
         $donationsHi = ($donationsArray[0][total]) ? $donationsArray[0][total] : 0.1;
+        if(isset($_GET['donated'])){
+          $donated = $_GET['donated'];      
+        } else{ $donated = 0;}
       ?>
       var donationInitial = <?=$donationsLo?>
+        , donated = <?=$donated?> 
         , donationTotal = <?=$donationsHi?>
         , vimeoIframe = '<iframe class="video" id="player_1" src="<?=$portable["vimeoEmbed"]?>" frameborder="0" webkitallowfullscreen></iframe>';
     </script>

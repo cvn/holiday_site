@@ -74,8 +74,9 @@
 
                       $username = $portable['dbUsername'];
                       $password = $portable['dbPassword'];
-                      $emailShare = 'share';
-                      $eamilsDb = 'emails';
+                      $eamilsDb = $portable['dbDonationsDb'];
+                      $emailShare = $portable['share'];
+                      
 
                       if($defaultMessage == $cmessage){ $dmessage = 'Default';} else{ $dmessage = $cmessage;}
 
