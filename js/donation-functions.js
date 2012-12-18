@@ -100,8 +100,13 @@ function updateCounter($counterElement, endTotal){
 
 function donateFormSubmit($form){
   $.post($form.attr('action'), $form.serialize(), function(data){
-    var responseObj = $.parseJSON(data);
-    if (responseObj.total) {
+    var responseObj = {};
+    try {
+      var tempObj = $.parseJSON(data);
+      if (tempObj) { responseObj = tempObj }
+    } catch(e){
+    }
+    if (responseObj && responseObj.total) {
       var newTotal = responseObj.total;
       updateCounter($("#CounterZone"), newTotal);
       if ($('.donateshelf').length){
@@ -114,7 +119,8 @@ function donateFormSubmit($form){
       }
     } else {
       $form.find('.submit-button').removeAttr("disabled");
-      $('#payment-form .payment-errors').html(responseObj.errorMessage);
+      var errorDescription = responseObj.errorMessage || data;
+      $('#payment-form .payment-errors').html("Sorry, there was an error.<br>"+errorDescription);
     }
   });
 }

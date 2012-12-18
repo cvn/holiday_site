@@ -128,9 +128,9 @@ function goLive(){
   $('#player_1').hide();
   $('.blackout-vimeo').hide();
   $('#htmlvideo').show();
-  $('.skipbutton').fadeOut();
-  $('.replay').fadeIn();
-  $('.mutebutton').animate({opacity: 1});
+  $('.skipmovie').fadeOut();
+  $('.replay').fadeIn(1000);
+  $('.mutebutton').fadeIn(1000);
   $('.footer-trouble').fadeOut();
   preloadShelves();
   readyState();
@@ -144,16 +144,18 @@ function preloadShelves(){
 function readyState(){
   var vBuffered = pop.buffered().end(0);
   var vDuration = pop.duration();
-  if (vBuffered >= (vDuration/2)){
+  if (vBuffered >= (vDuration/1.5)){
     logger('ready to play');
     pPlay(8.8);
     autoPause = 1;
     DualFadeIn(); 
     pop.cue('first', 13);
     pop.cue('first', function(){
-      playPop();
+    playPop();
     });
     setTimeout(function(){
+      $('.header-share').fadeOut();
+      $('.final-share').fadeIn();
       $('.blackout-interactive').removeClass('loading').fadeOut();      
       $('.donatebox').fadeIn();
     },500);
@@ -842,9 +844,9 @@ function onReady() {
 
 function onPlay() {
 
-  $('.skipbutton').animate({opacity: 1});
+  $('.skipmovie').fadeIn();
   
-   $('.footer-trouble').fadeIn();
+ //  $('.footer-trouble').fadeIn();
   if(!vimeoHasPlayed) {
     $('.blackout-vimeo').removeClass('loading').fadeOut();
     vimeoHasPlayed = 1;

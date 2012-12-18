@@ -155,6 +155,9 @@
             <div class="playbutton-container">
               <div class="spritebutton playbutton playmovie"></div>
             </div>
+            <div class="skipmovie-container">
+              <div class="t-font t-bold splash-skipmovie">Skip to Donation</div>
+            </div>
           </div>
         </div>        
 
@@ -169,7 +172,12 @@
             <div class="video vimeo-container"></div>
             <div class="video-blackout blackout-vimeo loading video"></div>
           </div>
-          
+           <div class="final-share" style="display:none;">
+            <div class="spritebutton sharebutton embed">
+            </div><div class="spritebutton sharebutton facebook">
+            </div><div class="spritebutton sharebutton twitter">
+            </div><div class="spritebutton sharebutton mail"></div>
+          </div>
           <div class="plaque donatebox" style='display: none;'>
             <div class="plaque-shadowless">
               <div class="donatebox-header">
@@ -188,6 +196,9 @@
               </div>
             </div>
           </div>
+          <div class="spritebutton skipbutton replay" style="display:none;"></div>
+           <div class="spritebutton mutebutton muteaudio" style="display:none;"></div>
+
           
           <div class="shelf donateshelf" data-link="donate" style="display: none">
             <div class="closebutton"></div>
@@ -219,9 +230,9 @@
           <a href="fallback/" class="footer-trouble" style="display:none;">
               <img src="images/trouble-viewing.png">
           </a>
-          <div class="spritebutton mutebutton muteaudio" style="opacity:0.0;"></div>
-          <div class="spritebutton skipbutton skipmovie" style="opacity:0.0;"></div>
-          <div class="spritebutton skipbutton replay" style="display:none;"></div>
+         <div class="t-font t-bold skipmovie" style="display:none;">Skip to Donation</div>
+          
+          
 <?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/donation-footer.php' ?>
           <div class="footer-bottom t-font t-vsmall orange">
             <div class="footer-text">

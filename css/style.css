@@ -241,7 +241,8 @@ label.error:after {
 }
 
 .royale-script,
-.playbutton-container {
+.playbutton-container,
+.skipmovie-container {
 	text-align: center;
 	position: absolute;
 	width: 100%;
@@ -252,6 +253,9 @@ label.error:after {
 }
 .playbutton-container {
 	top: 351px;
+}
+.skipmovie-container {
+	top: 490px;
 }
 
 .shelf-submit {
@@ -458,6 +462,16 @@ input[type="checkbox"]:checked + label::after {
 	z-index: 9;
 }
 
+.final-share {
+	position: absolute;
+	left: 586px;
+	width: 367px;
+	top: 30px;	
+	text-align: center;
+	z-index: 9;
+
+}
+
 .header-share {
 	position: absolute;
 	bottom: 2px;
@@ -525,6 +539,7 @@ input[type="checkbox"]:checked + label::after {
 	background-position: 0 -44px;
 }
 
+
 .skipbutton {
 	width: 36px;
 	height: 14px;
@@ -539,11 +554,31 @@ input[type="checkbox"]:checked + label::after {
 .skipbutton.active {
 	margin-top:1px;
 }
-.skipmovie {
-	background-image: url('../images/button-skip.png');
+
+.skipmovie,
+.splash-skipmovie {
+	cursor: pointer;
+	opacity: 0.5;
+	z-index: 9;
+	font-size: 19px;
+	text-transform: uppercase;
+	display: inline-block;
 }
+.skipmovie:hover,
+.splash-skipmovie:hover {
+	opacity: 0.9;
+}
+.skipmovie {
+	position: absolute;
+	right: 0;
+	top: -33px;
+}
+
 .replay {
 	width: 68px;
+	right: 141px;
+	top: 441px;
+	z-index: 9;
 	background-image: url('../images/button-replay.png');
 }
 
@@ -577,12 +612,16 @@ input[type="checkbox"]:checked + label::after {
 	top: 1px;
 }
 .sharebutton.facebook {
+	left: 6px;
+
 	background-image: url('../images/share-fb.png');
 }
 .sharebutton.twitter {
+	left: 7px;
 	background-image: url('../images/share-twitter.png');
 }
 .sharebutton.mail {
+	left: 2px;
 	background-image: url('../images/share-mail.png');
 }
 .sharebutton.embed {
@@ -644,8 +683,9 @@ a.active .clickherebutton {
 	width: 29px;
 	height: 29px;
 	position: absolute;
-	right: 80px;
-	top: -37px;
+	right: 217px;
+	top: 434px;
+	z-index: 9;
 }
 .mutebutton:hover {
 	background-position: 0 -29px;

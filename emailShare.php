@@ -31,6 +31,10 @@
                     $name = $_POST['name'];
                     $fname = $_POST['fname'];
                     $visitor_email = $_POST['email'];
+                    $defaultMessage = $_POST['messageCheck'];
+                    $cmessage = $_POST['message'];
+
+
                     $message = 'Help '.$name .', Royale, and the Red Cross raise $10,000 for our friends on the East Coast... '.$_POST['message'];
                     
                     $email_to = $_POST['femail'];
@@ -62,6 +66,49 @@
                      echo ('<div align="center" style="margin:auto;font-size: 35px;margin-top:240px;"><b>'.$mailSend.'</b></div>');
 
                     // echo (PATH);
+
+
+
+
+                     // SQL Stuff
+
+                      $username = $portable['dbUsername'];
+                      $password = $portable['dbPassword'];
+                      $emailShare = 'share';
+                      $eamilsDb = 'emails';
+
+                      if($defaultMessage == $cmessage){ $dmessage = 'Default';} else{ $dmessage = $cmessage;}
+
+                      // SQL statements
+                         $sql = 'INSERT INTO '.$emailShare.' (sendname,sendemail,recname,recemail,message) VALUES (:sendname,:sendemail,:recname,:recemail,:message)';
+
+                      try {
+                             // Establish connection
+                             $conn = new PDO('mysql:host=localhost;dbname='.$eamilsDb.';charset=UTF8', $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                             // Insert new donation
+                             $stmt = $conn->prepare($sql);
+                             $stmt->bindParam(':sendname', $name);
+                             $stmt->bindParam(':sendemail', $visitor_email);
+                             $stmt->bindParam(':recname', $fname);
+                             $stmt->bindParam(':recemail', $email_to);
+
+
+                           //  $stmt->bindParam(':subscribe', $subscribe);
+                             $stmt->bindParam(':message', $dmessage);
+                          //   $stmt->bindParam(':total', $sum);
+                             $stmt->execute();
+
+                          
+
+
+                         } catch(PDOException $e) {
+                             return 'ERROR: ' . $e->getMessage();
+                         }
+
+
+
 
             
             }//if(isset($_POST['Submit']))
@@ -102,6 +149,9 @@
         </div>
         <div class="form-row">
           <textarea class="email-textarea" name="message">Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
+          
+https://weareroyale.com/thebellringer</textarea>
+        <textarea class="email-textarea" style="display:none" name="messageCheck">Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
           
 https://weareroyale.com/thebellringer</textarea>
         </div>

@@ -52,6 +52,7 @@ if ($token) {
 
 		require_once 'mailProcessor.php';
 
+
         $visitor_email = $uEmail;
        // $message = $_POST['message'];
       
