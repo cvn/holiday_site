@@ -43,6 +43,7 @@
     <title>Royale Presents | The Bell Ringer</title>
     <meta property="og:image" content="http://weareroyale.com/thebellringer/images/Facebook_icon.jpg"/>
     <meta property="og:title" content="Royale Presents: The Bell Ringer"/>
+    <meta property="og:url" content="https://weareroyale.com/thebellringer/"/>
     <meta property="og:description" content="Watch Royale's latest animated short 'The Bell Ringer'. Find out how to help Edith and Royale raise $10,000 for the American Red Cross to help benefit those affected by Hurricane Sandy this holiday season or you might get your bell rung. #weareroyale"/>
     <meta name="description" content="Watch Royale's latest animated short 'The Bell Ringer'. Find out how to help Edith and Royale raise $10,000 for the American Red Cross to help benefit those affected by Hurricane Sandy this holiday season or you might get your bell rung. #weareroyale">
     <meta name="author" content="Royale">

@@ -69,7 +69,6 @@ function plaqueRouter($button,visibleShelf){
       if(donated == 0){
       shelfExtend(targetShelf);
       }else{
-        deselectButtons(1);
         finalTreat();
       }
       break;
