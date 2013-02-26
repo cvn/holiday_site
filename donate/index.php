@@ -1,4 +1,8 @@
 <?php
+  // Donation drive over
+  header("Location: ../");
+  die();
+
   require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/variables.php';
   require_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/donation-functions.php';
 
@@ -38,16 +42,19 @@
     <script src="../js/jquery.flipCounter.1.2.js"></script>
     <script src="../js/jshashtable-2.1.js"></script>
     <script src="../js/jquery.numberformatter-1.2.3.min.js"></script>
-    <script src="../js/cardcheck.js"></script>
     <script src="../js/jquery.html5-placeholder-shim.js"></script>
+    <script src="../js/counters.js"></script>
+
+    <? /* Donation scripts */ ?>
+    <script src="../js/cardcheck.js"></script>
     <script src="../js/jquery.validate.min.js"></script>  
     <script src="https://js.stripe.com/v1/"></script>
     <script type="text/javascript">
       // this identifies your website in the createToken call below
       Stripe.setPublishableKey('<?=$portable["stripePublicKey"]?>');
     </script>
-
     <script src="../js/donation-functions.js"></script>
+
 
     <!-- CSS
     ================================================== -->

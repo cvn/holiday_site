@@ -151,10 +151,10 @@
         <div class="form-row">
           <textarea class="email-textarea" name="message">Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
           
-https://weareroyale.com/thebellringer</textarea>
+http://weareroyale.com/thebellringer</textarea>
         <textarea class="email-textarea" style="display:none" name="messageCheck">Check out their short film "The Bell Ringer", and following the film, please consider contributing to the fund.  If Royale makes their goal they'll animate a continuation of the story.
           
-https://weareroyale.com/thebellringer</textarea>
+http://weareroyale.com/thebellringer</textarea>
         </div>
         <div class="email-send">
           <input type="submit" class="spritebutton standardbutton sendbutton" value="">

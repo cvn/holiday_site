@@ -151,10 +151,6 @@
 
         
         <div class="row footer">
-        	<a href="/thebellringer/donate/" class="footer-mobile">
-            <span alt="Click Here" class="spritebutton clickherebutton"></span><br>
-            <span class="t-font t-larger orange">To find out how you can HELP Edith.</span>            
-          </a>
         </div>
 
       </div><!-- /container -->

@@ -16,113 +16,7 @@
     <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="../css/style.css">
-       <script src="../js/froogaloop2.min.js"></script>
 
-       <script type="text/javascript">
-
-       var playCheck;
-       playCheck = setTimeout(function(){
-
-        $('.troubleViewing').toggle();
-
-       }, 7000);
-
-
-
-
-       var vimeoPlayer, 
-           vimeoUrl,
-           vimeoHasPlayed = 0;
-
-       // Handle messages received from the player
-       function onMessageReceived(e) {
-           var data = JSON.parse(e.data);
-           
-           switch (data.event) {
-               case 'ready':
-                   onReady();
-                   break;
-                  
-               case 'playProgress':
-                   onPlayProgress(data.data);
-                   break;
-                   
-               case 'play':
-                   onPlay();
-                   break;
-                  
-               case 'pause':
-                   onPause();
-                   break;
-                  
-               case 'finish':
-                   onFinish();
-                   break;
-           }
-       }
-
-       // Helper function for sending a message to the player
-       function vimeoController(action, value) {
-           var data = { method: action };
-           
-           if (value) {
-               data.value = value;
-           }
-           
-           vimeoPlayer[0].contentWindow.postMessage(JSON.stringify(data), vimeoUrl);
-       }
-
-       function onReady() {
-           vimeoController('play');
-           vimeoController('addEventListener', 'play');
-           vimeoController('addEventListener', 'pause');
-           vimeoController('addEventListener', 'finish');
-           vimeoController('addEventListener', 'playProgress');
-           clearTimeout(playCheck);
-       }
-
-       function onPlay() {
-      
-
-       }
-
-       function onPause() {
-       }
-
-       function onFinish() {
-
-      
-       }
-       var liveSwitch = 0;
-       function onPlayProgress(data) {
-
-       }
-
-
-
-        $(document).ready(function(){
-
-           /* pop = Popcorn('#htmlvideo', {
-              frameAnimation: true
-            });*/
-
-            // Listen for messages from the player
-            if (window.addEventListener){
-                window.addEventListener('message', onMessageReceived, false);
-            }
-            else {
-                window.attachEvent('onmessage', onMessageReceived, false);
-            }
-
-            // Call the API when a button is pressed
-            $('vimeoButton').on('click', function() {
-                vimeoController($(this).text().toLowerCase());
-            });
-
-        }); /* end document ready */
-
-
-       </script>
 <?php
   // Google Analytics
   if ($portable['live']){
@@ -146,11 +40,7 @@
 
 
         <div class="row footer">
-        	<a href="/thebellringer/donate/" class="footer-mobile">
-            <span alt="Click Here" class="spritebutton clickherebutton"></span><br>
-            <span class="t-font t-larger orange">To find out how you can HELP Edith.</span> 
-            <div class="troubleViewing" style="margin-top:10px;"><a href="../fallback/"><img src="../images/trouble-viewing.png" /></a></div>           
-          </a>
+          <div class="troubleViewing" style="margin-top:10px;"><a href="../fallback/"><img src="../images/trouble-viewing.png" /></a></div>           
         </div>
 
       </div><!-- /container -->

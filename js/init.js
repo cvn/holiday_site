@@ -101,7 +101,6 @@ function shelfExtend(shelf){
 
 function deselectButtons(reenable) {
   $('.plaquebutton').each(function(){
-    console.log(this);
     $(this).removeClass('active');
   });
   if(reenable){
@@ -342,11 +341,11 @@ jQuery(document).ready(function($) {
   });
 
   $('.sharebutton.facebook').on('click',function(){
-    window.open("http://www.facebook.com/sharer/sharer.php?u=https://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
+    window.open("http://www.facebook.com/sharer/sharer.php?u=http://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, top=300, left=400, width=400, height=400");
   });
   $('.sharebutton.twitter').on('click',function(){
 
-    window.open("http://twitter.com/share?text=Watch%20Royale's%20latest%20animated%20short%20%22The%20Bell%20Ringer%22%20and%20help%20those%20affected%20by%20Hurricane%20Sandy.%20%23weareroyale.%20&url=https://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
+    window.open("http://twitter.com/share?text=Watch%20Royale's%20latest%20animated%20short%20%22The%20Bell%20Ringer%22%20and%20help%20those%20affected%20by%20Hurricane%20Sandy.%20%23weareroyale.%20&url=http://weareroyale.com/thebellringer","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=300, top=300, width=500, height=500");
   });
   $('.sharebutton.mail').on('click',function(){
     window.open("emailShare.php","_blank", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=yes, left=100, top=100, width=550, height=700");
@@ -357,7 +356,15 @@ jQuery(document).ready(function($) {
   });
 
   $('.replay').on('click',function(){
+    deselectButtons();
+    var $visibleShelf = $('.shelf:visible');
+    if($visibleShelf.length){
+      shelfRetract($visibleShelf,function(){
         replayVim();
+      });
+    } else {
+      replayVim();
+    }
   });
 
 

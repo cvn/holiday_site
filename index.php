@@ -22,17 +22,7 @@
     header("Location: $url");
   }
 
-  // HTTPS redirection
-  if ($portable['live']){
-    if ($_SERVER['SERVER_PORT']!=443 || strpos($_SERVER['HTTP_HOST'], $wwwMatcher) !== false){
-      $url = "https://weareroyale.com/thebellringer";
-      header("Location: $url");
-    }
-  }
-
-
 ?>
-<?php include_once $_SERVER['DOCUMENT_ROOT'].'/thebellringer/services/donation-functions.php' ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -72,16 +62,15 @@
     ================================================== -->
     <script type="text/javascript">
       <?php
-        $donationsArray = getDonations();
-        $donationsLo = ($donationsArray[1][total]) ? $donationsArray[1][total] : 0;
-        $donationsHi = ($donationsArray[0][total]) ? $donationsArray[0][total] : 0.1;
         if(isset($_GET['donated'])){
           $donated = $_GET['donated'];      
-        } else{ $donated = 0;}
+        } else { 
+          $donated = 0;
+        }
       ?>
-      var donationInitial = <?=$donationsLo?>
+      var donationInitial = 10000
+        , donationTotal = 10050
         , donated = <?=$donated?> 
-        , donationTotal = <?=$donationsHi?>
         , vimeoIframe = '<iframe class="video" id="player_1" src="<?=$portable["vimeoEmbed"]?>" frameborder="0" webkitallowfullscreen></iframe>';
     </script>
     <script src="js/jquery-1.8.2.min.js"></script>
@@ -91,17 +80,12 @@
     <script src="js/jquery.flipCounter.1.2.js"></script>
     <script src="js/jshashtable-2.1.js"></script>
     <script src="js/jquery.numberformatter-1.2.3.min.js"></script>
-    <script src="js/cardcheck.js"></script>
     <script src="js/jquery.html5-placeholder-shim.js"></script>
     <script src="js/jquery.validate.min.js"></script>  
-    <script src="https://js.stripe.com/v1/"></script>
-    <script type="text/javascript">
-      // this identifies your website in the createToken call below
-      Stripe.setPublishableKey('<?=$portable["stripePublicKey"]?>');
-    </script>
 
     <script src="js/video-controller-mack.js"></script>
-    <script src="js/donation-functions.js"></script>
+    <script src="js/counters.js"></script>
+    <script src="js/donation-functions-faux.js"></script>
     <script src="js/init.js"></script>
 <?php
   // Google Analytics
@@ -162,7 +146,7 @@
               <div class="spritebutton playbutton playmovie"></div>
             </div>
             <div class="skipmovie-container">
-              <div class="t-font t-bold splash-skipmovie">Skip to Donation</div>
+              <div class="t-font t-bold splash-skipmovie">Skip to Interactive</div>
             </div>
           </div>
         </div>        
@@ -208,7 +192,7 @@
           
           <div class="shelf donateshelf" data-link="donate" style="display: none">
             <div class="closebutton"></div>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/donation-form.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/donation-form-faux.php' ?>
           </div>
 
           <div class="shelf greyshelf thanksshelf" data-link="thanks" style="display:none;">
@@ -236,7 +220,7 @@
           <a href="fallback/" class="footer-trouble" style="display:none;">
               <img src="images/trouble-viewing.png">
           </a>
-         <div class="t-font t-bold skipmovie" style="display:none;">Skip to Donation</div>
+         <div class="t-font t-bold skipmovie" style="display:none;">Skip to Interactive</div>
           
           
 <?php include $_SERVER['DOCUMENT_ROOT'].'/thebellringer/includes/donation-footer.php' ?>

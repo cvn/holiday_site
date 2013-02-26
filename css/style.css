@@ -11,6 +11,7 @@ body {
 	color: #d5d5d5;
 	background-repeat: no-repeat;
 	background-position: center top;
+	overflow-y: scroll;
 }
 
 img {
@@ -482,7 +483,7 @@ input[type="checkbox"]:checked + label::after {
 	position: absolute;
 	top: -30px;
 	left: 50%;
-	margin-left: -167px;
+	margin-left: -157px;
 }
 
 /*/////////////////////////
